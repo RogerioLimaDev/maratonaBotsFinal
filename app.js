@@ -34,35 +34,6 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
-/////////////////////////////////////
-
-bot.on('conversationUpdate',(update) => {
-    if(update.membersAdded){
-        update.membersAdded.forEach( identity =>{
-            if(identity.id === update.address.bot.id){
-                bot.beginDialog(update.address,'start');
-            }
-        });
-    }     
- });
-
- bot.dialog('start',[(session)=>{
-    if(!session.userData.reload)
-        {const helloCard  = new builder.HeroCard(session)
-            .title('Olá')
-            .images([builder.CardImage.create(session, "http://www.tropicalcyborg.com/images/tropical3d.png")])
-            .text('Me chamo Tropical Cyborg. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
-
-            var helloMessage = new builder.Message(session).addAttachment(helloCard);
-            session.send(helloMessage);
-            session.endDialog();
-        }
-    }
-]);
-
-
-/////////////////////
-
 bot.dialog('/', function (session) {
     session.send('You said ' + session.message.text);
 });
