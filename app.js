@@ -1,6 +1,4 @@
-/*-----------------------------------------------------------------------------
-A simple echo bot for the Microsoft Bot Framework. 
------------------------------------------------------------------------------*/
+/*jshint esversion: 6 */
 
 var restify = require('restify');
 var builder = require('botbuilder');
@@ -29,7 +27,7 @@ server.post('/api/messages', connector.listen());
 * ---------------------------------------------------------------------------------------- */
 
 var tableName = 'botdata';
-var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
+var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWeb.JobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
 // Create your bot with a function to receive messages from the user
