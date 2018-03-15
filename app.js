@@ -34,6 +34,7 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
+
 bot.dialog('/', function (session) {
-    session.send('You said ' + session.message.text);
+    session.send('Você disse: ' + session.message.text);
 });
