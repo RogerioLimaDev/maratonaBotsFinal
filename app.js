@@ -36,6 +36,24 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
+/////////////////////////////////////
+
+bot.on('conversationUpdate',(update) => {
+    // if(update.membersAdded){
+    //     update.membersAdded.forEach( identity =>{
+    //         if(identity.id === update.address.bot.id){
+    //             bot.beginDialog(update.address,'start');
+    //         }
+    //     });
+    // }  
+    
+    session.send('Recebi um update');
+
+ });
+
+
+/////////////////////
+
 bot.dialog('/', function (session) {
     session.send('You said ' + session.message.text);
 });
