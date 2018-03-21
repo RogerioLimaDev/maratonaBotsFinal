@@ -102,7 +102,3 @@ qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
         break;
     }
 };
-
-bot.dialog('/', function (session) {
-    session.send('Você disse: ' + session.message.text);
-});
