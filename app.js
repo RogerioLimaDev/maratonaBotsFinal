@@ -23,11 +23,6 @@ var connector = new builder.ChatConnector({
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
-/*----------------------------------------------------------------------------------------
-* Bot Storage: This is a great spot to register the private state storage for your bot. 
-* We provide adapters for Azure Table, CosmosDb, SQL Azure, or you can implement your own!
-* For samples and documentation, see: https://github.com/Microsoft/BotBuilder-Azure
-* ---------------------------------------------------------------------------------------- */
 
 var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
@@ -37,9 +32,13 @@ var luisAppId = process.env.LuisAppId;
 var luisAPIKey = process.env.LuisAPIKey;
 var luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.microsoft.com';
 const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/f1c2986b-e9b0-426f-99ec-faf01acc68b5?subscription-key=69847929754f4440b23d38f8e6b370ec&verbose=true&timezoneOffset=0&q=';
+
+
 // Create your bot with a function to receive messages from the user
 const bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
+
+////
 
 bot.on('conversationUpdate',(update) => {
     if(update.membersAdded){
@@ -61,38 +60,36 @@ bot.on('conversationUpdate',(update) => {
             var helloMessage = new builder.Message(session).addAttachment(helloCard);
             session.send(helloMessage);
             session.endDialog();
-
-
         }
     }
 ]);
 
 /// Luis part of the Code ////
 
-var recognizer = new builder.LuisRecognizer(LuisModelUrl);
+// var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-//var entity = builder.EntityRecognizer.findEntity(args.intent.entities);
+// //var entity = builder.EntityRecognizer.findEntity(args.intent.entities);
 
-var intents = new builder.IntentDialog({ recognizers: [recognizer] })
+// var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
-    .matches('Cumprimento', (session) => {
-        session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
+//     .matches('Cumprimento', (session) => {
+//         session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
         
-    })
-    .matches('Xingamento', (session) => {
-        session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
-    })
-    .matches('Definicao', (session) => {
-        var entityChoices = ["HMD.Daydream", "HMD.cardboard","HMD.gear","HMD.htc","HMD.rift","HMD.magicleap","HMD.hololens"];
-        var entity = builder.EntityRecognizer.findBestMatch(entityChoices);
-        session.send('You reached **Definicao** intent, you said **\'%s\'**.', session.message.text);
-    })
-    .onDefault((session) => {
-        session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
-        // goToQnA(session);
-});
+//     })
+//     .matches('Xingamento', (session) => {
+//         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
+//     })
+//     .matches('Definicao', (session) => {
+//         var entityChoices = ["HMD.Daydream", "HMD.cardboard","HMD.gear","HMD.htc","HMD.rift","HMD.magicleap","HMD.hololens"];
+//         var entity = builder.EntityRecognizer.findBestMatch(entityChoices);
+//         session.send('You reached **Definicao** intent, you said **\'%s\'**.', session.message.text);
+//     })
+//     .onDefault((session) => {
+//         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
+//         // goToQnA(session);
+// });
 
-bot.dialog('/', intents);
+// bot.dialog('/', intents);
 
 
 ////End of Luis Part of the Code ////
