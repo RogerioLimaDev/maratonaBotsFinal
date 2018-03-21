@@ -51,14 +51,20 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     .matches('Xingamento', (session) => {
         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
     })
-    .matches('Definicao', (session) => {
-        var entityChoices = ["HMD", "oculus rift"];
-        var entity = builder.EntityRecognizer.findBestMatch(entityChoices, session.message.text);
-        session.send('You reached **Definicao** intent, you said **\'%s\'**.' + entity.text, session.message.text);
+    .matches('Definicao', (session, args) => {
+        
+        session.send('You reached **Definicao** intent, you said **\'%s\'**.' + currentEntity(session), session.message.text);
     })
     .onDefault((session) => {
         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
 });
+
+var currentEntity = function(session, args, next){
+    var hmd = builder.EntityRecognizer.findEntity(args.intent.entity, "HMD");
+    if(hmd) return(hmd);
+    else
+    return('sem entidades');
+};
 
 bot.dialog('/', intents);
 
