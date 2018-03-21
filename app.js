@@ -53,18 +53,12 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     })
     .matches('Definicao', (session) => {
         
-        session.send('You reached **Definicao** intent, you said **\'%s\'**.' + currentEntity(session), session.message.text);
+        session.send('You reached **Definicao** intent, you said **\'%s\'**.', session.message.text);
     })
     .onDefault((session) => {
         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
 });
 
-var currentEntity = function(session, args, next){
-    var hmd = builder.EntityRecognizer.findEntity(args.intent.entity, "HMD");
-    if(hmd) return(hmd);
-    else
-    return('sem entidades');
-};
 
 bot.dialog('/', intents);
 
