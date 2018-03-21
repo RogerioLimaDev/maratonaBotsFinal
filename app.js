@@ -60,9 +60,10 @@ bot.on('conversationUpdate',(update) => {
 
             var helloMessage = new builder.Message(session).addAttachment(helloCard);
             session.send(helloMessage);
+            session.endDialog();
+
 
         }
-    session.endDialog();
     }
 ]);
 
