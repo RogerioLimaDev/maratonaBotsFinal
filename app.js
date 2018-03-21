@@ -37,7 +37,7 @@ var recognizer = new builder_cognitiveservices.QnAMakerRecognizer({
     subscriptionKey: process.env.QnASubscriptionKey,
     top:3});
 
-var qnaMakerTools = new builder_cognitiveservices.QnAMakerTools();
+//var qnaMakerTools = new builder_cognitiveservices.QnAMakerTools();
 var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
 bot.library(qnaMakerTools.createLibrary());
 
