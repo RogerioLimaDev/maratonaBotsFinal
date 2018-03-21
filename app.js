@@ -53,7 +53,7 @@ var recognizer = new cognitiveServices.QnAMakerRecognizer({
         if(!session.userData.reload)
             {const helloCard  = new builder.HeroCard(session)
                 .title('Olá')
-                .images([builder.CardImage.create(session, "http://www.tropicalcyborg.com/images/tropical3d.png")])
+                .images([builder.CardImage.create(session, "https://yt3.ggpht.com/-AZ4w5v06Pxo/AAAAAAAAAAI/AAAAAAAAAAA/GfUVPVBuH_c/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg")])
                 .text('Me chamo Tropical Cyborg. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
     
                 var helloMessage = new builder.Message(session).addAttachment(helloCard);
