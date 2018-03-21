@@ -51,7 +51,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     .matches('Xingamento', (session) => {
         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
     })
-    .matches('Definicao', (session, args) => {
+    .matches('Definicao', (session) => {
         
         session.send('You reached **Definicao** intent, you said **\'%s\'**.' + currentEntity(session), session.message.text);
     })
