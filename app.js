@@ -51,6 +51,7 @@ const qnaMakerDialog = new builder_cognitiveservices.QnAMakerDialog(
     }
 );
 
+bot.dialog('/', qnaMakerDialog);
 
 qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
     const resposta = result.answers[0].answer;
