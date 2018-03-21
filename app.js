@@ -4,6 +4,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
+var minha = require('./minhabiblioteca');
 
 // Setup Restify Server
 var server = restify.createServer();
