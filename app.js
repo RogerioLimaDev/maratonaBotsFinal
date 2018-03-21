@@ -52,9 +52,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
     })
     .matches('Definicao', (session) => {
-      //  var entityChoices = ["HMD.Daydream", "HMD.cardboard","HMD.gear","HMD.htc","HMD.rift","HMD.magicleap","HMD.hololens"];
-        var entity = builder.EntityRecognizer.findEntity(intents.entities, "HMD");
-        session.send('You reached **Definicao** intent, you said **\'%s\'**.'+ entity, session.message.text);
+        var entityChoices = ["HMD.Daydream", "HMD.cardboard","HMD.gear","HMD.htc","HMD.rift","HMD.magicleap","HMD.hololens"];
+        var entity = builder.EntityRecognizer.findBestMatch(entityChoices, session.message.text);
+        session.send('You reached **Definicao** intent, you said **\'%s\'**.' + entity, session.message.text);
     })
     .onDefault((session) => {
         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
