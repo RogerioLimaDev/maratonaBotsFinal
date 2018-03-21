@@ -1,4 +1,6 @@
-/*jshint esversion: 6 */
+/*-----------------------------------------------------------------------------
+A simple echo bot for the Microsoft Bot Framework. 
+-----------------------------------------------------------------------------*/
 
 var restify = require('restify');
 var builder = require('botbuilder');
@@ -27,14 +29,13 @@ server.post('/api/messages', connector.listen());
 * ---------------------------------------------------------------------------------------- */
 
 var tableName = 'botdata';
-var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWeb.JobsStorage']);
+var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
-
 bot.dialog('/', function (session) {
-    session.send('Você disse: ' + session.message.text);
+    session.send('You said ' + session.message.text);
 });
