@@ -37,6 +37,35 @@ var recognizer = new cognitiveServices.QnAMakerRecognizer({
     subscriptionKey: process.env.QnASubscriptionKey,
     top:3});
 
+////PROATIVIDADE//////
+
+    bot.on('conversationUpdate',(update) => {
+        if(update.membersAdded){
+            update.membersAdded.forEach( identity =>{
+                if(identity.id === update.address.bot.id){
+                    bot.beginDialog(update.address,'start');
+                }
+            });
+        }     
+     });
+    
+     bot.dialog('start',[(session)=>{
+        if(!session.userData.reload)
+            {const helloCard  = new builder.HeroCard(session)
+                .title('Olá')
+                .images([builder.CardImage.create(session, "http://www.tropicalcyborg.com/images/tropical3d.png")])
+                .text('Me chamo Tropical Cyborg. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
+    
+                var helloMessage = new builder.Message(session).addAttachment(helloCard);
+                session.send(helloMessage);
+    
+            }
+        session.endDialog();
+        }
+    ]);
+
+////FIM PROATIVIDADE/////
+
 var qnaMakerTools = new cognitiveServices.QnAMakerTools();
 // var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
 // bot.library(qnaMakerTools.createLibrary());
