@@ -32,17 +32,17 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
-var recognizer = new builder_cognitiveservices.QnAMakerRecognizer({
+var recognizer = new cognitiveServices.QnAMakerRecognizer({
     knowledgeBaseId: process.env.QnAKnowledgebaseId, 
     subscriptionKey: process.env.QnASubscriptionKey,
     top:3});
 
-var qnaMakerTools = new builder_cognitiveservices.QnAMakerTools();
+var qnaMakerTools = new cognitiveServices.QnAMakerTools();
 // var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
 // bot.library(qnaMakerTools.createLibrary());
 
 
-const qnaMakerDialog = new builder_cognitiveservices.QnAMakerDialog(
+const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
     {
         recognizers: [recognizer],
         defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
