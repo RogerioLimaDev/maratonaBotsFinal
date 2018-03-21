@@ -42,23 +42,9 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-var findEntities = (session)=>{
-    var entities = recognizer.recognize(session.message.text, (error,result)=>{
-        if(!result.entities){
-            session.send('entidades reconhecidas: '+ result.entities);
-        }
-        else
-        return;
-    });
-};
-
-
-
-
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Cumprimento', (session) => {
-        findEntities(session);
         session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
         
     })
@@ -78,11 +64,6 @@ bot.dialog('/', intents);
 
 
 ////END LUIS CODE////
-
-
-
-
-
 
 
 
