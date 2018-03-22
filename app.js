@@ -70,7 +70,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         });
 
         const allEntities = foundEntities.map(m=>m.entity).join(',');
-        const curEntity = foundEntities[0].entity;
+        const curEntity = foundEntities[1].entity;
         var mensagem = respostas.Respostas('definicao', session.message.text, curEntity);
         session.send(mensagem);
 
