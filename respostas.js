@@ -17,11 +17,9 @@ var xingamento = [
 
 var Default = [
         
-        'desculpe, não entendi **' + textoMsg + '\**',
-        'Você pode repetir a pergunta? Não entendi o que vc quis dizer com' + sessionMessage+'.' ,
-        'não entendi **' + textoMsg + '\** ...foi mal'
-        //' Poutz! Não entendi o que vc quis dizer com **'+ message +'\**',
-        // 'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ message +'\** '
+        'Você pode repetir a pergunta? Não entendi o que vc quis dizer com' + textoMsg +'.' ,
+        ' Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
+        'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
         ];
 
     switch(string){
