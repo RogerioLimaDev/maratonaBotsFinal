@@ -83,7 +83,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
         const allEntities = foundEntities.map(m=>m.entity).join(',');
         const message01 = allEntities;
-        const message = foundEntities[0].entity + ' entre ' + foundEntities.length + 'entidades';
+        const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
 
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
