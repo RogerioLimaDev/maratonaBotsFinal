@@ -64,18 +64,19 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Definicao', (session, args) => {
 
-        var foundEntities = [];
-        args.entities.forEach(fEntity=>{
-            foundEntities.push(fEntity);
-        });
-
+        // var foundEntities = [];
+        // args.entities.forEach(fEntity=>{
+        //     foundEntities.push(fEntity);
+        // });
         // const allEntities = foundEntities.map(m=>m.entity).join(',');
         // const curEntity = foundEntities[1].entity;
         // var mensagem = respostas.Respostas('definicao', session.message.text, curEntity);
         // session.send(mensagem);
-
         // const message01 = allEntities;
-        const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
+        // const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
+
+        var myEntities = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
+        const message = mydEntities.map(m=>m.entity).join(',');
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
 
