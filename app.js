@@ -42,25 +42,39 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-var intents = new builder.IntentDialog({ recognizers: [recognizer] })
+const myBot = new Bot(adapter)
+    .use(recognizer)
+    .onReceive((context) => {
+        const intentName = context.topIntent ? context.topIntent.name : 'None';
+        switch (intentName) {
+            case 'Xingamento':
+                session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
+                break;
+            default:
+                 session.send('não reconheci nenhuma intent, você disse **\'%s\'**.', session.message.text);
+                 break;
+            }
+    });
 
-    .matches('Cumprimento', (session) => {
-        session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
+// var intents = new builder.IntentDialog({ recognizers: [recognizer] })
+
+//     .matches('Cumprimento', (session) => {
+//         session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
         
-    })
-    .matches('Xingamento', (session) => {
-        session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
-    })
-    .matches('Definicao', (session) => {
+//     })
+//     .matches('Xingamento', (session) => {
+//         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
+//     })
+//     .matches('Definicao', (session) => {
         
-        session.send('You reached **Definicao** intent, you said **\'%s\'**.', session.message.text);
-    })
-    .onDefault((session) => {
-        session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
-});
+//         session.send('You reached **Definicao** intent, you said **\'%s\'**.', session.message.text);
+//     })
+//     .onDefault((session) => {
+//         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
+// });
 
 
-bot.dialog('/', intents);
+// bot.dialog('/', intents);
 
 
 ////END LUIS CODE////
