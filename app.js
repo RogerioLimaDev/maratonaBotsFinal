@@ -46,9 +46,9 @@ bot.use({
     receiveActivity: (context, next) => {
         const conversationId = context.conversationReference.conversation.id;
         console.log(`receiveActivity: called for '${conversationId}'`);
+        session.send('recebi uma atividade');
         return next().then(() => {
                 console.log(`receiveActivity: completed for '${conversationId}'`);
-                session.send('recebi uma atividade');
             });
     }
 });
