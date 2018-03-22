@@ -61,7 +61,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             foundEntities.push(fEntity);
         });
         const message = foundEntities.map(m=>m.entity).join(',');
-        var mensagem = respostas.Respostas('None', session.message.text);
+        var mensagem = respostas.Respostas('xingamento', session.message.text);
         // session.send('Desobri a intenção**Xingamento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
         session.send(mensagem);
     })
