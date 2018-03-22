@@ -8,6 +8,7 @@ var ranOp = 0;
 function Respostas(string,sessionMessage, entity){
 
 var textoMsg = sessionMessage;
+var curEntity = String(entity);
 
 var cumprimento = [
 
@@ -44,15 +45,15 @@ var Default = [
             return(Default[ranOp]);
 
         case 'definicao':
-            if(!entity)
-            return(RespostasDefinicao(entity));
+            if(entity)
+            return(RespostasDefinicao(curEntity));
             else
             return(RespostasDefinicao(string));
     }
 }
 
-function RespostasDefinicao(entity){
-    switch(entity){
+function RespostasDefinicao(curEntity){
+    switch(curEntity){
 
         case 'rift':
         return('aqui vai uma resposta sobre o oculus rift');
