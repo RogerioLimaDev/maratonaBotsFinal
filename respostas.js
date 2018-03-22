@@ -60,6 +60,15 @@ function RespostasDefinicao(curEntity){
 
         case 'cardboard':
         return('aqui vai uma resposta sobre o cardboard');
+        
+        case 'tropical cyborg':
+        return('resposta sobre Tropical Cyborg');
+
+        case 'realidade aumentada':
+        return('reposta sobre Realidade aumentada');
+
+        case 'aumentada':
+        return('resposta sobre aumentada');
 
         default:
         return('Esta é apenas uma reposta padrão');
