@@ -1,12 +1,12 @@
 /*jshint esversion: 6 */
 
 var selecOp = 10;
-var selected = Math.random();
 var ranOp = 0;
 
 //function Respostas(intent, entity){
 function Respostas(string,sessionMessage){
 
+var selected = Math.random();
 var textoMsg = sessionMessage;
 
 var xingamento = [
