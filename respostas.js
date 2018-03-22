@@ -2,11 +2,12 @@
 
 var selecOp = 10;
 var ranOp = 0;
+var selected = 0;
+
 
 //function Respostas(intent, entity){
 function Respostas(string,sessionMessage){
 
-var selected = Math.random();
 var textoMsg = sessionMessage;
 
 var xingamento = [
@@ -37,7 +38,7 @@ var Default = [
 
 function SelectRandomNumber(){
 
-    var teste = 'testando';
+    selected = Math.random();
 
     if (selected <= 0.33){ selecOp = 0;}
     else if (selected <= 0.66 && selected >0.33){ selecOp = 1.0;}
