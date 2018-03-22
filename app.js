@@ -75,7 +75,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         // const message01 = allEntities;
         // const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
 
-        var myEntities = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
+        const myEntities = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
         const message = mydEntities.map(m=>m.entity).join(',');
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
@@ -86,7 +86,6 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         session.send(mensagem);
 });
 
-console.log(respostas.Respostas('xingamento',"seu boboca"));
 bot.dialog('/', intents);
 
 
