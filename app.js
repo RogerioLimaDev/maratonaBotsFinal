@@ -42,6 +42,17 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
+bot.use({
+    receiveActivity: (context, next) => {
+        const conversationId = context.conversationReference.conversation.id;
+        console.log(`receiveActivity: called for '${conversationId}'`);
+        return next().then(() => {
+                console.log(`receiveActivity: completed for '${conversationId}'`);
+                session.send('recebi uma atividade');
+            });
+    }
+});
+
 
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
