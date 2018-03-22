@@ -2,7 +2,6 @@
 
 var selecOp = 10;
 var ranOp = 0;
-var selected = 0;
 
 
 //function Respostas(intent, entity){
@@ -43,13 +42,33 @@ var Default = [
         case 'None' :
             ranOp = SelectRandomNumber();
             return(Default[ranOp]);
+
+        case 'definicao':
+            if(!entity)
+            return(RespostasDefinicao(entity));
+            else
+            return(RespostasDefinicao(string));
+    }
+}
+
+function RespostasDefinicao(entity){
+    switch(entity){
+
+        case 'rift':
+        return('aqui vai uma resposta sobre o oculus rift');
+
+        case 'cardboard':
+        return('aqui vai uma resposta sobre o cardboard');
+
+        default:
+        return('Esta é apenas uma reposta padrão');
     }
 }
 
 
 function SelectRandomNumber(){
 
-    selected = Math.random();
+    var  selected = Math.random();
 
     if (selected <= 0.33){ selecOp = 0;}
     else if (selected <= 0.66 && selected >0.33){ selecOp = 1.0;}

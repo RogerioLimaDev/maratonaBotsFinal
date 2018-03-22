@@ -43,22 +43,12 @@ var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Cumprimento', (session, args) => {
-        var foundEntities = [];
-
-        args.entities.forEach(fEntity=>{
-            foundEntities.push(fEntity);
-        });
         const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         session.send(mensagem);        
     })
 
     .matches('Xingamento', (session, args) => {
-        var foundEntities = [];
-
-        args.entities.forEach(fEntity=>{
-            foundEntities.push(fEntity);
-        });
         const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('xingamento', session.message.text);
         session.send(mensagem);
@@ -66,23 +56,19 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Definicao', (session, args) => {
 
-        // const choices = ['HMD','tecnologias','oculus rift','realidade aumentada'];
-        // const utterance = session.message.text;
-        // const currentEntity = builder.EntityRecognizer.findAllMatches(choices,utterance);
-        // const message = currentEntity.map(m=>m.entity).join(',');
-        // const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
-        // const message = hmd.map(m=>m.entity).join(',');
-
         var foundEntities = [];
         args.entities.forEach(fEntity=>{
             foundEntities.push(fEntity);
         });
 
         const allEntities = foundEntities.map(m=>m.entity).join(',');
-        const message01 = allEntities;
-        const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
-
-        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
+        const curEntity = foundEntities[1].entity;
+        var mensagem = respostas.Respostas('definicao', session.message.text, curEntity);
+        session.send(mensagem);
+        
+        // const message01 = allEntities;
+        // const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
+        // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
 
     .onDefault((session, args) => {
@@ -128,79 +114,3 @@ bot.dialog('/', intents);
 
 ////FIM PROATIVIDADE/////
 
-////QNA///////
-
-// var recognizer = new cognitiveServices.QnAMakerRecognizer({
-//     knowledgeBaseId: process.env.QnAKnowledgebaseId, 
-//     subscriptionKey: process.env.QnASubscriptionKey,
-//     top:3});
-
-// var qnaMakerTools = new cognitiveServices.QnAMakerTools();
-// // var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
-// // bot.library(qnaMakerTools.createLibrary());
-
-
-// const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
-//     {
-//         recognizers: [recognizer],
-//         defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
-//         qnaThreshold: 0.3,
-//         feedbackLib: qnaMakerTools
-//     }
-// );
-
-// bot.dialog('/', qnaMakerDialog);
-
-// qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
-//     const resposta = result.answers[0].answer;
-//     const partesDaResposta = resposta.split('%');
-//     const [titulo, imagem, descricao, url] = partesDaResposta;
-
-//     var card4 = ()=>{
-//         const card  = new builder.HeroCard(session)
-//             .title(titulo)
-//             .images([builder.CardImage.create(session,imagem.trim())])
-//             .text(descricao)
-//             .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-//         const retorno = new builder.Message(session).addAttachment(card);
-//         session.send(retorno);
-//     };
-
-//     var card3 = ()=>{
-//         const card = new builder.HeroCard(session)
-//             .title(titulo)
-//             .images([builder.CardImage.create(session,imagem.trim())])
-//             .text(descricao);
-//         const retorno = new builder.Message(session).addAttachment(card);
-//         session.send(retorno);
-//     };
-
-//     var card2 = ()=>{
-//         const card = new builder.HeroCard(session)
-//         .text(descricao)
-//         .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-//         const retorno = new builder.Message(session).addAttachment(card);
-//         session.send(retorno);
-//     };
-
-//     switch(partesDaResposta.length){
-//         case 4:
-//         card4();
-//         break;
-
-//         case 3:
-//         card3();
-//         break;
-
-//         case 2:
-//         card2();
-//         break;
-
-//         case 1:
-//         session.send(resposta);
-//         break;
-//     }
-// };
-
-
-////FIM QNA /////
