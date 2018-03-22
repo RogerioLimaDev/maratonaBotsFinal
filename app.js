@@ -53,7 +53,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     })
     .matches('Definicao', (session, args) => {
 
-        const choices = ['HMD','tecnologias'];
+        const choices = ['HMD','tecnologias','oculus rift','realidade aumentada'];
         const utterance = session.message.text;
         const currentEntity = builder.EntityRecognizer.findAllMatches(choices,utterance);
         // const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
