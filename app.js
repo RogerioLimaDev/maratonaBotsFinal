@@ -77,12 +77,13 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         // const message = hmd.map(m=>m.entity).join(',');
 
         var foundEntities = [];
-
         args.entities.forEach(fEntity=>{
             foundEntities.push(fEntity);
         });
-        const message = foundEntities.map(m=>m.entity).join(',');
 
+        const intentType = args.entities.type;
+        const allEntities = foundEntities.map(m=>m.entity).join(',');
+        const message = allEntities + ' do tipo:' + intentType;
 
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
