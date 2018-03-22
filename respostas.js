@@ -53,6 +53,7 @@ var Default = [
 }
 
 function RespostasDefinicao(curEntity){
+    
     switch(curEntity){
 
         case 'realidade virtual':
