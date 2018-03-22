@@ -53,12 +53,20 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     })
     .matches('Definicao', (session, args) => {
 
-        const choices = ['HMD','tecnologias','oculus rift','realidade aumentada'];
-        const utterance = session.message.text;
+        // const choices = ['HMD','tecnologias','oculus rift','realidade aumentada'];
+        // const utterance = session.message.text;
         // const currentEntity = builder.EntityRecognizer.findAllMatches(choices,utterance);
         // const message = currentEntity.map(m=>m.entity).join(',');
-        const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
-        const message = hmd.map(m=>m.entity).join(',');
+
+        var foundEntities = [];
+
+        args.entities.forEach(fEntity=>{
+            foundEntities.push(fEntity);
+        });
+        const message = foundEntities.map(m=>m.entity).join(',');
+
+        // const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
+        // const message = hmd.map(m=>m.entity).join(',');
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
     .onDefault((session, args) => {
