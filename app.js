@@ -78,7 +78,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
 
         const otherEntities = builder.EntityRecognizer.findEntity(args.entities, 'HMD');
-        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei a entidades **'+ otherEntities +'\** do tipo HMD' , session.message.text);
+        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei a entidades **'+ otherEntities.entity +'\** do tipo HMD' , session.message.text);
 
     })
 
