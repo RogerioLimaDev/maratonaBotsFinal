@@ -5,7 +5,7 @@ var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
 var minha = require('./minhabiblioteca');
-
+var respostas = require('./repostas');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -26,8 +26,6 @@ var connector = new builder.ChatConnector({
 
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
-
-
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
@@ -88,10 +86,13 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
     .onDefault((session, args) => {
-        session.send('Poutz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
+        var mensagem = respostas.Respostas('None', session.message.text);
+        // session.send('Poutz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
+        console.log(respostas.Respostas('None', session.message.text));
+        session.send(mensagem);
 });
 
-
+console.log(respostas.Respostas('xingamento'));
 bot.dialog('/', intents);
 
 
