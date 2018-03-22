@@ -42,18 +42,12 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-bot.use({
-    receiveActivity: (context, next) => {
-        context.reply('recebi uma atividade');
-        session.send('atividade recebida');
-        return Promise.resolve();
-        // session.send('recebi uma atividade');
-        // return next().then(() => {
-        //         console.log(`receiveActivity: completed for '${conversationId}'`);
-        //     });
+var teste = recognizer.onRecognize(context,(err,result)=>{
+    if(result.entities){
+        session.send('reconheci entidades');
+        session.endDialog();
     }
 });
-
 
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
