@@ -72,12 +72,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         // const curEntity = foundEntities[1].entity;
         // var mensagem = respostas.Respostas('definicao', session.message.text, curEntity);
         // session.send(mensagem);
-        // const message01 = allEntities;
-        // const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
 
-        const myEntities = builder.EntityRecognizer.findAllEntities( args.entities, 'HMD');
-        const message = myEntities.map(m=>m.entity).join(',');
-        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
+        // const allEntities = builder.EntityRecognizer.findAllEntities( args.entities, 'HMD');
+        // const message = allEntities.map(m=>m.entity).join(',');
+        // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
+
+        const otherEntities = builder.EntityRecognizer.findEntity(args.entities, 'HMD');
+        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei a entidades **'+ otherEntities +'\** do tipo HMD' , session.message.text);
+
     })
 
     .onDefault((session, args) => {
