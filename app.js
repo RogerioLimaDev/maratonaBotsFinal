@@ -61,8 +61,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             foundEntities.push(fEntity);
         });
         const message = foundEntities.map(m=>m.entity).join(',');
-
-        session.send('Desobri a intenção**Xingamento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
+        var mensagem = respostas.Respostas('None', session.message.text);
+        // session.send('Desobri a intenção**Xingamento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
+        session.send(mensagem);
     })
 
     .matches('Definicao', (session, args) => {
@@ -85,9 +86,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
+
     .onDefault((session, args) => {
         var mensagem = respostas.Respostas('None', session.message.text);
-        // session.send('Poutz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
         console.log(respostas.Respostas('None', session.message.text));
         session.send(mensagem);
 });

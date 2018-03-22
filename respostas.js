@@ -10,14 +10,14 @@ function Respostas(string,sessionMessage){
 var textoMsg = sessionMessage;
 
 var xingamento = [
-        "Epa! Olha a boca, rapaz!...",
-        "Sua mãe não te deu educação, não?",
-        "Seu IP foi registrado. Vou mandar o Robocop aí te dar uma lição."
+        "**" + textoMsg + "\**??? Epa! Olha a boca, rapaz!...",
+        "**" + textoMsg + "\**??? Sua mãe não te deu educação, não?",
+        "**" + textoMsg + "\**??? Seu IP foi registrado. Vou mandar o Robocop aí te dar uma lição."
         ];
 
 var Default = [
         
-        'Você pode repetir a pergunta? Não entendi o que vc quis dizer com' + textoMsg +'.' ,
+        'Você pode repetir a pergunta? Não entendi o que vc quis dizer com **' + textoMsg +'\** .' ,
         ' Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
         'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
         ];
