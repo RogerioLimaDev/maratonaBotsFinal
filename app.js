@@ -49,9 +49,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             foundEntities.push(fEntity);
         });
         const message = foundEntities.map(m=>m.entity).join(',');
-
-        session.send('Desobri a intenção**Cumprimento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
-        
+        var mensagem = respostas.Respostas('cumprimento', session.message.text);
+        session.send(mensagem);        
     })
 
     .matches('Xingamento', (session, args) => {
@@ -62,7 +61,6 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         });
         const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('xingamento', session.message.text);
-        // session.send('Desobri a intenção**Xingamento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
         session.send(mensagem);
     })
 
@@ -93,7 +91,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         session.send(mensagem);
 });
 
-console.log(respostas.Respostas('xingamento'));
+console.log(respostas.Respostas('xingamento',"seu boboca"));
 bot.dialog('/', intents);
 
 

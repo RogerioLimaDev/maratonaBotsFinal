@@ -6,9 +6,16 @@ var selected = 0;
 
 
 //function Respostas(intent, entity){
-function Respostas(string,sessionMessage){
+function Respostas(string,sessionMessage, entity){
 
 var textoMsg = sessionMessage;
+
+var cumprimento = [
+
+    "Opa! Beleza? O que quer saber sobre a Tropical Cyborg?",
+    "Oi! Sou o Tropical Cyborg e estou aqui para tirar suas dúvidas de Realidade Virtual e aumentada",
+    "E aê? Como posso te ajudar"
+];
 
 var xingamento = [
         "**" + textoMsg + "\**??? Epa! Olha a boca, rapaz!...",
@@ -18,7 +25,7 @@ var xingamento = [
 
 var Default = [
         
-        'Você pode repetir a pergunta? Não entendi o que vc quis dizer com **' + textoMsg +'\** .' ,
+        'Não entendi o que vc quis dizer com **' + textoMsg +'\** . Minha especialidade é responder sobre realidade aumentada e virtual' ,
         ' Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
         'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
         ];
@@ -28,6 +35,10 @@ var Default = [
         case 'xingamento':
             ranOp = SelectRandomNumber();
             return(xingamento[ranOp]);
+
+        case 'cumprimento':
+            ranOp = SelectRandomNumber();
+            return(cumprimento[ranOp]);
 
         case 'None' :
             ranOp = SelectRandomNumber();
