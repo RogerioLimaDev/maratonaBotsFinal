@@ -55,10 +55,18 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         session.send('Desobri a intenção**Cumprimento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
         
     })
-    
+
     .matches('Xingamento', (session, args) => {
-        session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
+        var foundEntities = [];
+
+        args.entities.forEach(fEntity=>{
+            foundEntities.push(fEntity);
+        });
+        const message = foundEntities.map(m=>m.entity).join(',');
+
+        session.send('Desobri a intenção**Xingamento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
+
     .matches('Definicao', (session, args) => {
 
         // const choices = ['HMD','tecnologias','oculus rift','realidade aumentada'];
