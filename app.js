@@ -45,9 +45,17 @@ var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Cumprimento', (session, args) => {
-        session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
+        var foundEntities = [];
+
+        args.entities.forEach(fEntity=>{
+            foundEntities.push(fEntity);
+        });
+        const message = foundEntities.map(m=>m.entity).join(',');
+
+        session.send('Desobri a intenção**Cumprimento**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
         
     })
+    
     .matches('Xingamento', (session, args) => {
         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
     })
@@ -57,6 +65,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         // const utterance = session.message.text;
         // const currentEntity = builder.EntityRecognizer.findAllMatches(choices,utterance);
         // const message = currentEntity.map(m=>m.entity).join(',');
+        // const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
+        // const message = hmd.map(m=>m.entity).join(',');
 
         var foundEntities = [];
 
@@ -65,8 +75,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         });
         const message = foundEntities.map(m=>m.entity).join(',');
 
-        // const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
-        // const message = hmd.map(m=>m.entity).join(',');
+
         session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
     })
     .onDefault((session, args) => {
