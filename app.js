@@ -81,7 +81,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             foundEntities.push(fEntity);
         });
 
-        const intentType = args.entities.type.tostring();
+        const intentType = String(args.entities.type);
         const allEntities = foundEntities.map(m=>m.entity).join(',');
         const message = allEntities + ' do tipo:' + intentType;
 
