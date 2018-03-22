@@ -44,18 +44,19 @@ var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
-    .matches('Cumprimento', (session) => {
+    .matches('Cumprimento', (session, args) => {
         session.send('You reached **Cumprimento** intent, you said **\'%s\'**.', session.message.text);
         
     })
-    .matches('Xingamento', (session) => {
+    .matches('Xingamento', (session, args) => {
         session.send('You reached **Xingamento** intent,  you said **\'%s\'**.', session.message.text);
     })
-    .matches('Definicao', (session) => {
-        
-        session.send('You reached **Definicao** intent, you said **\'%s\'**.', session.message.text);
+    .matches('Definicao', (session, args) => {
+        const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
+        const message = hmd.map(m=>m.entity).join(',');
+        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades ${message}.', session.message.text);
     })
-    .onDefault((session) => {
+    .onDefault((session, args) => {
         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
 });
 
