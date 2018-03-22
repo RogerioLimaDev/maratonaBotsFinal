@@ -55,6 +55,12 @@ var Default = [
 function RespostasDefinicao(curEntity){
     switch(curEntity){
 
+        case 'realidade virtual':
+        return('resposta sobre VR');
+
+        case 'virtual':
+        return('resposta sobre Virtual');
+
         case 'rift':
         return('aqui vai uma resposta sobre rift');
 
