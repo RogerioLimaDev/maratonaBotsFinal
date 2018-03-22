@@ -43,12 +43,20 @@ var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Cumprimento', (session, args) => {
+        var foundEntities = [];
+        args.entities.forEach(fEntity=>{
+            foundEntities.push(fEntity);
+        });
         const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         session.send(mensagem);        
     })
 
     .matches('Xingamento', (session, args) => {
+        var foundEntities = [];
+        args.entities.forEach(fEntity=>{
+            foundEntities.push(fEntity);
+        });
         const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('xingamento', session.message.text);
         session.send(mensagem);
@@ -65,7 +73,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         const curEntity = foundEntities[1].entity;
         var mensagem = respostas.Respostas('definicao', session.message.text, curEntity);
         session.send(mensagem);
-        
+
         // const message01 = allEntities;
         // const message = foundEntities[0].entity + ' do tipo ' + foundEntities[1].entity;
         // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
