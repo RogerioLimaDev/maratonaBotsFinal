@@ -64,7 +64,7 @@ function RespostasDefinicao(curEntity){
         case 'cardboard':
         return('aqui vai uma resposta sobre o cardboard');
         
-        case 'tropical cyborg':
+        case 'tropical':
         return('resposta sobre Tropical Cyborg');
 
         case 'realidade aumentada':
