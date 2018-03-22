@@ -56,7 +56,10 @@ function RespostasDefinicao(curEntity){
     switch(curEntity){
 
         case 'rift':
-        return('aqui vai uma resposta sobre o oculus rift');
+        return('aqui vai uma resposta sobre rift');
+
+        case 'oculus rift':
+        return('aqui vai uma resposta sobre oculus rift');
 
         case 'cardboard':
         return('aqui vai uma resposta sobre o cardboard');
