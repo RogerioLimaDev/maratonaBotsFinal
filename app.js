@@ -44,9 +44,8 @@ var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
 bot.use({
     receiveActivity: (context, next) => {
-        const conversationId = context.conversationReference.conversation.id;
-        console.log(`receiveActivity: called for '${conversationId}'`);
         context.reply('recebi uma atividade');
+        session.send('atividade recebida');
         return Promise.resolve();
         // session.send('recebi uma atividade');
         // return next().then(() => {
