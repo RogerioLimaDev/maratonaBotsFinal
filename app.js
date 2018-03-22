@@ -42,7 +42,7 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-var teste = recognizer.onRecognize(context,(err,result)=>{
+recognizer.onRecognize(context,(err,result)=>{
     if(result.entities){
         session.send('reconheci entidades');
         session.endDialog();
