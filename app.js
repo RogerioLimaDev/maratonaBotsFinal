@@ -54,7 +54,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     .matches('Definicao', (session, args) => {
         const hmd = builder.EntityRecognizer.findAllEntities(args.entities, 'HMD');
         const message = hmd.map(m=>m.entity).join(',');
-        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades ${message}.', session.message.text);
+        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **\'${message}\'**' , session.message.text);
     })
     .onDefault((session, args) => {
         session.send('Pouz, não entendi o que vc quis dizer com: **\'%s\'**.', session.message.text);
