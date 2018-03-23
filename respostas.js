@@ -47,7 +47,7 @@ var Default = [
 
         case 'definicao':
             if(curType != null)
-                return('meu tipo é' + curType);
+                SelectType();
             else
                 return('não tenho tipo definido');
             break;
@@ -59,16 +59,19 @@ function SelectType()
     switch(curType)
     {
         case 'hmd':
-        RespostasHMD();
-        break;
+        return('hmd na escuta');
+        // RespostasHMD();
+        // break;
 
         case 'name':
-        RespostasNomes();
-        break;
+        return('name na escuta');
+        // RespostasNomes();
+        // break;
 
         case 'tech':
-        RespostasTech();
-        break;
+        return('tech na escuta');
+        // RespostasTech();
+        // break;
 
         default:
         return('Esta é apenas uma reposta padrão qualquer');
