@@ -40,19 +40,19 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-var intents = new builder.IntentDialog({ recognizers: [recognizer] })
+var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
-    .matches('Cumprimento', (session, args) => {
+intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         session.send(mensagem);        
-    })
+    });
 
-    .matches('Xingamento', (session, args) => {
+intents.matches('Xingamento', (session, args) => {
         var mensagem = respostas.Respostas('xingamento', session.message.text);
         session.send(mensagem);
-    })
+    });
 
-    .matches('Definicao', (session, args) => {
+intents.matches('Definicao', (session, args) => {
         const hmdEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
         for( var i = 0; i<hmdEntities.length; i++ ){
             const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, hmdEntities[i]);
@@ -84,13 +84,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                     // session.send('Achei a entidade '+ nameEntities[i] + 'do tipo name');
                 }  
                 }
-    })
+    });
 
-    .onDefault((session, args) => {
+intents.onDefault((session, args) => {
         var mensagem = respostas.Respostas('None', session.message.text);
         console.log(respostas.Respostas('None', session.message.text));
         session.send(mensagem);
 });
+
 
 bot.dialog('/', intents);
 
@@ -116,7 +117,7 @@ bot.dialog('/', intents);
             {const helloCard  = new builder.HeroCard(session)
                 .title('Olá')
                 .images([builder.CardImage.create(session, "https://yt3.ggpht.com/-AZ4w5v06Pxo/AAAAAAAAAAI/AAAAAAAAAAA/GfUVPVBuH_c/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg")])
-                .text('Me chamo Tropical Cyborg. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
+                .text('Me chamo Tropical CyBot. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
     
                 var helloMessage = new builder.Message(session).addAttachment(helloCard);
                 session.send(helloMessage);
