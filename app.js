@@ -76,9 +76,19 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         // const allEntities = builder.EntityRecognizer.findAllEntities( args.entities, 'HMD');
         // const message = allEntities.map(m=>m.entity).join(',');
         // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
+        const luisEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
+        
+        for( var i = 0; i<luisEntities.length; i++ ){
+            const foundrEntities = builder.EntityRecognizer.findEntity(args.entities, luisEntities[i]);
+            if(foundrEntities.length >0){
+                // var mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
+                // session.send(mensagem);
+                session.send('encontrei uma entidade do tipo'+ luisEntities[i]);
+            }
 
-        const otherEntities = builder.EntityRecognizer.findEntity(args.entities, 'HMD');
-        session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei a entidades **'+ otherEntities.entity +'\** do tipo HMD' , session.message.text);
+        }
+        
+        // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei a entidades **'+ otherEntity.entity +'\** do tipo HMD' , session.message.text);
 
     })
 
