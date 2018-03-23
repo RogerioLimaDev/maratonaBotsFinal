@@ -79,11 +79,12 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         const luisEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
         
         for( var i = 0; i<luisEntities.length; i++ ){
-            const foundrEntities = builder.EntityRecognizer.findEntity(args.entities, luisEntities[i]);
-            if(foundrEntities.length >0){
+            const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, luisEntities[i]);
+            if(foundEntities.length >0){
                 // var mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
                 // session.send(mensagem);
                 session.send('encontrei uma entidade do tipo'+ luisEntities[i]);
+                
             }
 
         }
