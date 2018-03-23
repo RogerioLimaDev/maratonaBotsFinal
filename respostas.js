@@ -46,12 +46,12 @@ var Default = [
             return(Default[ranOp]);
 
         case 'definicao':
-            SelectType(curType);
+            SelectType();
             break;
     }
 }
 
-function SelectType(curType)
+function SelectType()
 {
     switch(curType)
     {
