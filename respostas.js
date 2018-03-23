@@ -46,7 +46,10 @@ var Default = [
             return(Default[ranOp]);
 
         case 'definicao':
-            SelectType();
+            if(curType != null)
+                return('meu tipo é' + curType);
+            else
+                return('não tenho tipo definido');
             break;
     }
 }
@@ -79,7 +82,7 @@ function RespostasHMD(){
         case 'oculus':
         return('resposta sobre oculus rift');
 
-        case 'holoens':
+        case 'hololens':
         return('resposta sobre Microsoft Hololens');
 
         case 'gearvr':
