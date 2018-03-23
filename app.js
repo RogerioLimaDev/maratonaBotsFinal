@@ -53,14 +53,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     })
 
     .matches('Definicao', (session, args) => {
+        var currentEntity = '';
         const hmdEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
-        
         for( var i = 0; i<hmdEntities.length; i++ ){
             const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, hmdEntities[i]);
-            if(foundEntities.length >0){
-                const mensagemHmd = respostas.Respostas('definicao', session.message.text,luisEntities[i],'hmd');
+            if(foundEntities.length > 0){
+                currentEntity = hmdEntities[i];
+                const mensagemHmd = respostas.Respostas('definicao', session.message.text,currentEntity,'hmd');
                 session.send(mensagemHmd);
-                // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo hmd');
                 }
 
             }
