@@ -51,20 +51,20 @@ var Default = [
     }
 }
 
-function SelectType(tipoDefinido)
+function SelectType(curType)
 {
-    switch(tipoDefinido)
+    switch(curType)
     {
         case 'hmd':
-        RespostasHMD(curEntity);
+        RespostasHMD();
         break;
 
         case 'name':
-        RespostasNomes(curEntity);
+        RespostasNomes();
         break;
 
         case 'tech':
-        RespostasTech(curEntity);
+        RespostasTech();
         break;
 
         default:
@@ -72,9 +72,9 @@ function SelectType(tipoDefinido)
     }
 }
 
-function RespostasHMD(entidade){
+function RespostasHMD(){
 
-    switch(entidade){
+    switch(curEntity){
 
         case 'oculus':
         return('resposta sobre oculus rift');
@@ -96,9 +96,9 @@ function RespostasHMD(entidade){
     }
 }
 
-function RespostasNomes(entidade){
+function RespostasNomes(){
 
-    switch(entidade){
+    switch(curEntity){
 
         case 'rogerio':
         return('resposta sobre Rogério Lima');
@@ -114,9 +114,9 @@ function RespostasNomes(entidade){
     }
 }
 
-function RespostasTech(entidade){
+function RespostasTech(){
 
-    switch(entidade){
+    switch(curEntity){
 
         case 'aumentada':
         return('resposta sobre realidade aumentada');
