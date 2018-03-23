@@ -7,9 +7,9 @@ var curEntity = '';
 
 function Respostas(string,sessionMessage, entity, tipo){
 
-var textoMsg = sessionMessage;
-curEntity = String(entity);
-curType = String(tipo);
+    var textoMsg = sessionMessage;
+    curEntity = String(entity);
+    curType = String(tipo);
 
 var cumprimento = [
 
@@ -51,9 +51,9 @@ var Default = [
     }
 }
 
-function SelectType(curType)
+function SelectType(tipoDefinido)
 {
-    switch(curType)
+    switch(tipoDefinido)
     {
         case 'hmd':
         RespostasHMD(curEntity);
@@ -72,9 +72,9 @@ function SelectType(curType)
     }
 }
 
-function RespostasHMD(curEntity){
+function RespostasHMD(entidade){
 
-    switch(curEntity){
+    switch(entidade){
 
         case 'oculus':
         return('resposta sobre oculus rift');
