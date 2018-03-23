@@ -53,32 +53,26 @@ var Default = [
 }
 
 function RespostasDefinicao(curEntity){
-    
+
     switch(curEntity){
 
-        case 'realidade virtual':
-        return('resposta sobre VR');
+        case 'oculus':
+        return('resposta sobre oculus rift');
 
-        case 'virtual':
-        return('resposta sobre Virtual');
+        case 'holoens':
+        return('resposta sobre Microsoft Hololens');
 
-        case 'rift':
-        return('aqui vai uma resposta sobre rift');
+        case 'gearvr':
+        return('aqui vai uma resposta sobre o Gear VR');
 
-        case 'oculus rift':
-        return('aqui vai uma resposta sobre oculus rift');
+        case 'magic leap':
+        return('aqui vai uma resposta sobre o Magic Leap');
 
         case 'cardboard':
         return('aqui vai uma resposta sobre o cardboard');
         
         case 'tropical':
         return('resposta sobre Tropical Cyborg');
-
-        case 'realidade aumentada':
-        return('reposta sobre Realidade aumentada');
-
-        case 'aumentada':
-        return('resposta sobre aumentada');
 
         default:
         return('Esta é apenas uma reposta padrão');

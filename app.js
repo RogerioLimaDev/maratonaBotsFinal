@@ -81,10 +81,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         for( var i = 0; i<luisEntities.length; i++ ){
             const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, luisEntities[i]);
             if(foundEntities.length >0){
-                // var mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
-                // session.send(mensagem);
-                session.send('encontrei uma entidade do tipo'+ luisEntities[i]);
-                
+                var mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
+                session.send(mensagem);
+                // session.send('encontrei uma entidade do tipo'+ luisEntities[i]);             
             }
 
         }
