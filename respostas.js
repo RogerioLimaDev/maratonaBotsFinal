@@ -44,10 +44,7 @@ var Default = [
             return(Default[ranOp]);
 
         case 'definicao':
-            if(type)
             SelectType(curType);
-            else
-            SelectType('default');
     }
 }
 
