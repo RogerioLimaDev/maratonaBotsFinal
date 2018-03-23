@@ -1,11 +1,9 @@
 /*jshint esversion: 6 */
 
-var selecOp = 10;
+var selecOp = 0;
 var ranOp = 0;
 
-
-//function Respostas(intent, entity){
-function Respostas(string,sessionMessage, entity){
+function Respostas(string,sessionMessage, entity, type){
 
 var textoMsg = sessionMessage;
 var curEntity = String(entity);
@@ -45,14 +43,35 @@ var Default = [
             return(Default[ranOp]);
 
         case 'definicao':
-            if(entity)
-            return(RespostasDefinicao(curEntity));
+            if(type)
+            SelectType(type);
             else
-            return(RespostasDefinicao(string));
+            SelectType('default');
     }
 }
 
-function RespostasDefinicao(curEntity){
+function SelectType(type)
+{
+    switch(type)
+    {
+        case 'hmd':
+        RespostasHMD(curEntity);
+        break;
+
+        case 'name':
+        RespostasNomes(curEntity);
+        break;
+
+        case 'tech':
+        RespostasTech(curEntity);
+        break;
+
+        default:
+        return('Esta é apenas uma reposta padrão qualquer');
+    }
+}
+
+function RespostasHMD(curEntity){
 
     switch(curEntity){
 
@@ -71,14 +90,55 @@ function RespostasDefinicao(curEntity){
         case 'cardboard':
         return('aqui vai uma resposta sobre o cardboard');
         
-        case 'tropical':
-        return('resposta sobre Tropical Cyborg');
-
         default:
-        return('Esta é apenas uma reposta padrão');
+        return('Esta é apenas uma reposta padrão de hmd');
     }
 }
 
+function RespostasNomes(curEntity){
+
+    switch(curEntity){
+
+        case 'rogerio':
+        return('resposta sobre Rogério Lima');
+
+        case 'tropical':
+        return('resposta sobre Tropical Cyborg');
+
+        case 'Bionikos':
+        return('aqui vai uma resposta sobre a Bionikos');
+        
+        default:
+        return('Esta é apenas uma reposta padrão de nomes');
+    }
+}
+
+function RespostasTech(curEntity){
+
+    switch(curEntity){
+
+        case 'aumentada':
+        return('resposta sobre realidade aumentada');
+
+        case 'virtual':
+        return('resposta sobre realidade virtual');
+
+        case 'kinect':
+        return('aqui vai uma resposta sobre o sensor kinect');
+
+        case 'beacons':
+        return('aqui vai uma resposta sobre beacons');
+
+        case 'mixed':
+        return('resposta sobre mixed reality');
+
+        case 'chatbot':
+        return('resposta sobre chatbots');
+        
+        default:
+        return('Esta é apenas uma reposta padrão de tecnologia');
+    }
+}
 
 function SelectRandomNumber(){
 

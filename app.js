@@ -63,33 +63,37 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     })
 
     .matches('Definicao', (session, args) => {
-
-        // var foundEntities = [];
-        // args.entities.forEach(fEntity=>{
-        //     foundEntities.push(fEntity);
-        // });
-        // const allEntities = foundEntities.map(m=>m.entity).join(',');
-        // const curEntity = foundEntities[1].entity;
-        // var mensagem = respostas.Respostas('definicao', session.message.text, curEntity);
-        // session.send(mensagem);
-
-        // const allEntities = builder.EntityRecognizer.findAllEntities( args.entities, 'HMD');
-        // const message = allEntities.map(m=>m.entity).join(',');
-        // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei as entidades **'+ message +'\**' , session.message.text);
-        const luisEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
+        var mensagem = '';
+        const hmdEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
         
-        for( var i = 0; i<luisEntities.length; i++ ){
-            const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, luisEntities[i]);
+        for( var i = 0; i<hmdEntities.length; i++ ){
+            const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, hmdEntities[i]);
             if(foundEntities.length >0){
-                var mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
+                mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
                 session.send(mensagem);
-                // session.send('encontrei uma entidade do tipo'+ luisEntities[i]);             
+                }
+
             }
 
-        }
+            const techEntities = ['virtual', 'aumentada','beacons', 'kinect', 'chatbot','mixed'];
         
-        // session.send('Desobri a intenção **Definicao**, você disse **\'%s\'** e achei a entidades **'+ otherEntity.entity +'\** do tipo HMD' , session.message.text);
+            for( var i = 0; i<techEntities.length; i++ ){
+                const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[i],'hmd');
+                if(foundEntities.length >0){
+                    mensagem = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
+                    session.send(mensagem);
+                    }   
+                }
 
+            const nameEntities = ['rogerio', 'tropical','bionikos','andrea'];
+        
+            for( var i = 0; i<nameEntities.length; i++ ){
+                const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[i],'name');
+                if(foundEntities.length >0){
+                    mensagem = respostas.Respostas('definicao', session.message.text,nameEntities[i]);
+                    session.send(mensagem);
+                    }  
+                }
     })
 
     .onDefault((session, args) => {
