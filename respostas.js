@@ -7,6 +7,7 @@ function Respostas(string,sessionMessage, entity, type){
 
 var textoMsg = sessionMessage;
 var curEntity = String(entity);
+var curType = String(type);
 
 var cumprimento = [
 
@@ -44,15 +45,15 @@ var Default = [
 
         case 'definicao':
             if(type)
-            SelectType(type);
+            SelectType(curType);
             else
             SelectType('default');
     }
 }
 
-function SelectType(type)
+function SelectType(curType)
 {
-    switch(type)
+    switch(curType)
     {
         case 'hmd':
         RespostasHMD(curEntity);
