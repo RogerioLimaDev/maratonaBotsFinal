@@ -50,19 +50,19 @@ var Default = [
                 switch(curType)
                 {
                     case 'hmd':
-                    return('hmd na escuta');
-                    // RespostasHMD();
-                    // break;
+                    // return('hmd na escuta');
+                    RespostasHMD();
+                    break;
             
                     case 'name':
-                    return('name na escuta');
-                    // RespostasNomes();
-                    // break;
+                    // return('name na escuta');
+                    RespostasNomes();
+                    break;
             
                     case 'tech':
-                    return('tech na escuta');
-                    // RespostasTech();
-                    // break;
+                    // return('tech na escuta');
+                    RespostasTech();
+                    break;
             
                     default:
                     return('Esta é apenas uma reposta padrão qualquer');
@@ -71,10 +71,6 @@ var Default = [
     }
 }
 
-function SelectType()
-{
-
-}
 
 function RespostasHMD(){
 
