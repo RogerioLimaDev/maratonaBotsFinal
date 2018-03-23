@@ -47,35 +47,33 @@ var Default = [
 
         case 'definicao':
             if(curType != null)
-                SelectType();
-            else
-                return('não tenho tipo definido');
+                switch(curType)
+                {
+                    case 'hmd':
+                    return('hmd na escuta');
+                    // RespostasHMD();
+                    // break;
+            
+                    case 'name':
+                    return('name na escuta');
+                    // RespostasNomes();
+                    // break;
+            
+                    case 'tech':
+                    return('tech na escuta');
+                    // RespostasTech();
+                    // break;
+            
+                    default:
+                    return('Esta é apenas uma reposta padrão qualquer');
+                }
             break;
     }
 }
 
 function SelectType()
 {
-    switch(curType)
-    {
-        case 'hmd':
-        return('hmd na escuta');
-        // RespostasHMD();
-        // break;
 
-        case 'name':
-        return('name na escuta');
-        // RespostasNomes();
-        // break;
-
-        case 'tech':
-        return('tech na escuta');
-        // RespostasTech();
-        // break;
-
-        default:
-        return('Esta é apenas uma reposta padrão qualquer');
-    }
 }
 
 function RespostasHMD(){
