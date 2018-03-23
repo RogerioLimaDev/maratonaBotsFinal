@@ -4,7 +4,7 @@ var selecOp = 0;
 var ranOp = 0;
 var curType = '';
 var curEntity = '';
-var textos = require('./respostasTexts');
+var textos = require('./dialogos');
 
 function Respostas(string,sessionMessage, entity, tipo){
 
@@ -12,17 +12,18 @@ function Respostas(string,sessionMessage, entity, tipo){
     curEntity = String(entity);
     curType = String(tipo);
 
+
     var cumprimento = [
 
-        "Opa! Beleza? O que quer saber sobre a Tropical Cyborg?",
-        "Oi! Sou o Tropical Cyborg e estou aqui para tirar suas dúvidas de Realidade Virtual e aumentada",
+        "Opa! Beleza? O que quer saber sobre a **Tropical Cyborg**?",
+        "Oi! Sou o **Tropical CyBot** e gosto de falar de Realidade Virtual e aumentada",
         "E aê? Como posso te ajudar"
     ];
     
     var xingamento = [
-            "**" + textoMsg + "\**??? Epa! Olha a boca, rapaz!...",
-            "**" + textoMsg + "\**??? Sua mãe não te deu educação, não?",
-            "**" + textoMsg + "\**??? Seu IP foi registrado. Vou mandar o Robocop aí te dar uma lição."
+            "**" + textoMsg + "\**??? Epa! Olha a boca!...",
+            "**" + textoMsg + "\**??? Você não tem educação, não?",
+            "**" + textoMsg + "\**??? Seu IP foi registrado. Meu primo Robocop vai aí te dar uma lição."
             ];
     
     var Default = [
@@ -42,7 +43,8 @@ function Respostas(string,sessionMessage, entity, tipo){
 
         case 'cumprimento':
             ranOp = SelectRandomNumber();
-            return(cumprimento[ranOp]);
+            // return(cumprimento[ranOp]);
+            return(textos().default[ranOp]);
 
         case 'None' :
             ranOp = SelectRandomNumber();
@@ -154,6 +156,14 @@ function SelectRandomNumber(){
 
 }
 
+function Teste (){
+
+    var teste = textos().default[1];
+    console.log(teste);
+
+}
+
 //module.exports.Respostas();
 exports.SelectRandomNumber = SelectRandomNumber;
 exports.Respostas = Respostas;
+exports.Teste = Teste;

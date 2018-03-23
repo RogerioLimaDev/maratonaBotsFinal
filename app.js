@@ -13,6 +13,9 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
 
+respostas.Teste();
+
+
 var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
@@ -117,7 +120,7 @@ bot.dialog('/', intents);
             {const helloCard  = new builder.HeroCard(session)
                 .title('Olá')
                 .images([builder.CardImage.create(session, "https://yt3.ggpht.com/-AZ4w5v06Pxo/AAAAAAAAAAI/AAAAAAAAAAA/GfUVPVBuH_c/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg")])
-                .text('Me chamo Tropical CyBot. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
+                .text('Me chamo **Tropical CyBot**. Sou especialista em realidade virtual e aumentada. Como posso te ajudar?');
     
                 var helloMessage = new builder.Message(session).addAttachment(helloCard);
                 session.send(helloMessage);
