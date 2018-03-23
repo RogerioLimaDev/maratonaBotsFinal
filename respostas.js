@@ -45,6 +45,7 @@ var Default = [
 
         case 'definicao':
             SelectType(curType);
+            break;
     }
 }
 
