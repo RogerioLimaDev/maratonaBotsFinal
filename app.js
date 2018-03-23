@@ -53,14 +53,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     })
 
     .matches('Definicao', (session, args) => {
-        var mensagem = '';
         const hmdEntities = ['oculus', 'cardboard','htc', 'hololens', 'gearvr','magic leap','windows mr', 'playstationvr'];
         
         for( var i = 0; i<hmdEntities.length; i++ ){
             const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, hmdEntities[i]);
             if(foundEntities.length >0){
-                // mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i],'hmd');
-                session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo hmd');
+                const mensagemHmd = respostas.Respostas('definicao', session.message.text,luisEntities[i],'hmd');
+                session.send(mensagemHmd);
+                // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo hmd');
                 }
 
             }
@@ -70,8 +70,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             for( var i = 0; i<techEntities.length; i++ ){
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[i]);
                 if(foundEntities.length >0){
-                    // mensagem = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
-                    session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo tech');
+                    const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
+                    session.send(mensagemTech);
+                    // session.send('Achei a entidade '+ techEntities[i] + 'do tipo tech');
                 }   
                 }
 
@@ -80,8 +81,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             for( var i = 0; i<nameEntities.length; i++ ){
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[i]);
                 if(foundEntities.length >0){
-                    // mensagem = respostas.Respostas('definicao', session.message.text,nameEntities[i],'name');
-                    session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo name');
+                    const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[i],'name');
+                    session.send(mensagemName);
+                    // session.send('Achei a entidade '+ nameEntities[i] + 'do tipo name');
                 }  
                 }
     })
