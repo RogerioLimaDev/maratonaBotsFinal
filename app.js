@@ -43,21 +43,11 @@ var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
     .matches('Cumprimento', (session, args) => {
-        // var foundEntities = [];
-        // args.entities.forEach(fEntity=>{
-        //     foundEntities.push(fEntity);
-        // });
-        // const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         session.send(mensagem);        
     })
 
     .matches('Xingamento', (session, args) => {
-        // var foundEntities = [];
-        // args.entities.forEach(fEntity=>{
-        //     foundEntities.push(fEntity);
-        // });
-        // const message = foundEntities.map(m=>m.entity).join(',');
         var mensagem = respostas.Respostas('xingamento', session.message.text);
         session.send(mensagem);
     })
@@ -70,7 +60,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, hmdEntities[i]);
             if(foundEntities.length >0){
                 mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i]);
-                session.send(mensagem);
+                // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo hmd');
                 }
 
             }
@@ -81,8 +71,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[i],'hmd');
                 if(foundEntities.length >0){
                     mensagem = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
-                    session.send(mensagem);
-                    }   
+                    // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo tech');
+                }   
                 }
 
             const nameEntities = ['rogerio', 'tropical','bionikos','andrea'];
@@ -91,8 +81,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[i],'name');
                 if(foundEntities.length >0){
                     mensagem = respostas.Respostas('definicao', session.message.text,nameEntities[i]);
-                    session.send(mensagem);
-                    }  
+                    // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo name');
+                }  
                 }
     })
 

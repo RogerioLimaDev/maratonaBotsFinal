@@ -2,12 +2,14 @@
 
 var selecOp = 0;
 var ranOp = 0;
+var curType = '';
+var curEntity = '';
 
-function Respostas(string,sessionMessage, entity, type){
+function Respostas(string,sessionMessage, entity, tipo){
 
 var textoMsg = sessionMessage;
-var curEntity = String(entity);
-var curType = String(type);
+curEntity = String(entity);
+curType = String(tipo);
 
 var cumprimento = [
 
