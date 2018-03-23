@@ -59,8 +59,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         for( var i = 0; i<hmdEntities.length; i++ ){
             const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, hmdEntities[i]);
             if(foundEntities.length >0){
-                mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i],'hmd');
-                // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo hmd');
+                // mensagem = respostas.Respostas('definicao', session.message.text,luisEntities[i],'hmd');
+                session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo hmd');
                 }
 
             }
@@ -70,8 +70,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             for( var i = 0; i<techEntities.length; i++ ){
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[i]);
                 if(foundEntities.length >0){
-                    mensagem = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
-                    // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo tech');
+                    // mensagem = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
+                    session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo tech');
                 }   
                 }
 
@@ -80,8 +80,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             for( var i = 0; i<nameEntities.length; i++ ){
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[i]);
                 if(foundEntities.length >0){
-                    mensagem = respostas.Respostas('definicao', session.message.text,nameEntities[i],'name');
-                    // session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo name');
+                    // mensagem = respostas.Respostas('definicao', session.message.text,nameEntities[i],'name');
+                    session.send('Achei a entidade '+ hmdEntities[i] + 'do tipo name');
                 }  
                 }
     })
