@@ -96,9 +96,9 @@ function RespostasHMD(entidade){
     }
 }
 
-function RespostasNomes(curEntity){
+function RespostasNomes(entidade){
 
-    switch(curEntity){
+    switch(entidade){
 
         case 'rogerio':
         return('resposta sobre Rogério Lima');
@@ -114,9 +114,9 @@ function RespostasNomes(curEntity){
     }
 }
 
-function RespostasTech(curEntity){
+function RespostasTech(entidade){
 
-    switch(curEntity){
+    switch(entidade){
 
         case 'aumentada':
         return('resposta sobre realidade aumentada');
