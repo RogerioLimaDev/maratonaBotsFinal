@@ -51,18 +51,16 @@ var Default = [
                 {
                     case 'hmd':
                     // return('hmd na escuta');
-                    RespostasHMD();
-                    break;
+                        return(RespostasHMD());
             
                     case 'name':
                     // return('name na escuta');
-                    RespostasNomes();
-                    break;
+                        return(RespostasNomes());
+                        
             
                     case 'tech':
                     // return('tech na escuta');
-                    RespostasTech();
-                    break;
+                        return(RespostasTech());
             
                     default:
                     return('Esta é apenas uma reposta padrão qualquer');
