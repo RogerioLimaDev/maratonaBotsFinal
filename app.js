@@ -92,9 +92,9 @@ intents.matches('Definicao', (session, args) => {
     });
 
 intents.onDefault((session, args) => {
-        var mensagem = respostas.Respostas('None', session.message.text);
-        mensagem = FormatCard(mensagem);
-        session.send(mensagem);
+    var mensagem = respostas.Respostas('None', session.message.text);
+    mensagem = FormatCard(mensagem);
+    session.send(mensagem);
 });
 
 intents.matches('pessoais', (session,args)=>{
@@ -104,8 +104,8 @@ intents.matches('pessoais', (session,args)=>{
 });
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
-    mensagem = FormatCard(mensagem);
-    session.send(mensagem);
+    var msg = FormatCard(mensagem);
+    session.send(msg);
 });
 intents.matches('onde', (session,args)=>{
     var mensagem = respostas.Respostas('onde', session.message.text);
@@ -166,7 +166,8 @@ function FormatCard(mensagem){
             .text(descricao)
             .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
         const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
+        //session.send(retorno);
+        return(retorno);
     };
 
     var card3 = ()=>{

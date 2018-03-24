@@ -25,15 +25,15 @@ function Textos (textoMsg)
         },
         hmd:
         {
-            oculus:'Resposta sobre oculus',
+            oculus:'Resposta sobre oculus dos dialogos',
             gearvr:'Resposta sobre gear vr',
             cardboard:'resposta sobre cardboard',
-            htc:'',
-            hololens:'',
-            windowsmr:'',
-            magic_leap:'',
-            worksense:'',
-            oculus_go:''
+            htc:'resposta sobre htc',
+            hololens:'resposta sobre hololens',
+            windowsmr:'resposta sobre windows mr',
+            magic_leap:'resposta sobre magic leap',
+            worksense:'resposta sobre DAQRI worksense',
+            oculus_go:'resposta sobre oculus go'
         },
         tech:
         {

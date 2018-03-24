@@ -5,12 +5,11 @@ var ranOp = 0;
 var curType = '';
 var curEntity = '';
 var dialogos = require('./dialogos');
-var msg ='';
 
 function Respostas(string,sessionMessage, entity, tipo){
 
     var textoMsg = sessionMessage;
-    var curEntity = String(entity);
+    var curEntity = entity;
     var curType = String(tipo);
 
     switch(string){
@@ -54,15 +53,72 @@ function Respostas(string,sessionMessage, entity, tipo){
                 switch(curType)
                 {
                     case 'hmd':
-                        RespostasHMD();
-                        return(msg);
+                        switch(curEntity){
+
+                            case 'oculus':
+                            msg = dialogos(textoMsg).hmd.oculus;
+                            return (msg);
+                    
+                            case 'hololens':
+                            msg =dialogos(textoMsg).hmd.hololens;
+                            return (msg);
+                    
+                            case 'gearvr':
+                            msg =dialogos(textoMsg).hmd.gearvr;
+                            return (msg);
+                    
+                            case 'magic leap':
+                            msg = dialogos(textoMsg).hmd.magic_leap;
+                            return (msg);
+                    
+                            case 'cardboard':
+                            msg = dialogos(textoMsg).hmd.cardboard;
+                            return (msg);
+                        }
+                    break;
             
                     case 'name':
-                        return(RespostasNomes());
-                        
-            
+                        switch(curEntity){
+
+                            case 'rogerio':
+                            return('resposta sobre Rogério Lima');
+                    
+                            case 'tropical':
+                            return('resposta sobre Tropical Cyborg');
+                    
+                            case 'Bionikos':
+                            return('aqui vai uma resposta sobre a Bionikos');
+                            
+                            default:
+                            return('Esta é apenas uma reposta padrão de nomes');
+                        }
+                    break;
+                                   
                     case 'tech':
-                        return(RespostasTech());
+                        switch(curEntity){
+
+                            case 'aumentada':
+                            return('resposta sobre realidade aumentada');
+                    
+                            case 'virtual':
+                            return('resposta sobre realidade virtual');
+                    
+                            case 'kinect':
+                            return('aqui vai uma resposta sobre o sensor kinect');
+                    
+                            case 'beacons':
+                            return('aqui vai uma resposta sobre beacons');
+                    
+                            case 'mixed':
+                            return('resposta sobre mixed reality');
+                    
+                            case 'chatbot':
+                            return('resposta sobre chatbots');
+                            
+                            default:
+                            return('Esta é apenas uma reposta padrão de tecnologia');
+                        }
+                    break;
             
                     default:
                     return('Esta é apenas uma reposta padrão qualquer');
@@ -72,76 +128,10 @@ function Respostas(string,sessionMessage, entity, tipo){
 }
 
 
-function RespostasHMD(){
 
-    switch(curEntity){
 
-        case 'oculus':
-        msg = dialogos(textoMsg).hmd.oculus;
-        break;
 
-        case 'hololens':
-        msg =dialogos(textoMsg).hmd.hololens;
-        break;
 
-        case 'gearvr':
-        msg =dialogos(textoMsg).hmd.gearvr;
-        break;
-
-        case 'magic leap':
-        msg = dialogos(textoMsg).hmd.magic_leap;
-        break;        
-
-        case 'cardboard':
-        msg = dialogos(textoMsg).hmd.cardboard;
-        break;
-    }
-}
-
-function RespostasNomes(){
-
-    switch(curEntity){
-
-        case 'rogerio':
-        return('resposta sobre Rogério Lima');
-
-        case 'tropical':
-        return('resposta sobre Tropical Cyborg');
-
-        case 'Bionikos':
-        return('aqui vai uma resposta sobre a Bionikos');
-        
-        default:
-        return('Esta é apenas uma reposta padrão de nomes');
-    }
-}
-
-function RespostasTech(){
-
-    switch(curEntity){
-
-        case 'aumentada':
-        return('resposta sobre realidade aumentada');
-
-        case 'virtual':
-        return('resposta sobre realidade virtual');
-
-        case 'kinect':
-        return('aqui vai uma resposta sobre o sensor kinect');
-
-        case 'beacons':
-        return('aqui vai uma resposta sobre beacons');
-
-        case 'mixed':
-        return('resposta sobre mixed reality');
-
-        case 'chatbot':
-        return('resposta sobre chatbots');
-        
-        default:
-        return('Esta é apenas uma reposta padrão de tecnologia');
-    }
-}
 
 function SelectRandomNumber(){
 
@@ -157,7 +147,7 @@ function SelectRandomNumber(){
 
 function Teste (){
 
-    var teste = dialogos().default[1];
+    var teste = 'Recebi aqui: ' + Respostas('orcamento');
     console.log(teste);
 
 }
