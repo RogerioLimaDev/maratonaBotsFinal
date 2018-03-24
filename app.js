@@ -169,16 +169,6 @@ function FormatCard(mensagem){
     }
 }
 
-var card4 = ()=>{
-    const card  = new builder.HeroCard(session)
-        .title(titulo)
-        .images([builder.CardImage.create(session,imagem.trim())])
-        .text(descricao)
-        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-    const retorno = new builder.Message(session).addAttachment(card);
-    session.send(retorno);
-    //return(card);
-};
 
 var card3 = ()=>{
     const card = new builder.HeroCard(session)
