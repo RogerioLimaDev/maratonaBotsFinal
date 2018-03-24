@@ -68,10 +68,10 @@ intents.matches('Definicao', (session, args) => {
 
             const techEntities = ['virtual', 'aumentada','beacons', 'kinect', 'chatbot','mixed'];
         
-            for( var i = 0; i<techEntities.length; i++ ){
-                const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[i]);
+            for( var j = 0; j<techEntities.length; j++ ){
+                const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[j]);
                 if(foundEntities.length >0){
-                    const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[i],'tech');
+                    const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[j],'tech');
                     session.send(mensagemTech);
                     // session.send('Achei a entidade '+ techEntities[i] + 'do tipo tech');
                 }   
@@ -79,10 +79,10 @@ intents.matches('Definicao', (session, args) => {
 
             const nameEntities = ['rogerio', 'tropical','bionikos','andrea'];
         
-            for( var i = 0; i<nameEntities.length; i++ ){
-                const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[i]);
+            for( var k = 0; i<nameEntities.length; k++ ){
+                const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[k]);
                 if(foundEntities.length >0){
-                    const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[i],'name');
+                    const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[k],'name');
                     session.send(mensagemName);
                     // session.send('Achei a entidade '+ nameEntities[i] + 'do tipo name');
                 }  

@@ -16,7 +16,7 @@ function Respostas(string,sessionMessage, entity, tipo){
 
         case 'xingamento':
             ranOp = SelectRandomNumber();
-            return(textos.xingamento[ranOp]);
+            return(textos().xingamento[ranOp]);
 
         case 'cumprimento':
             ranOp = SelectRandomNumber();
