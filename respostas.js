@@ -31,8 +31,8 @@ function Respostas(string,sessionMessage, entity, tipo){
                 switch(curType)
                 {
                     case 'hmd':
-                        RespostasHMD();
-                        break;
+                        var retorno = RespostasHMD();
+                        return(retorno);
             
                     case 'name':
                         return(RespostasNomes());
