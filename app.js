@@ -48,13 +48,13 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         mensagem = FormatCard(mensagem);
-        //session.send(mensagem);        
+        session.send(mensagem);        
     });
 
 intents.matches('Xingamento', (session, args) => {
         var mensagem = respostas.Respostas('xingamento', session.message.text);
         mensagem = FormatCard(mensagem);
-        //session.send(mensagem);
+        session.send(mensagem);
     });
 
 intents.matches('Definicao', (session, args) => {
@@ -94,49 +94,47 @@ intents.matches('Definicao', (session, args) => {
 intents.onDefault((session, args) => {
         var mensagem = respostas.Respostas('None', session.message.text);
         mensagem = FormatCard(mensagem);
-        //session.send(mensagem);
+        session.send(mensagem);
 });
 
 intents.matches('pessoais', (session,args)=>{
     var mensagem = respostas.Respostas('pessoais', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('onde', (session,args)=>{
     var mensagem = respostas.Respostas('onde', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('quem', (session,args)=>{
     var mensagem = respostas.Respostas('quem', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('compras', (session,args)=>{
     var mensagem = respostas.Respostas('compras', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('comparacao', (session,args)=>{
     var mensagem = respostas.Respostas('None', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('portfolio', (session,args)=>{
     var mensagem = respostas.Respostas('portfolio', session.message.text);
     mensagem = FormatCard(mensagem);
-    //session.send(mensagem);
+    session.send(mensagem);
 });
 
-bot.dialog('/', intents);
 
 
-////END LUIS CODE////
 
 function FormatCard(mensagem){
 
@@ -158,8 +156,7 @@ function FormatCard(mensagem){
         break;
 
         case 1:
-        session.send(resposta);
-        break;
+        return(resposta);
     }
 
     var card4 = ()=>{
@@ -189,6 +186,10 @@ function FormatCard(mensagem){
         session.send(retorno);
     };
 }
+
+bot.dialog('/', intents);
+
+////END LUIS CODE////
 
 ////PROATIVIDADE//////
 
