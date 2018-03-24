@@ -132,11 +132,6 @@ intents.matches('portfolio', (session,args)=>{
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
     var msg = FormatCard(mensagem);
-    // if(typeof msg !== 'string'){
-        const retorno = new builder.Message(session).addAttachment(msg);
-        session.send(retorno);
-    // }
-    // session.send(msg);
 });
 
 
@@ -150,7 +145,16 @@ function FormatCard(mensagem){
 
     switch(partesDaResposta.length){
         case 4:
-        return card4();
+        bot.dialog('card4', [(session)=>{
+            const card  = new builder.HeroCard(session)
+                .title(titulo)
+                .images([builder.CardImage.create(session,imagem.trim())])
+                .text(descricao)
+                .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+            const retorno = new builder.Message(session).addAttachment(card);
+            session.send(retorno);
+        }],true);
+        break;
 
         case 3:
         card3();
@@ -163,39 +167,35 @@ function FormatCard(mensagem){
         case 1:
         return resposta;
     }
+}
 
-    var card4 = ()=>{
-        const card  = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        //const retorno = new builder.Message(session).addAttachment(card);
-        //session.send(retorno);
-        return(card);
-    };
-
-    var card3 = ()=>{
-        const card = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    };
-
-    var card2 = ()=>{
-        const card = new builder.HeroCard(session)
+var card4 = ()=>{
+    const card  = new builder.HeroCard(session)
+        .title(titulo)
+        .images([builder.CardImage.create(session,imagem.trim())])
         .text(descricao)
         .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    };
+    const retorno = new builder.Message(session).addAttachment(card);
+    session.send(retorno);
+    //return(card);
+};
 
-    var card1 = ()=>{
-        return(resposta);
-    };
-}
+var card3 = ()=>{
+    const card = new builder.HeroCard(session)
+        .title(titulo)
+        .images([builder.CardImage.create(session,imagem.trim())])
+        .text(descricao);
+    const retorno = new builder.Message(session).addAttachment(card);
+    session.send(retorno);
+};
+
+var card2 = ()=>{
+    const card = new builder.HeroCard(session)
+    .text(descricao)
+    .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+    const retorno = new builder.Message(session).addAttachment(card);
+    session.send(retorno);
+};
 
 bot.dialog('/', intents);
 
