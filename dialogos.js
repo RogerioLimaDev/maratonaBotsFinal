@@ -1,5 +1,5 @@
 
-    var default = [
+    var Default = [
             
         'Não entendi o que vc quis dizer com **' + textoMsg +'\** . Minha especialidade é responder sobre realidade aumentada e virtual' ,
         'Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
