@@ -16,15 +16,15 @@ function Respostas(string,sessionMessage, entity, tipo){
 
         case 'xingamento':
             ranOp = SelectRandomNumber();
-            return(textos().xingamento[ranOp]);
+            return(textos(textoMsg).xingamento[ranOp]);
 
         case 'cumprimento':
             ranOp = SelectRandomNumber();
-            return(textos().cumprimento[ranOp]);
+            return(textos(textoMsg).cumprimento[ranOp]);
 
         case 'None' :
             ranOp = SelectRandomNumber();
-            return(textos().default[ranOp]);
+            return(textos(textoMsg).default[ranOp]);
 
         case 'definicao':
             if(curType != null)

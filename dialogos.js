@@ -1,27 +1,27 @@
 
-    var Default = [
+    // var Default = [
             
-        'Não entendi o que vc quis dizer com **' + textoMsg +'\** . Minha especialidade é responder sobre realidade aumentada e virtual' ,
-        'Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
-        'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
-        ];
+    //     'Não entendi o que vc quis dizer com **' + textoMsg +'\** . Minha especialidade é responder sobre realidade aumentada e virtual' ,
+    //     'Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
+    //     'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
+    //     ];
 
-        var cumprimento = [
+    //     var cumprimento = [
 
-            "Opa! Beleza? O que quer saber sobre a **Tropical Cyborg**?",
-            "Oi! Sou o **Tropical CyBot** e gosto de falar de Realidade Virtual e aumentada",
-            "E aê? Como posso te ajudar"
-        ];
+    //         "Opa! Beleza? O que quer saber sobre a **Tropical Cyborg**?",
+    //         "Oi! Sou o **Tropical CyBot** e gosto de falar de Realidade Virtual e aumentada",
+    //         "E aê? Como posso te ajudar"
+    //     ];
         
-        var xingamento = [
-                "**" + textoMsg + "\**??? Epa! Olha a boca!...",
-                "**" + textoMsg + "\**??? Você não tem educação, não?",
-                "**" + textoMsg + "\**??? Seu IP foi registrado. Meu primo Robocop vai aí te dar uma lição."
-        ];
+    //     var xingamento = [
+    //             "**" + textoMsg + "\**??? Epa! Olha a boca!...",
+    //             "**" + textoMsg + "\**??? Você não tem educação, não?",
+    //             "**" + textoMsg + "\**??? Seu IP foi registrado. Meu primo Robocop vai aí te dar uma lição."
+    //     ];
         
 
 
-function Textos ()
+function Textos (textoMsg)
 {
 
     var dialogos = {
