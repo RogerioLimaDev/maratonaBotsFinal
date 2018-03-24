@@ -75,7 +75,7 @@ function RespostasHMD(){
     switch(curEntity){
 
         case 'oculus':
-        return(dialogos(textoMsg).hmd.oculus);
+        return(dialogos(textoMsg).hmd.oculus[0]);
 
         case 'hololens':
         return(dialogos(textoMsg).hmd.hololens);
