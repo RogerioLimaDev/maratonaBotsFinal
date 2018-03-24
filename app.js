@@ -150,8 +150,7 @@ function FormatCard(mensagem){
 
     switch(partesDaResposta.length){
         case 4:
-        card4();
-        break;
+        return card4();
 
         case 3:
         card3();
@@ -162,7 +161,7 @@ function FormatCard(mensagem){
         break;
 
         case 1:
-        card1();
+        return card1();
     }
 
     var card4 = ()=>{
