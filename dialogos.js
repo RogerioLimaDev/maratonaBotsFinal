@@ -1,26 +1,4 @@
 
-    // var Default = [
-            
-    //     'Não entendi o que vc quis dizer com **' + textoMsg +'\** . Minha especialidade é responder sobre realidade aumentada e virtual' ,
-    //     'Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
-    //     'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
-    //     ];
-
-    //     var cumprimento = [
-
-    //         "Opa! Beleza? O que quer saber sobre a **Tropical Cyborg**?",
-    //         "Oi! Sou o **Tropical CyBot** e gosto de falar de Realidade Virtual e aumentada",
-    //         "E aê? Como posso te ajudar"
-    //     ];
-        
-    //     var xingamento = [
-    //             "**" + textoMsg + "\**??? Epa! Olha a boca!...",
-    //             "**" + textoMsg + "\**??? Você não tem educação, não?",
-    //             "**" + textoMsg + "\**??? Seu IP foi registrado. Meu primo Robocop vai aí te dar uma lição."
-    //     ];
-        
-
-
 function Textos (textoMsg)
 {
 
@@ -44,7 +22,52 @@ function Textos (textoMsg)
             1:'Poutz! Não entendi o que vc quis dizer com **'+ textoMsg +'\**',
             2:'Eita... agora vc me pegou. Ainda não aprendi como responder a **'+ textoMsg +'\** '
 
-        }
+        },
+        hmd:
+        {
+            oculus:'',
+            gearvr:'',
+            cardboard:'',
+            htc:'',
+            hololens:'',
+            windowsmr:'',
+            magic_leap:'',
+            worksense:'',
+            oculus_go:''
+        },
+        tech:
+        {
+            virtual:'',
+            aumentada:'',
+            mista:'',
+            kinect:'',
+            beacons:'',
+            chatbot:''
+        },
+        nomes:
+        {
+            rogerio:'',
+            tropical:'',
+            bionikos:''
+        },
+        pessoais:
+        {
+            0:'Não leva a mal mas estou em hora de expediente, não posso falar de assuntos pessoais.'
+        },
+        orcamento:
+        {
+            0:'Que maravilha! Então liga para 11 99137-8591 e fala com o Rogério ou manda um email pra gente.'
+        },
+        onde:
+        {
+            0:'Estamos em São Paulo mas trabalhamos remotamente para qualquer lugar do mundo.'
+        },
+        quem:
+        {},
+        compras:
+        {},
+        comparacao:
+        {}
     };
 
     return(dialogos);

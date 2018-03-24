@@ -4,7 +4,7 @@ var selecOp = 0;
 var ranOp = 0;
 var curType = '';
 var curEntity = '';
-var textos = require('./dialogos');
+var dialogos = require('./dialogos');
 
 function Respostas(string,sessionMessage, entity, tipo){
 
@@ -16,15 +16,15 @@ function Respostas(string,sessionMessage, entity, tipo){
 
         case 'xingamento':
             ranOp = SelectRandomNumber();
-            return(textos(textoMsg).xingamento[ranOp]);
+            return(dialogos(textoMsg).xingamento[ranOp]);
 
         case 'cumprimento':
             ranOp = SelectRandomNumber();
-            return(textos(textoMsg).cumprimento[ranOp]);
+            return(dialogos(textoMsg).cumprimento[ranOp]);
 
         case 'None' :
             ranOp = SelectRandomNumber();
-            return(textos(textoMsg).default[ranOp]);
+            return(dialogos(textoMsg).default[ranOp]);
 
         case 'definicao':
             if(curType != null)
@@ -44,6 +44,19 @@ function Respostas(string,sessionMessage, entity, tipo){
                     return('Esta é apenas uma reposta padrão qualquer');
                 }
             break;
+        
+        case 'pessoais':
+            return(dialogos(textoMsg).pessoais[0]);
+        case 'orcamentos':
+            return(dialogos(textoMsg).orcamentos[0]);
+        case 'onde':
+            return(dialogos(textoMsg).onde[0]);
+        case 'quem':
+            return(dialogos(textoMsg).quem[0]);
+        case 'compras':
+            return(dialogos(textoMsg).compras[0]);
+        case 'comparacao':
+            return(dialogos(textoMsg).comparacao[0]);
     }
 }
 

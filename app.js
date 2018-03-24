@@ -91,8 +91,32 @@ intents.matches('Definicao', (session, args) => {
 
 intents.onDefault((session, args) => {
         var mensagem = respostas.Respostas('None', session.message.text);
-        console.log(respostas.Respostas('None', session.message.text));
         session.send(mensagem);
+});
+
+intents.matches('pessoais', (session,args)=>{
+    var mensagem = respostas.Respostas('pessoais', session.message.text);
+    session.send(mensagem);
+});
+intents.matches('orcamento', (session,args)=>{
+    var mensagem = respostas.Respostas('orcamento', session.message.text);
+    session.send(mensagem);
+});
+intents.matches('onde', (session,args)=>{
+    var mensagem = respostas.Respostas('onde', session.message.text);
+    session.send(mensagem);
+});
+intents.matches('quem', (session,args)=>{
+    var mensagem = respostas.Respostas('quem', session.message.text);
+    session.send(mensagem);
+});
+intents.matches('compras', (session,args)=>{
+    var mensagem = respostas.Respostas('compras', session.message.text);
+    session.send(mensagem);
+});
+intents.matches('comparacao', (session,args)=>{
+    var mensagem = respostas.Respostas('None', session.message.text);
+    session.send(mensagem);
 });
 
 
