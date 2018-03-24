@@ -48,7 +48,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         mensagem = FormatCard(mensagem,session);
-        session.send(mensagem);        
+        //session.send(mensagem);        
     });
 
 intents.matches('Xingamento', (session, args) => {
