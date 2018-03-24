@@ -42,7 +42,8 @@ function Textos (textoMsg)
             mista:'',
             kinect:'',
             beacons:'',
-            chatbot:''
+            chatbot:'',
+            360:''
         },
         nomes:
         {
@@ -52,8 +53,11 @@ function Textos (textoMsg)
         },
         pessoais:
         {
-            0:'Não leva a mal mas estou em hora de expediente, não posso falar de assuntos pessoais.'
+            0: 'Não leva a mal mas estou em hora de expediente, não posso falar de assuntos pessoais.',
+            1: 'Desculpa aê, mas agora não posso falar disso',
+            2: 'Foi mal mas se eu ficar falando disso aqui,posso acabar perdendo o emprego'
         },
+
         orcamento:
         {
             0:'Que maravilha! Então liga para 11 99137-8591 e fala com o Rogério ou manda um email pra gente.'

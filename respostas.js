@@ -46,7 +46,8 @@ function Respostas(string,sessionMessage, entity, tipo){
             break;
         
         case 'pessoais':
-            return(dialogos(textoMsg).pessoais[0]);
+            ranOp = SelectRandomNumber();
+            return(dialogos(textoMsg).pessoais[ranOp]);
         case 'orcamento':
             return(dialogos(textoMsg).orcamento[0]);
         case 'onde':
