@@ -47,7 +47,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
-        mensagem = FormatCard(mensagem);
+        mensagem = FormatCard(mensagem,session);
         session.send(mensagem);        
     });
 
@@ -91,11 +91,16 @@ intents.matches('Definicao', (session, args) => {
                 }
     });
 
+
+
+
+
+
 intents.onDefault((session, args) => {
-    var mensagem = respostas.Respostas('None', session.message.text);
-    mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
-});
+        var mensagem = respostas.Respostas('None', session.message.text);
+        mensagem = FormatCard(mensagem);
+        // session.send(mensagem);
+    });
 
 intents.matches('pessoais', (session,args)=>{
     var mensagem = respostas.Respostas('pessoais', session.message.text);
@@ -131,7 +136,7 @@ intents.matches('portfolio', (session,args)=>{
 
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
-    FormatCard(mensagem);
+    FormatCard(mensagem, session);
     //session.send(mensagem);
 });
 
