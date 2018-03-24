@@ -105,6 +105,10 @@ intents.matches('pessoais', (session,args)=>{
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
     var msg = FormatCard(mensagem);
+    if(typeof msg !== 'string'){
+        const retorno = new builder.Message(session).addAttachment(msg);
+        session.send(retorno);
+    }
     session.send(msg);
 });
 intents.matches('onde', (session,args)=>{
@@ -165,9 +169,9 @@ function FormatCard(mensagem){
             .images([builder.CardImage.create(session,imagem.trim())])
             .text(descricao)
             .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
+        //const retorno = new builder.Message(session).addAttachment(card);
         //session.send(retorno);
-        return(retorno);
+        return(card);
     };
 
     var card3 = ()=>{
