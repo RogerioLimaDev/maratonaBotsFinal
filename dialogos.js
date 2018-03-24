@@ -25,9 +25,9 @@ function Textos (textoMsg)
         },
         hmd:
         {
-            oculus:'',
-            gearvr:'',
-            cardboard:'',
+            oculus:'Resposta sobre oculus',
+            gearvr:'Resposta sobre gear vr',
+            cardboard:'resposta sobre cardboard',
             htc:'',
             hololens:'',
             windowsmr:'',
@@ -60,7 +60,7 @@ function Textos (textoMsg)
 
         orcamento:
         {
-            0:'Que maravilha! Então liga para 11 99137-8591 e fala com o Rogério ou manda um email pra gente.'
+            0:'Orçamentos%https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/grinning-face_1f600.png%Então manda um email pra gente ou liga para o Rogério Lima pelo telefone +55 11 99137-8591%mailto:contact@tropicalcyborg.com'
         },
         onde:
         {

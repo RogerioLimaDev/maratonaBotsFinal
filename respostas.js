@@ -69,19 +69,19 @@ function RespostasHMD(){
     switch(curEntity){
 
         case 'oculus':
-        return('resposta sobre oculus rift');
+        return(dialogos(textoMsg).hmd[oculus]);
 
         case 'hololens':
-        return('resposta sobre Microsoft Hololens');
+        return(dialogos(textoMsg).hmd[hololens]);
 
         case 'gearvr':
-        return('aqui vai uma resposta sobre o Gear VR');
+        return(dialogos(textoMsg).hmd[gearvr]);
 
         case 'magic leap':
-        return('aqui vai uma resposta sobre o Magic Leap');
+        return(dialogos(textoMsg).hmd[magic_leap]);
 
         case 'cardboard':
-        return('aqui vai uma resposta sobre o cardboard');
+        return(dialogos(textoMsg).hmd[cardboard]);
         
         default:
         return('Esta é apenas uma reposta padrão de hmd');
