@@ -144,7 +144,7 @@ function SelectRandomNumber(){
 
 function Teste (){
 
-    var teste = textos().default[1];
+    var teste = dialogos().default[1];
     console.log(teste);
 
 }
