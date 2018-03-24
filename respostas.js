@@ -5,13 +5,13 @@ var ranOp = 0;
 var curType = '';
 var curEntity = '';
 var dialogos = require('./dialogos');
+var msg ='';
 
 function Respostas(string,sessionMessage, entity, tipo){
 
     var textoMsg = sessionMessage;
     var curEntity = String(entity);
     var curType = String(tipo);
-    var msg;
 
     switch(string){
 
@@ -77,27 +77,24 @@ function RespostasHMD(){
     switch(curEntity){
 
         case 'oculus':
-        msg = (dialogos(textoMsg).hmd.oculus[0]);
+        msg = dialogos(textoMsg).hmd.oculus;
         break;
 
         case 'hololens':
-        msg =(dialogos(textoMsg).hmd.hololens);
+        msg =dialogos(textoMsg).hmd.hololens;
         break;
 
         case 'gearvr':
-        msg =(dialogos(textoMsg).hmd.gearvr);
+        msg =dialogos(textoMsg).hmd.gearvr;
         break;
 
         case 'magic leap':
-        msg =(dialogos(textoMsg).hmd.magic_leap);
+        msg = dialogos(textoMsg).hmd.magic_leap;
         break;        
 
         case 'cardboard':
-        msg = (dialogos(textoMsg).hmd.cardboard);
+        msg = dialogos(textoMsg).hmd.cardboard;
         break;
-        
-        default:
-        return('Esta é apenas uma reposta padrão de hmd');
     }
 }
 
