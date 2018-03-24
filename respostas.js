@@ -9,8 +9,9 @@ var dialogos = require('./dialogos');
 function Respostas(string,sessionMessage, entity, tipo){
 
     var textoMsg = sessionMessage;
-    curEntity = String(entity);
-    curType = String(tipo);
+    var curEntity = String(entity);
+    var curType = String(tipo);
+    var msg;
 
     switch(string){
 
@@ -25,25 +26,6 @@ function Respostas(string,sessionMessage, entity, tipo){
         case 'None' :
             ranOp = SelectRandomNumber();
             return(dialogos(textoMsg).default[ranOp]);
-
-        case 'definicao':
-            if(curType != null)
-                switch(curType)
-                {
-                    case 'hmd':
-                        return(RespostasHMD());
-            
-                    case 'name':
-                        return(RespostasNomes());
-                        
-            
-                    case 'tech':
-                        return(RespostasTech());
-            
-                    default:
-                    return('Esta é apenas uma reposta padrão qualquer');
-                }
-            break;
         
         case 'pessoais':
             ranOp = SelectRandomNumber();
@@ -66,6 +48,26 @@ function Respostas(string,sessionMessage, entity, tipo){
 
         case 'portfolio':
             return(dialogos(textoMsg).portfolio[0]);
+
+        case 'definicao':
+            if(curType != null)
+                switch(curType)
+                {
+                    case 'hmd':
+                        RespostasHMD();
+                        return(msg);
+            
+                    case 'name':
+                        return(RespostasNomes());
+                        
+            
+                    case 'tech':
+                        return(RespostasTech());
+            
+                    default:
+                    return('Esta é apenas uma reposta padrão qualquer');
+                }
+            break;
     }
 }
 
@@ -75,19 +77,24 @@ function RespostasHMD(){
     switch(curEntity){
 
         case 'oculus':
-        return(dialogos(textoMsg).hmd.oculus[0]);
+        msg = (dialogos(textoMsg).hmd.oculus[0]);
+        break;
 
         case 'hololens':
-        return(dialogos(textoMsg).hmd.hololens);
+        msg =(dialogos(textoMsg).hmd.hololens);
+        break;
 
         case 'gearvr':
-        return(dialogos(textoMsg).hmd.gearvr);
+        msg =(dialogos(textoMsg).hmd.gearvr);
+        break;
 
         case 'magic leap':
-        return(dialogos(textoMsg).hmd.magic_leap);
+        msg =(dialogos(textoMsg).hmd.magic_leap);
+        break;        
 
         case 'cardboard':
-        return(dialogos(textoMsg).hmd.cardboard);
+        msg = (dialogos(textoMsg).hmd.cardboard);
+        break;
         
         default:
         return('Esta é apenas uma reposta padrão de hmd');
