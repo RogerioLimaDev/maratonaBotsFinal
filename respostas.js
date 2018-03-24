@@ -57,6 +57,8 @@ function Respostas(string,sessionMessage, entity, tipo){
             return(dialogos(textoMsg).compras[0]);
         case 'comparacao':
             return(dialogos(textoMsg).comparacao[0]);
+        case 'portfolio':
+            return(dialogos(textoMsg).portfolio[0]);
     }
 }
 

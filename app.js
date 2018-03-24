@@ -118,7 +118,10 @@ intents.matches('comparacao', (session,args)=>{
     var mensagem = respostas.Respostas('None', session.message.text);
     session.send(mensagem);
 });
-
+intents.matches('portfolio', (session,args)=>{
+    var mensagem = respostas.Respostas('portfolio', session.message.text);
+    session.send(mensagem);
+});
 
 bot.dialog('/', intents);
 

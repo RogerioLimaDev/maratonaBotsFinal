@@ -67,7 +67,11 @@ function Textos (textoMsg)
         compras:
         {},
         comparacao:
-        {}
+        {},
+        portfolio:
+        {
+            0: 'Será um prazer! **(carrousel com trabalhos)**'
+        }
     };
 
     return(dialogos);
