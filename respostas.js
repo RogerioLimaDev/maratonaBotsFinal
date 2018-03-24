@@ -47,7 +47,7 @@ function Respostas(string,sessionMessage, entity, tipo){
         
         case 'pessoais':
             return(dialogos(textoMsg).pessoais[0]);
-        case 'orcamentos':
+        case 'orcamento':
             return(dialogos(textoMsg).orcamentos[0]);
         case 'onde':
             return(dialogos(textoMsg).onde[0]);
