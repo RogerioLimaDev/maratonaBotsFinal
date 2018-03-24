@@ -161,7 +161,7 @@ function FormatCard(mensagem){
         break;
 
         case 1:
-        return card1();
+        return resposta;
     }
 
     var card4 = ()=>{
