@@ -138,9 +138,9 @@ bot.dialog('/', intents);
 
 ////END LUIS CODE////
 
-function FormatCard(mensagem){
+function FormatCard(textoRecebido){
 
-    const resposta = mensagem;
+    const resposta = textoRecebido;
     const partesDaResposta = resposta.split('%');
     const [titulo, imagem, descricao, url] = partesDaResposta;
 
