@@ -102,15 +102,7 @@ intents.matches('pessoais', (session,args)=>{
     mensagem = FormatCard(mensagem);
     session.send(mensagem);
 });
-intents.matches('orcamento', (session,args)=>{
-    var mensagem = respostas.Respostas('orcamento', session.message.text);
-    var msg = FormatCard(mensagem);
-    if(typeof msg !== 'string'){
-        const retorno = new builder.Message(session).addAttachment(msg);
-        session.send(retorno);
-    }
-    session.send(msg);
-});
+
 intents.matches('onde', (session,args)=>{
     var mensagem = respostas.Respostas('onde', session.message.text);
     mensagem = FormatCard(mensagem);
@@ -137,6 +129,16 @@ intents.matches('portfolio', (session,args)=>{
     session.send(mensagem);
 });
 
+intents.matches('orcamento', (session,args)=>{
+    var mensagem = respostas.Respostas('orcamento', session.message.text);
+    var msg = FormatCard(mensagem);
+    // if(typeof msg !== 'string'){
+        const retorno = new builder.Message(session).addAttachment(msg);
+        session.send(retorno);
+    // }
+    // session.send(msg);
+});
+
 
 
 
@@ -160,7 +162,7 @@ function FormatCard(mensagem){
         break;
 
         case 1:
-        return(resposta);
+        card1();
     }
 
     var card4 = ()=>{
@@ -189,6 +191,10 @@ function FormatCard(mensagem){
         .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
         const retorno = new builder.Message(session).addAttachment(card);
         session.send(retorno);
+    };
+
+    var card1 = ()=>{
+        return(resposta);
     };
 }
 
