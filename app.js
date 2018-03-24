@@ -6,6 +6,7 @@ var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
 var minha = require('./minhabiblioteca');
 var respostas = require('./respostas');
+var ptsResp =  [titulo, imagem, descricao, url];
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -48,7 +49,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         mensagem = FormatCard(mensagem,session);
-        //session.send(mensagem);        
+        session.endDialogue('hey, you');
+
+   //     session.send(mensagem);        
     });
 
 intents.matches('Xingamento', (session, args) => {
@@ -99,45 +102,46 @@ intents.matches('Definicao', (session, args) => {
 intents.onDefault((session, args) => {
         var mensagem = respostas.Respostas('None', session.message.text);
         mensagem = FormatCard(mensagem);
-        // session.send(mensagem);
+        session.send(mensagem);
     });
 
 intents.matches('pessoais', (session,args)=>{
     var mensagem = respostas.Respostas('pessoais', session.message.text);
     mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
+    session.send(mensagem);
 });
 
 intents.matches('onde', (session,args)=>{
     var mensagem = respostas.Respostas('onde', session.message.text);
     mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('quem', (session,args)=>{
     var mensagem = respostas.Respostas('quem', session.message.text);
     mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('compras', (session,args)=>{
     var mensagem = respostas.Respostas('compras', session.message.text);
     mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('comparacao', (session,args)=>{
     var mensagem = respostas.Respostas('None', session.message.text);
     mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
+    session.send(mensagem);
 });
 intents.matches('portfolio', (session,args)=>{
     var mensagem = respostas.Respostas('portfolio', session.message.text);
     mensagem = FormatCard(mensagem);
-    // session.send(mensagem);
+    session.send(mensagem);
 });
 
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
     FormatCard(mensagem, session);
-    //session.send(mensagem);
+    session.endDialogue('vou orçar');
+ //   session.send(mensagem);
 });
 
 
@@ -147,7 +151,8 @@ function FormatCard(mensagem, session){
 
     const resposta = String(mensagem);
     const partesDaResposta = resposta.split('%');
-    const [titulo, imagem, descricao, url] = partesDaResposta;
+    // const [titulo, imagem, descricao, url] = partesDaResposta;
+    ptsResp = partesDaResposta;
 
     switch(partesDaResposta.length){
         case 4:
@@ -165,36 +170,36 @@ function FormatCard(mensagem, session){
         session.send(mensagem);
     }
 
-    bot.dialog('card4', [(session)=>{
-        const card  = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    }],true);
-    
-    bot.dialog('card3', [(session,partesDaResposta)=>{
-        const card  = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    }],true);
-    
-    bot.dialog('card2', [(session)=>{
-        const card  = new builder.HeroCard(session)
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    }],true);
 }
 
-
 bot.dialog('/', intents);
+
+bot.dialog('card2', [(session)=>{
+    const card  = new builder.HeroCard(session)
+        .text(descricao)
+        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+    const retorno = new builder.Message(session).addAttachment(card);
+    session.send(retorno);
+}]);
+
+bot.dialog('card3', [(session,partesDaResposta)=>{
+    const card  = new builder.HeroCard(session)
+        .title(titulo)
+        .images([builder.CardImage.create(session,imagem.trim())])
+        .text(descricao)
+    const retorno = new builder.Message(session).addAttachment(card);
+    session.send(retorno);
+}],true);
+
+bot.dialog('card4', [(session)=>{
+    const card  = new builder.HeroCard(session)
+        .title(titulo)
+        .images([builder.CardImage.create(session,imagem.trim())])
+        .text(descricao)
+        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+    const retorno = new builder.Message(session).addAttachment(card);
+    session.send(retorno);
+}],true);
 
 ////END LUIS CODE////
 
