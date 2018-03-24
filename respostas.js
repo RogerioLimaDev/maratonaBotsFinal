@@ -48,16 +48,22 @@ function Respostas(string,sessionMessage, entity, tipo){
         case 'pessoais':
             ranOp = SelectRandomNumber();
             return(dialogos(textoMsg).pessoais[ranOp]);
+
         case 'orcamento':
             return(dialogos(textoMsg).orcamento[0]);
+
         case 'onde':
             return(dialogos(textoMsg).onde[0]);
+
         case 'quem':
             return(dialogos(textoMsg).quem[0]);
+
         case 'compras':
             return(dialogos(textoMsg).compras[0]);
+
         case 'comparacao':
             return(dialogos(textoMsg).comparacao[0]);
+
         case 'portfolio':
             return(dialogos(textoMsg).portfolio[0]);
     }
@@ -69,19 +75,19 @@ function RespostasHMD(){
     switch(curEntity){
 
         case 'oculus':
-        return(dialogos(textoMsg).hmd[oculus]);
+        return(dialogos(textoMsg).hmd.oculus);
 
         case 'hololens':
-        return(dialogos(textoMsg).hmd[hololens]);
+        return(dialogos(textoMsg).hmd.hololens);
 
         case 'gearvr':
-        return(dialogos(textoMsg).hmd[gearvr]);
+        return(dialogos(textoMsg).hmd.gearvr);
 
         case 'magic leap':
-        return(dialogos(textoMsg).hmd[magic_leap]);
+        return(dialogos(textoMsg).hmd.magic_leap);
 
         case 'cardboard':
-        return(dialogos(textoMsg).hmd[cardboard]);
+        return(dialogos(textoMsg).hmd.cardboard);
         
         default:
         return('Esta é apenas uma reposta padrão de hmd');
