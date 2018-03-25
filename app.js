@@ -235,9 +235,10 @@ intents.matches('portfolio', (session,args)=>{
     const pCard = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .addAttachment(portCard);
-
-    mensagem = respostas.Respostas('portfolio', session.message.text);
         session.send(pCard);
+        return;
+
+    // mensagem = respostas.Respostas('portfolio', session.message.text);
     });
 
 
