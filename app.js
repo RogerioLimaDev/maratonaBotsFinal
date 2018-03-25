@@ -146,7 +146,12 @@ intents.matches('orcamento', (session,args)=>{
 intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
-            session.send(answerEntity.entity);
+            var txtQna = FormatCard(answerEntity);
+            const cardQnA = cardHMD(session,txtQna) ;
+                const msgemQ = new builder.Message(session).addAttachment(cardQnA);
+                session.send(msgemQ);
+                return;
+            // session.send(answerEntity.entity);
         }
     ]);
 
