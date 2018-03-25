@@ -210,46 +210,40 @@ function FormatCard(mensagem){
 
 }
 
-function FindCardSize(session,msg)
+function FindCardSize(session,msgFromIntent)
 {
 
-    const resp = msg;
-    const pts = resp.split('%');
-    const [titulo, imagem, descricao, url] = pts;
+    const resp = FormatCard(msgFromIntent);
 
-    var card4QnA = ()=>{
-        return new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-    };
 
-    var card3QnA = ()=>{
-        return new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao);
-
-    };
-
-    var card2QnA = ()=>{
-        return new builder.HeroCard(session)
-        .text(descricao)
-        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-    };
-
-    switch(ptsDaResposta.length){
+    switch(resp.length){
+        
         case 4:
-        card4QnA();
+        var card4QnA = ()=>{
+            return new builder.HeroCard(session)
+                .title(resp[0])
+                .images([builder.CardImage.create(session,resp[1].trim())])
+                .text(resp[2])
+                .buttons([ builder.CardAction.openUrl(session, resp[3].trim(), 'mande um email')]);
+        };
         break;
 
         case 3:
-        card3QnA();
+        var card3QnA = ()=>{
+            return new builder.HeroCard(session)
+                .title(resp[0])
+                .images([builder.CardImage.create(session,resp[1].trim())])
+                .text(resp[3]);
+    
+        };
         break;
 
         case 2:
-        card2QnA();
+        var card2QnA = ()=>{
+            return new builder.HeroCard(session)
+            .text(resp[0])
+            .buttons([ builder.CardAction.openUrl(session, resp[1].trim(), 'mande um email')]);
+        };
         break;
 
         case 1:
