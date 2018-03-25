@@ -149,6 +149,7 @@ function Teste (){
 
     var teste = 'Recebi aqui: ' + Respostas('orcamento');
     console.log(teste);
+    return(teste);
 
 }
 

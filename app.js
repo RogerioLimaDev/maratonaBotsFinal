@@ -6,7 +6,6 @@ var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
 var minha = require('./minhabiblioteca');
 var respostas = require('./respostas');
-var ptsResp =  [titulo, imagem, descricao, url];
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -15,7 +14,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 });
 
 respostas.Teste();
-
+// FormatCard(respostas.Teste());
 
 var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
@@ -35,6 +34,8 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
+
+
 /////LUIS CODE/////
 
 var luisAppId = process.env.LuisAppId;
@@ -45,6 +46,7 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
+
 
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
@@ -151,11 +153,11 @@ function FormatCard(mensagem, session){
 
     const resposta = String(mensagem);
     const partesDaResposta = resposta.split('%');
-    // const [titulo, imagem, descricao, url] = partesDaResposta;
-    ptsResp = partesDaResposta;
+    const [titulo, imagem, descricao, url] = partesDaResposta;
 
     switch(partesDaResposta.length){
         case 4:
+        console.log('A mensagem tem esse nº de elmentos: ' + partesDaResposta.length);
         session.beginDialogue('card4', session);
         session.endDialogue();
         break;
@@ -167,39 +169,48 @@ function FormatCard(mensagem, session){
         break;
 
         case 1:
-        session.send(mensagem);
+        session.beginDialogue('card1');
+        console.log('chegou aqui');
+        session.endDialogue();
     }
+
+
+    bot.dialogue('card1', [(session)=>{
+        session.send(mensagem);
+        }]);
+
+    bot.dialog('card2', [(session)=>{
+        const card  = new builder.HeroCard(session)
+            .text(descricao)
+            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+        const retorno = new builder.Message(session).addAttachment(card);
+        session.send(retorno);
+    }]);
+    
+    bot.dialog('card3', [(session,partesDaResposta)=>{
+        const card  = new builder.HeroCard(session)
+            .title(titulo)
+            .images([builder.CardImage.create(session,imagem.trim())])
+            .text(descricao)
+        const retorno = new builder.Message(session).addAttachment(card);
+        session.send(retorno);
+    }],true);
+    
+    bot.dialog('card4', [(session)=>{
+        const card  = new builder.HeroCard(session)
+            .title(titulo)
+            .images([builder.CardImage.create(session,imagem.trim())])
+            .text(descricao)
+            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+        const retorno = new builder.Message(session).addAttachment(card);
+        session.send(retorno);
+    }],true);
 
 }
 
 bot.dialog('/', intents);
 
-bot.dialog('card2', [(session)=>{
-    const card  = new builder.HeroCard(session)
-        .text(descricao)
-        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-    const retorno = new builder.Message(session).addAttachment(card);
-    session.send(retorno);
-}]);
 
-bot.dialog('card3', [(session,partesDaResposta)=>{
-    const card  = new builder.HeroCard(session)
-        .title(titulo)
-        .images([builder.CardImage.create(session,imagem.trim())])
-        .text(descricao)
-    const retorno = new builder.Message(session).addAttachment(card);
-    session.send(retorno);
-}],true);
-
-bot.dialog('card4', [(session)=>{
-    const card  = new builder.HeroCard(session)
-        .title(titulo)
-        .images([builder.CardImage.create(session,imagem.trim())])
-        .text(descricao)
-        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-    const retorno = new builder.Message(session).addAttachment(card);
-    session.send(retorno);
-}],true);
 
 ////END LUIS CODE////
 
