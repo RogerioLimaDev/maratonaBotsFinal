@@ -96,7 +96,6 @@ intents.matches('Definicao', (session, args) => {
                 if(foundEntities.length >0){
                     const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[k],'name');
                     session.send(mensagemName);
-                    session.endDialog();
                     return;
                 }  
             }

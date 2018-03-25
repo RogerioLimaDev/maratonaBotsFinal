@@ -47,9 +47,9 @@ function Textos (textoMsg)
         },
         nomes:
         {
-            rogerio:'',
-            tropical:'',
-            bionikos:''
+            rogerio:'Rogério Lima é sócio e diretor de criação da Tropical Cyborg. É um dos pioneiros no desenvolvimento de realidade virtual no Brasil',
+            tropical:'Tropical Cyborg é um estúdio de produção de experiências com novas tecnologias, incluindo VR, AR, sensores digitais, beacons, etc. É também o avatar de Rogério Lima nas redes sociais e portais de games online',
+            bionikos:'Bionikos é a empresa de Rogério Lima com a coreógrafa Andrea Pivatto especializada em experiências misturando dança e novas tecnologias.'
         },
         pessoais:
         {
