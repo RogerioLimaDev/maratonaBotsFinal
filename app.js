@@ -47,7 +47,7 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-var intents = new builder.IntentDialog({ recognizers: [recognizer] });
+var intents = new builder.IntentDialog({ recognizers: [recognizer,qnarecognizer] });
 
 
 intents.matches('Cumprimento', (session, args) => {
@@ -102,10 +102,8 @@ intents.matches('Definicao', (session, args) => {
     });
 
 intents.onDefault((session, args) => {
-        // mensagem = respostas.Respostas('None', session.message.text);
-        // session.send(mensagem);
-        session.endDialogue();
-        session.replaceDialogue('qna');
+        mensagem = respostas.Respostas('None', session.message.text);
+        session.send(mensagem);
     });
 
 intents.matches('pessoais', (session,args)=>{
@@ -138,6 +136,13 @@ intents.matches('orcamento', (session,args)=>{
         const msgem = new builder.Message(session).addAttachment(card);
         session.send(msgem);
     });
+
+intents.matches('qna', [
+        function (session, args, next) {
+            var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
+            session.send(answerEntity.entity);
+        }
+    ]);
 
 const card4 = (session)=>{
     var txt = FormatCard(mensagem);
@@ -226,7 +231,7 @@ bot.dialog('/', intents);
 
 ////QNA///////
 
-var recognizer = new cognitiveServices.QnAMakerRecognizer({
+var qnarecognizer = new cognitiveServices.QnAMakerRecognizer({
     knowledgeBaseId: process.env.QnAKnowledgebaseId, 
     subscriptionKey: process.env.QnASubscriptionKey,
     top:3});
@@ -296,11 +301,5 @@ qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
         break;
     }
 };
-
-bot.dialogue('qna', qnaMakerDialogue);
-
-//bot.dialog('/', qnaMakerDialog);
-
-
 
 ////QNA/////
