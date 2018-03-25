@@ -76,12 +76,11 @@ intents.matches('Definicao', (session, args) => {
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[j]);
                 if(foundEntities.length >0){
                     const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[j],'tech');
-                    // const cardT = cardTech(session);
-                    // const msgem = new builder.Message(session).addAttachment(cardT);
-                    // session.send(msgem);
-                    session.send(mensagemTech);
-                    // session.send('Achei a entidade '+ techEntities[i] + 'do tipo tech');
-                }   
+                    const cardT = cardTech(session);
+                    const msgemT = new builder.Message(session).addAttachment(cardT);
+                    session.send(msgemT);
+                    // session.send(mensagemTech);
+                    }   
                 }
 
             const nameEntities = ['rogerio', 'tropical','bionikos','andrea'];
@@ -146,16 +145,16 @@ const card4 = (session)=>{
         .buttons([ builder.CardAction.openUrl(session, txt[3].trim(), 'mande um email')]);
     };
 
-    const cardTech = (session)=>{
-        var txt = FormatCard(mensagemTech);
-        return new builder.HeroCard(session)
-            .title(txt[0])
-            .images([builder.CardImage.create(session,txt[1].trim())])
-            .text(txt[2]);
-        };
+const cardTech = (session)=>{
+    var txt = FormatCard(mensagemTech);
+    return new builder.HeroCard(session)
+        .title(txt[0])
+        .images([builder.CardImage.create(session,txt[1].trim())])
+        .text(txt[2]);
+    };
 
 
-    const card3 = (session)=>{
+const card3 = (session)=>{
     var txt = FormatCard(mensagem);
     return new builder.HeroCard(session)
         .title(txt[0])
