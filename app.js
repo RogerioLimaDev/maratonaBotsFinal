@@ -140,8 +140,18 @@ intents.matches('comparacao', (session,args)=>{
         session.send(mensagem);
     });
 intents.matches('portfolio', (session,args)=>{
-        mensagem = respostas.Respostas('portfolio', session.message.text);
-        session.send(mensagem);
+    const portCard = 
+    [
+        portCard1(session),
+        portCard2(session),
+        portCard3(session)
+    ];
+    const pCard = new builder.Message(session)
+        .attachmentLayout(builder.AttachmentLayout.carousel)
+        .addAttachment(portCard);
+
+    mensagem = respostas.Respostas('portfolio', session.message.text);
+        session.send(pCard);
     });
 intents.matches('orcamento', (session,args)=>{
         mensagem = respostas.Respostas('orcamento', session.message.text);
@@ -194,6 +204,44 @@ const animCard = (session,titleX,messageX) =>{
     .media([{url: 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'}]);
     // .autostart(true);
 };
+
+
+
+const portCard1 = (session)=>{
+    return new builder.VideoCard(session)
+        .title('experiencias')
+        .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
+        .buttons([
+            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio.html','ver ampliado')
+        ])
+        .autostart(true)
+        .autoloop(false);
+};
+
+const portCard2 = (session)=>{
+    return new builder.VideoCard(session)
+        .title('Video 360º')
+        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
+        .buttons([
+            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html','ver ampliado')
+        ])
+        .autostart(false)
+        .autoloop(false);
+};
+
+const portCard3 = (session)=>{
+    return new builder.VideoCard(session)
+        .title('dança + tech')
+        .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
+        .buttons([
+            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html','ver ampliado')
+        ])
+        .autostart(false)
+        .autoloop(false);
+};
+
+
+
 
 const card3 = (session)=>{
     var txt = FormatCard(mensagem);
