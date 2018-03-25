@@ -223,7 +223,7 @@ function FindCardSize(session,msgFromIntent)
                 .text(resp[2])
                 .buttons([ builder.CardAction.openUrl(session, resp[3].trim(), 'mande um email')]);
         };
-        break;
+        return card4QnA;
 
         case 3:
         const card3QnA = (session)=>{
@@ -234,7 +234,7 @@ function FindCardSize(session,msgFromIntent)
                 .text(resp[3]);
     
         };
-        break;
+        return card3QnA;
 
         case 2:
         const card2QnA = (session)=>{
@@ -243,7 +243,8 @@ function FindCardSize(session,msgFromIntent)
             .text(resp[0])
             .buttons([ builder.CardAction.openUrl(session, resp[1].trim(), 'mande um email')]);
         };
-        break;
+        return card2QnA;
+        
         case 1:
         return;
     }
