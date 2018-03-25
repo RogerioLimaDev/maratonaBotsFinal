@@ -70,7 +70,7 @@ intents.matches('Definicao', (session, args) => {
                 const cardH = cardHMD(session,mensagemHmd) ;
                 const msgemH = new builder.Message(session).addAttachment(cardH);
                 session.send(msgemH);
-                session.endDialogue();
+                return;
                 }
             }
 
@@ -84,7 +84,7 @@ intents.matches('Definicao', (session, args) => {
                     const cardT = cardTech(session,mensagemTech) ;
                     const msgemT = new builder.Message(session).addAttachment(cardT);
                     session.send(msgemT);
-                    session.endDialogue();
+                    return;
 
                     }   
                 }
@@ -97,8 +97,9 @@ intents.matches('Definicao', (session, args) => {
                     const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[k],'name');
                     session.send(mensagemName);
                     session.endDialog();
-                    }  
-                }
+                    return;
+                }  
+            }
     });
 
 
