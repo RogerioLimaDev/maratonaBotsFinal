@@ -146,10 +146,13 @@ intents.matches('orcamento', (session,args)=>{
 intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
-            var txtQna = FormatCard(answerEntity);
+            var txtQna = FindCardSize(session,answerEntity);
             const cardQnA = cardHMD(session,txtQna) ;
+            if(cardQnA != null ){
                 const msgemQ = new builder.Message(session).addAttachment(cardQnA);
                 session.send(msgemQ);
+            }
+            else session.send(answerEntity);
                 return;
             // session.send(answerEntity.entity);
         }
@@ -205,7 +208,53 @@ function FormatCard(mensagem){
 
 }
 
+function FindCardSize(session,msg)
+{
 
+    const resp = msg;
+    const ptsDaResposta = resp.split('%');
+    const [titulo, imagem, descricao, url] = ptsDaResposta;
+
+    var card4QnA = ()=>{
+        return new builder.HeroCard(session)
+            .title(titulo)
+            .images([builder.CardImage.create(session,imagem.trim())])
+            .text(descricao)
+            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+    };
+
+    var card3QnA = ()=>{
+        return new builder.HeroCard(session)
+            .title(titulo)
+            .images([builder.CardImage.create(session,imagem.trim())])
+            .text(descricao);
+
+    };
+
+    var card2QnA = ()=>{
+        return new builder.HeroCard(session)
+        .text(descricao)
+        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+    };
+
+    switch(ptsDaResposta.length){
+        case 4:
+        card4QnA();
+        break;
+
+        case 3:
+        card3QnA();
+        break;
+
+        case 2:
+        card2QnA();
+        break;
+
+        case 1:
+        return;
+    }
+
+}
 
 
 ////FIM LUIS CODE/////
