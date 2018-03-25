@@ -7,6 +7,8 @@ var cognitiveServices = require('botbuilder-cognitiveservices');
 var minha = require('./minhabiblioteca');
 var respostas = require('./respostas');
 
+var mensagem = '';
+
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -49,13 +51,13 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
 
 intents.matches('Cumprimento', (session, args) => {
-        var mensagem = respostas.Respostas('cumprimento', session.message.text);
-        mensagem = FormatCard(mensagem,session);
+        mensagem = respostas.Respostas('cumprimento', session.message.text);
+        FormatCard(mensagem);
         session.send(mensagem);        
 });
 intents.matches('Xingamento', (session, args) => {
-        var mensagem = respostas.Respostas('xingamento', session.message.text);
-        mensagem = FormatCard(mensagem);
+        mensagem = respostas.Respostas('xingamento', session.message.text);
+        FormatCard(mensagem);
         session.send(mensagem);
     });
 
@@ -99,54 +101,55 @@ intents.matches('Definicao', (session, args) => {
 
 
 intents.onDefault((session, args) => {
-        var mensagem = respostas.Respostas('None', session.message.text);
-        mensagem = FormatCard(mensagem);
+        mensagem = respostas.Respostas('None', session.message.text);
+        FormatCard(mensagem);
         session.send(mensagem);
     });
 
 intents.matches('pessoais', (session,args)=>{
-    var mensagem = respostas.Respostas('pessoais', session.message.text);
-    mensagem = FormatCard(mensagem);
+    mensagem = respostas.Respostas('pessoais', session.message.text);
+    FormatCard(mensagem);
     session.send(mensagem);
 });
 intents.matches('onde', (session,args)=>{
-    var mensagem = respostas.Respostas('onde', session.message.text);
-    mensagem = FormatCard(mensagem);
+    mensagem = respostas.Respostas('onde', session.message.text);
+    FormatCard(mensagem);
     session.send(mensagem);
 });
 intents.matches('quem', (session,args)=>{
-    var mensagem = respostas.Respostas('quem', session.message.text);
-    mensagem = FormatCard(mensagem);
+    mensagem = respostas.Respostas('quem', session.message.text);
+    FormatCard(mensagem);
     session.send(mensagem);
 });
 intents.matches('compras', (session,args)=>{
-    var mensagem = respostas.Respostas('compras', session.message.text);
-    mensagem = FormatCard(mensagem);
+    mensagem = respostas.Respostas('compras', session.message.text);
+    FormatCard(mensagem);
     session.send(mensagem);
 });
 intents.matches('comparacao', (session,args)=>{
-    var mensagem = respostas.Respostas('None', session.message.text);
-    mensagem = FormatCard(mensagem);
+    mensagem = respostas.Respostas('None', session.message.text);
+    FormatCard(mensagem);
     session.send(mensagem);
 });
 intents.matches('portfolio', (session,args)=>{
-    var mensagem = respostas.Respostas('portfolio', session.message.text);
-    mensagem = FormatCard(mensagem);
+    mensagem = respostas.Respostas('portfolio', session.message.text);
+    FormatCard(mensagem);
     session.send(mensagem);
 });
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
-    const card = FormatCard(mensagem,session);
+    var txt = FormatCard(mensagem);
+    const card = card4(session,txt);
     const msgem = new builder.Message(session).addAttachment(card);
     session.send(msgem);
 });
 
-const card4 = (session)=>{
+const card4 = (session,txt)=>{
     return new builder.HeroCard(session)
-        .title(titulo)
-        .images([builder.CardImage.create(session,imagem.trim())])
-        .text(descricao)
-        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+        .title(txt.titulo)
+        .images([builder.CardImage.create(session,txt.imagem.trim())])
+        .text(txt.descricao)
+        .buttons([ builder.CardAction.openUrl(session, txt.url.trim(), 'mande um email')]);
 };
 
 
@@ -155,23 +158,22 @@ function FormatCard(mensagem, session){
     const resposta = String(mensagem);
     const partesDaResposta = resposta.split('%');
     const [titulo, imagem, descricao, url] = partesDaResposta;
+    return partesDaResposta;
 
-    switch(partesDaResposta.length){
-        case 4:
-        return card4(session);
+    // switch(partesDaResposta.length){
+    //     case 4:
+    //     return partesDaResposta;
 
-        case 3:
-        break;
+    //     case 3:
+    //     return partesDaResposta;
 
-        case 2:
-        break;
+    //     case 2:
+    //     break;
 
-        case 1:
-        break;
+    //     case 1:
+    //     break;
 
-    }
-
-
+    // }
 // bot.dialogue('card1', [(session)=>{
 //         session.send(mensagem);
 //         }]);
