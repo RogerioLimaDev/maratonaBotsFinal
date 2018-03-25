@@ -79,7 +79,6 @@ intents.matches('Definicao', (session, args) => {
                     const cardT = cardTech(session,mensagemTech) ;
                     const msgemT = new builder.Message(session).addAttachment(cardT);
                     session.send(msgemT);
-                    // session.send(mensagemTech);
                     }   
                 }
 

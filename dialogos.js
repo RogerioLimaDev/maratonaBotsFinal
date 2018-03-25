@@ -38,7 +38,7 @@ function Textos (textoMsg)
         tech:
         {
             virtual:'Realidade Virtual%https://conteudo.imguol.com.br/c/noticias/1b/2017/10/09/mulher-usa-oculos-e-realidade-virtual-1507569900854_300x300.jpg%É fazer um usuário sentir que está em um lugar diferente do que ele está. Para isso, usamos um celular, tablet ou computador e um óculos especial. É chato explicar mas é divertido experimentar.',
-            aumentada:'',
+            aumentada:'Realidade aumentada%https://abrilexame.files.wordpress.com/2016/09/size_960_16_9_pokemon-go.png?quality=70&strip=info&crop=true&w=680&h=453% É a experiência de visualizar objetos virtuais em um ambiente real. Pode ser experimentada pela camera de um celular ou com os óculos de realidade virtual.',
             mixed:'',
             kinect:'',
             beacons:'',
