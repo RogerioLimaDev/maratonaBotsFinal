@@ -47,6 +47,11 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
+var qnarecognizer = new cognitiveServices.QnAMakerRecognizer({
+    knowledgeBaseId: process.env.QnAKnowledgebaseId, 
+    subscriptionKey: process.env.QnASubscriptionKey,
+    top:3});
+
 var intents = new builder.IntentDialog({ recognizers: [ recognizer, qnarecognizer ] });
 bot.dialog('/', intents);
 
@@ -231,10 +236,7 @@ function FormatCard(mensagem){
 
 ////QNA///////
 
-var qnarecognizer = new cognitiveServices.QnAMakerRecognizer({
-    knowledgeBaseId: process.env.QnAKnowledgebaseId, 
-    subscriptionKey: process.env.QnASubscriptionKey,
-    top:3});
+
 
 var qnaMakerTools = new cognitiveServices.QnAMakerTools();
 
