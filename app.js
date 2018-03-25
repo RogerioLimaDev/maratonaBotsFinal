@@ -53,8 +53,7 @@ intents.matches('Cumprimento', (session, args) => {
         mensagem = FormatCard(mensagem,session);
         session.beginDialogue('card1');
         session.endDialogue('hey, you');
-
-   //     session.send(mensagem);        
+        session.send(mensagem);        
     });
 
 intents.matches('Xingamento', (session, args) => {
