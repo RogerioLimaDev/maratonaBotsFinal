@@ -139,7 +139,7 @@ intents.matches('portfolio', (session,args)=>{
 });
 intents.matches('orcamento', (session,args)=>{
     mensagem = respostas.Respostas('orcamento', session.message.text);
-    txt = FormatCard(mensagem);
+    // txt = FormatCard(mensagem);
     const card = card4(session);
     const msgem = new builder.Message(session).addAttachment(card);
     session.send(msgem);
