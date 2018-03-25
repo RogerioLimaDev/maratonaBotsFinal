@@ -101,14 +101,10 @@ intents.matches('Definicao', (session, args) => {
             }
     });
 
-
-
-
-
-
 intents.onDefault((session, args) => {
-        mensagem = respostas.Respostas('None', session.message.text);
-        session.send(mensagem);
+        // mensagem = respostas.Respostas('None', session.message.text);
+        // session.send(mensagem);
+        session.replaceDialogue(qnaMakerDialog);
     });
 
 intents.matches('pessoais', (session,args)=>{
@@ -227,3 +223,81 @@ bot.dialog('/', intents);
 
 ////FIM PROATIVIDADE/////
 
+////QNA///////
+
+var recognizer = new cognitiveServices.QnAMakerRecognizer({
+    knowledgeBaseId: process.env.QnAKnowledgebaseId, 
+    subscriptionKey: process.env.QnASubscriptionKey,
+    top:3});
+
+var qnaMakerTools = new cognitiveServices.QnAMakerTools();
+// var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
+// bot.library(qnaMakerTools.createLibrary());
+
+
+const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
+    {
+        recognizers: [recognizer],
+        defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
+        qnaThreshold: 0.3,
+        feedbackLib: qnaMakerTools
+    }
+);
+
+
+qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
+    const resposta = result.answers[0].answer;
+    const partesDaResposta = resposta.split('%');
+    const [titulo, imagem, descricao, url] = partesDaResposta;
+
+    var card4 = ()=>{
+        const card  = new builder.HeroCard(session)
+            .title(titulo)
+            .images([builder.CardImage.create(session,imagem.trim())])
+            .text(descricao)
+            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+        const retorno = new builder.Message(session).addAttachment(card);
+        session.send(retorno);
+    };
+
+    var card3 = ()=>{
+        const card = new builder.HeroCard(session)
+            .title(titulo)
+            .images([builder.CardImage.create(session,imagem.trim())])
+            .text(descricao);
+        const retorno = new builder.Message(session).addAttachment(card);
+        session.send(retorno);
+    };
+
+    var card2 = ()=>{
+        const card = new builder.HeroCard(session)
+        .text(descricao)
+        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+        const retorno = new builder.Message(session).addAttachment(card);
+        session.send(retorno);
+    };
+
+    switch(partesDaResposta.length){
+        case 4:
+        card4();
+        break;
+
+        case 3:
+        card3();
+        break;
+
+        case 2:
+        card2();
+        break;
+
+        case 1:
+        session.send(resposta);
+        break;
+    }
+};
+
+//bot.dialog('/', qnaMakerDialog);
+
+
+
+////QNA/////
