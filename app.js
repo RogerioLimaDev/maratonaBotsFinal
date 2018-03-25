@@ -147,11 +147,11 @@ const card4 = (session)=>{
     };
 
 const cardTech = (session)=>{
-    var txt = FormatCard(mensagemTech);
+    var txtT = FormatCard(mensagemTech);
     return new builder.HeroCard(session)
-        .title(txt[0])
-        .images([builder.CardImage.create(session,txt[1].trim())])
-        .text(txt[2]);
+        .title(txtT[0])
+        .images([builder.CardImage.create(session,txtT[1].trim())])
+        .text(txtT[2]);
     };
 
 
