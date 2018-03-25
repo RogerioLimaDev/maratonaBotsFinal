@@ -146,9 +146,9 @@ intents.matches('orcamento', (session,args)=>{
 });
 
 const card4 = (session)=>{
-    txt = FormatCard(mensagem);
+    var txt = FormatCard(mensagem);
     return new builder.HeroCard(session)
-        .title(txt.titulo)
+        .title(txt[0])
         // .images([builder.CardImage.create(session,txt.imagem.trim())])
         .text('Esta porra tem que funcionar agora de qualquer jeito...');
         // .buttons([ builder.CardAction.openUrl(session, txt.url.trim(), 'mande um email')]);
@@ -162,20 +162,6 @@ function FormatCard(mensagem){
     const [titulo, imagem, descricao, url] = partesDaResposta;
     return partesDaResposta;
 
-    // switch(partesDaResposta.length){
-    //     case 4:
-    //     return partesDaResposta;
-
-    //     case 3:
-    //     return partesDaResposta;
-
-    //     case 2:
-    //     break;
-
-    //     case 1:
-    //     break;
-
-    // }
 // bot.dialogue('card1', [(session)=>{
 //         session.send(mensagem);
 //         }]);
