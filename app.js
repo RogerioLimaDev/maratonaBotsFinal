@@ -140,17 +140,17 @@ intents.matches('portfolio', (session,args)=>{
 intents.matches('orcamento', (session,args)=>{
     mensagem = respostas.Respostas('orcamento', session.message.text);
     txt = FormatCard(mensagem);
-    const card = card4(session,txt);
+    const card = card4(session);
     const msgem = new builder.Message(session).addAttachment(card);
     session.send(msgem);
 });
 
-const card4 = (session,txt)=>{
+const card4 = (session)=>{
     return new builder.HeroCard(session)
-        .title(txt.titulo)
-        .images([builder.CardImage.create(session,txt.imagem.trim())])
-        .text(txt.descricao)
-        .buttons([ builder.CardAction.openUrl(session, txt.url.trim(), 'mande um email')]);
+        .title('txt.titulo')
+        // .images([builder.CardImage.create(session,txt.imagem.trim())])
+        .text('txt.descricao')
+        // .buttons([ builder.CardAction.openUrl(session, txt.url.trim(), 'mande um email')]);
 };
 
 
