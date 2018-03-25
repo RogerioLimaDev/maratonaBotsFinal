@@ -76,10 +76,10 @@ intents.matches('Definicao', (session, args) => {
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[j]);
                 if(foundEntities.length >0){
                     const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[j],'tech');
-                    const card = cardTech(session);
-                    const msgem = new builder.Message(session).addAttachment(card);
+                    const cardT = cardTech(session);
+                    const msgem = new builder.Message(session).addAttachment(cardT);
                     session.send(msgem);
-                    //session.send(mensagemTech);
+                    session.send(mensagemTech);
                     // session.send('Achei a entidade '+ techEntities[i] + 'do tipo tech');
                 }   
                 }
