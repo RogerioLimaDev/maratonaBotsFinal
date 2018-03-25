@@ -105,7 +105,7 @@ intents.onDefault((session, args) => {
         // mensagem = respostas.Respostas('None', session.message.text);
         // session.send(mensagem);
         session.endDialogue();
-        session.replaceDialogue(qnaMakerDialog);
+        session.replaceDialogue('qna');
     });
 
 intents.matches('pessoais', (session,args)=>{
@@ -296,6 +296,8 @@ qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
         break;
     }
 };
+
+bot.dialogue('qna', qnaMakerDialogue);
 
 //bot.dialog('/', qnaMakerDialog);
 
