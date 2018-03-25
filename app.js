@@ -150,12 +150,14 @@ intents.matches('qna', [
             var txtQna = FindCardSize(session,answerEntity);
             const cardQnA = cardHMD(session,txtQna) ;
             if(isNullOrEmpty(cardQnA)){
-                const msgemQ = new builder.Message(session).addAttachment(cardQnA);
-                session.send(msgemQ);
+                session.send('card is not null');
+            //     const msgemQ = new builder.Message(session).addAttachment(cardQnA);
+            //     session.send(msgemQ);
             }
-            else session.send(answerEntity);
+            // else session.send(answerEntity);
+            session.send(answerEntity.entity);
             return;
-            // session.send(answerEntity.entity);
+
         }
     ]);
 
