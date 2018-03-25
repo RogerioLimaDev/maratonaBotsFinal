@@ -6,6 +6,7 @@ var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
 var minha = require('./minhabiblioteca');
 var respostas = require('./respostas');
+var isNullOrEmpty = require('check-null-or-empty');
 
 var mensagem = '';
 var txt;
@@ -148,7 +149,7 @@ intents.matches('qna', [
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
             var txtQna = FindCardSize(session,answerEntity);
             const cardQnA = cardHMD(session,txtQna) ;
-            if(cardQnA){
+            if(isNullOrEmpty(cardQnA)){
                 const msgemQ = new builder.Message(session).addAttachment(cardQnA);
                 session.send(msgemQ);
             }
