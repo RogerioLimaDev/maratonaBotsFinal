@@ -25,7 +25,7 @@ function Textos (textoMsg)
         },
         hmd:
         {
-            oculus:'Resposta sobre oculus dos dialogos',
+            oculus:'Oculus Rift%http://s2.glbimg.com/N5xZWxsEeHTKkqWcaHtjYrDtMpc=/0x0:1160x653/695x391/s.glbimg.com/po/tt2/f/original/2015/08/17/2882181-oculus-touch-2-1434465834-ej3p-full-width-inline.jpg% É o modelo topo de linha da marca que popularizou a realidade virtual. Começou como um projeto de financiamento coletivo e acabou comprado pelo Facebook. O óculos Gear VR da Samsung tem a mesma tecnologia porém menos recursos.',
             gearvr:'Resposta sobre gear vr',
             cardboard:'resposta sobre cardboard',
             htc:'resposta sobre htc',

@@ -66,8 +66,9 @@ intents.matches('Definicao', (session, args) => {
             if(foundEntities.length > 0){
                 var currentEntity = hmdEntities[i];
                 const mensagemHmd = respostas.Respostas('definicao', session.message.text,currentEntity,'hmd');
-                session.send(mensagemHmd);
-                }
+                const cardH = cardHMD(session,mensagemHmd) ;
+                const msgemH = new builder.Message(session).addAttachment(cardH);
+                session.send(msgemH);                }
             }
 
             const techEntities = ['virtual', 'aumentada','beacons', 'kinect', 'chatbot','mixed'];
@@ -89,8 +90,7 @@ intents.matches('Definicao', (session, args) => {
                 if(foundEntities.length >0){
                     const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[k],'name');
                     session.send(mensagemName);
-                    // session.send('Achei a entidade '+ nameEntities[i] + 'do tipo name');
-                }  
+                    }  
                 }
     });
 
@@ -151,6 +151,14 @@ const cardTech = (session,mensagemTech)=>{
         .images([builder.CardImage.create(session,txtT[1].trim())])
         .text(txtT[2]);
     };
+
+const cardHMD = (session, mensagemHmd)=>{
+    var txtH = FormatCard(mensagemHmd);
+    return new builder.HeroCard(session)
+        .title(txtH[0])
+        .images([builder.CardImage.create(session.TxtH[1].trim())])
+        .text(txtH[2]);
+};
 
 
 const card3 = (session)=>{
