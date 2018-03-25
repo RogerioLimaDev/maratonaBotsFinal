@@ -243,7 +243,7 @@ var qnaMakerTools = new cognitiveServices.QnAMakerTools();
 
 const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
     {
-        recognizers: [recognizer],
+        recognizers: [qnarecognizer],
         defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
         qnaThreshold: 0.3,
         feedbackLib: qnaMakerTools
