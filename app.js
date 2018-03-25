@@ -66,9 +66,11 @@ intents.matches('Definicao', (session, args) => {
             if(foundEntities.length > 0){
                 var currentEntity = hmdEntities[i];
                 const mensagemHmd = respostas.Respostas('definicao', session.message.text,currentEntity,'hmd');
+                FormatCard(mensagemHmd);
                 const cardH = cardHMD(session,mensagemHmd) ;
                 const msgemH = new builder.Message(session).addAttachment(cardH);
-                session.send(msgemH);                }
+                session.send(msgemH);
+                }
             }
 
             const techEntities = ['virtual', 'aumentada','beacons', 'kinect', 'chatbot','mixed'];
@@ -77,6 +79,7 @@ intents.matches('Definicao', (session, args) => {
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[j]);
                 if(foundEntities.length >0){
                     const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[j],'tech');
+                    FormatCard(mensagemTech);
                     const cardT = cardTech(session,mensagemTech) ;
                     const msgemT = new builder.Message(session).addAttachment(cardT);
                     session.send(msgemT);
