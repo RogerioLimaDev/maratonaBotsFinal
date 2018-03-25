@@ -156,7 +156,7 @@ function SelectRandomNumber(){
 
 function Teste (){
 
-    var teste = 'Recebi aqui: ' + Respostas('orcamento');
+    var teste = 'Recebi aqui: ' + Respostas('definicao');
     console.log(teste);
     return(teste);
 

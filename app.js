@@ -76,8 +76,7 @@ intents.matches('Definicao', (session, args) => {
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[j]);
                 if(foundEntities.length >0){
                     const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[j],'tech');
-                    FormatCard(mensagemTech);
-                    const cardT = cardTech(session);
+                    const cardT = cardTech(session,mensagemTech) ;
                     const msgemT = new builder.Message(session).addAttachment(cardT);
                     session.send(msgemT);
                     // session.send(mensagemTech);
@@ -146,14 +145,12 @@ const card4 = (session)=>{
         .buttons([ builder.CardAction.openUrl(session, txt[3].trim(), 'mande um email')]);
     };
 
-const cardTech = (session)=>{
+const cardTech = (session,mensagemTech)=>{
     var txtT = FormatCard(mensagemTech);
     return new builder.HeroCard(session)
         .title(txtT[0])
         .images([builder.CardImage.create(session,txtT[1].trim())])
-        .text(txtT[2])
-        .buttons([ builder.CardAction.openUrl(session, txtT[3].trim(), 'mande um email')]);
-
+        .text(txtT[2]);
     };
 
 
