@@ -159,7 +159,7 @@ const cardHMD = (session, mensagemHmd)=>{
     var txtH = FormatCard(mensagemHmd);
     return new builder.HeroCard(session)
         .title(txtH[0])
-        .images([builder.CardImage.create(session.txtH[1].trim())])
+        .images([builder.CardImage.create(session,txtH[1].trim())])
         .text(txtH[2]);
 };
 
