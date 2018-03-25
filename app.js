@@ -212,8 +212,8 @@ function FindCardSize(session,msg)
 {
 
     const resp = msg;
-    const ptsDaResposta = resp.split('%');
-    const [titulo, imagem, descricao, url] = ptsDaResposta;
+    const pts = resp.split('%');
+    const [titulo, imagem, descricao, url] = pts;
 
     var card4QnA = ()=>{
         return new builder.HeroCard(session)
