@@ -194,37 +194,39 @@ const cardHMD = (session, mensagemHmd)=>{
 
 
 
-const portCard1 = (session)=>{
-    return new builder.HeroCard(session)
-        .title('experiencias')
-    //       .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio.html','ver ampliado')
-        ]);
 
-};
-
-const portCard2 = (session)=>{
-    return new builder.HeroCard(session)
-        .title('Video 360º')
-    //        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html','ver ampliado')
-        ]);
-
-};
-
-const portCard3 = (session)=>{
-    return new builder.HeroCard(session)
-        .title('dança + tech')
- //       .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html','ver ampliado')
-        ]);
-
-};
 
 intents.matches('portfolio', (session,args)=>{
+
+    const portCard1 = (session)=>{
+        return new builder.HeroCard(session)
+            .title('experiencias')
+        //       .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
+            .buttons([
+                builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio.html','ver ampliado')
+            ]);
+    
+    };
+    
+    const portCard2 = (session)=>{
+        return new builder.HeroCard(session)
+            .title('Video 360º')
+        //        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
+            .buttons([
+                builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html','ver ampliado')
+            ]);
+    
+    };
+    
+    const portCard3 = (session)=>{
+        return new builder.HeroCard(session)
+            .title('dança + tech')
+     //       .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
+            .buttons([
+                builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html','ver ampliado')
+            ]);
+    
+    };
     const portCard = 
     [
         portCard1(session),
