@@ -146,15 +146,16 @@ intents.matches('orcamento', (session,args)=>{
 });
 
 const card4 = (session)=>{
+    txt = FormatCard(mensagem);
     return new builder.HeroCard(session)
-        .title('txt.titulo')
+        .title(txt.titulo)
         // .images([builder.CardImage.create(session,txt.imagem.trim())])
-        .text('txt.descricao')
+        .text('Esta porra tem que funcionar agora de qualquer jeito...');
         // .buttons([ builder.CardAction.openUrl(session, txt.url.trim(), 'mande um email')]);
 };
 
 
-function FormatCard(mensagem, session){
+function FormatCard(mensagem){
 
     const resposta = String(mensagem);
     const partesDaResposta = resposta.split('%');
