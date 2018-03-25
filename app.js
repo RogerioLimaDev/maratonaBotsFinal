@@ -148,12 +148,12 @@ intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
             var txtQna = FindCardSize(session,answerEntity);
-            if(isNullOrEmpty(txtQna)){
+            // if(isNullOrEmpty(txtQna)){
                 const msgemQ = new builder.Message(session).addAttachment(txtQna);
                 session.send(msgemQ);
-            }
-            else session.send(answerEntity);
-            // session.send(answerEntity.entity);
+            // }
+            // else session.send(answerEntity);
+            session.send(answerEntity.entity);
             return;
 
         }
