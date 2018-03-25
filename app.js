@@ -147,7 +147,8 @@ intents.matches('orcamento', (session,args)=>{
 intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
-            var txtQna = FindCardSize(session,answerEntity.entity);
+            var respQnA = String(answerEntity.entity);
+            var txtQna = FindCardSize(session,respQnA);
             // if(isNullOrEmpty(txtQna)){
                 const msgemQ = new builder.Message(session).addAttachment(txtQna);
                 session.send(msgemQ);
@@ -211,10 +212,6 @@ function FormatCard(mensagem){
 
 function FindCardSize(session,msgFromIntent)
 {
-
-    const resp = FormatCard(msgFromIntent);
-
-
     switch(resp.length){
 
         case 4:
@@ -226,7 +223,7 @@ function FindCardSize(session,msgFromIntent)
                 .text(resp[2])
                 .buttons([ builder.CardAction.openUrl(session, resp[3].trim(), 'mande um email')]);
         };
-        return card4QnA;
+        break;
 
         case 3:
         const card3QnA = (session)=>{
@@ -237,7 +234,7 @@ function FindCardSize(session,msgFromIntent)
                 .text(resp[3]);
     
         };
-        return card3QnA;
+        break;
 
         case 2:
         const card2QnA = (session)=>{
@@ -246,8 +243,7 @@ function FindCardSize(session,msgFromIntent)
             .text(resp[0])
             .buttons([ builder.CardAction.openUrl(session, resp[1].trim(), 'mande um email')]);
         };
-        return card2QnA;
-
+        break;
         case 1:
         return;
     }
