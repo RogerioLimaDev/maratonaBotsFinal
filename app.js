@@ -148,12 +148,12 @@ intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
             var txtQna = FindCardSize(session,answerEntity);
-            // if(isNullOrEmpty(txtQna)){
-            //     session.send('card is not null');
-            // //     const msgemQ = new builder.Message(session).addAttachment(cardQnA);
-            // //     session.send(msgemQ);
-            // }
-            // else session.send(answerEntity);
+            if(isNullOrEmpty(txtQna)){
+                session.send('card is not null');
+            //     const msgemQ = new builder.Message(session).addAttachment(cardQnA);
+            //     session.send(msgemQ);
+            }
+            else session.send(answerEntity);
             session.send(answerEntity.entity);
             return;
 
@@ -217,7 +217,7 @@ function FindCardSize(session,msgFromIntent)
 
 
     switch(resp.length){
-        
+
         case 4:
         var card4QnA = ()=>{
             return new builder.HeroCard(session)
