@@ -94,7 +94,8 @@ function Respostas(string,sessionMessage, entity, tipo){
 
                             case 'Bionikos':
                             msg = dialogos(textoMsg).nomes.bionikos;
-                            return (msg);                            
+                            return (msg); 
+                                                       
                             default:
                             return('Esta é apenas uma reposta padrão de nomes');
                         }
