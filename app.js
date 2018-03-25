@@ -149,9 +149,9 @@ const card4 = (session)=>{
     var txt = FormatCard(mensagem);
     return new builder.HeroCard(session)
         .title(txt[0])
-        // .images([builder.CardImage.create(session,txt.imagem.trim())])
-        .text('Esta porra tem que funcionar agora de qualquer jeito...');
-        // .buttons([ builder.CardAction.openUrl(session, txt.url.trim(), 'mande um email')]);
+        .images([builder.CardImage.create(session,txt[1].trim())])
+        .text(txt[2])
+        .buttons([ builder.CardAction.openUrl(session, txt[3].trim(), 'mande um email')]);
 };
 
 
