@@ -81,14 +81,16 @@ function Respostas(string,sessionMessage, entity, tipo){
                         switch(curEntity){
 
                             case 'rogerio':
-                            return('resposta sobre Rogério Lima');
-                    
+                            msg = dialogos(textoMsg).nomes.rogerio;
+                            return (msg);
+
                             case 'tropical':
-                            return('resposta sobre Tropical Cyborg');
-                    
+                            msg = dialogos(textoMsg).nomes.tropical;
+                            return (msg);
+
                             case 'Bionikos':
-                            return('aqui vai uma resposta sobre a Bionikos');
-                            
+                            msg = dialogos(textoMsg).nomes.bionikos;
+                            return (msg);                            
                             default:
                             return('Esta é apenas uma reposta padrão de nomes');
                         }
@@ -98,23 +100,30 @@ function Respostas(string,sessionMessage, entity, tipo){
                         switch(curEntity){
 
                             case 'aumentada':
-                            return('resposta sobre realidade aumentada');
-                    
+                            msg = dialogos(textoMsg).tech.aumentada;
+                            return (msg);
+
                             case 'virtual':
-                            return('resposta sobre realidade virtual');
-                    
+                            msg = dialogos(textoMsg).tech.virtual;
+                            return (msg);
+
                             case 'kinect':
-                            return('aqui vai uma resposta sobre o sensor kinect');
-                    
+                            msg = dialogos(textoMsg).tech.kinect;
+                            return (msg);
+
                             case 'beacons':
-                            return('aqui vai uma resposta sobre beacons');
-                    
+                            msg = dialogos(textoMsg).tech.beacons;
+                            return (msg);
+
                             case 'mixed':
-                            return('resposta sobre mixed reality');
-                    
-                            case 'chatbot':
-                            return('resposta sobre chatbots');
+                            msg = dialogos(textoMsg).tech.mixed;
+                            return (msg);
                             
+                            
+                            case 'chatbot':
+                            msg = dialogos(textoMsg).tech.chatbots;
+                            return (msg);
+
                             default:
                             return('Esta é apenas uma reposta padrão de tecnologia');
                         }

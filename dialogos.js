@@ -37,9 +37,9 @@ function Textos (textoMsg)
         },
         tech:
         {
-            virtual:'Realidade \nVirtual%https://conteudo.imguol.com.br/c/noticias/1b/2017/10/09/mulher-usa-oculos-e-realidade-virtual-1507569900854_300x300.jpg%É\n fazer um usuário sentir que está em um lugar diferente do que ele está.\n Para isso, usamos um celular, tablet ou computador e um óculos \nespecial. É chato explicar mas é divertido experimentar.',
+            virtual:'Realidade Virtual%https://conteudo.imguol.com.br/c/noticias/1b/2017/10/09/mulher-usa-oculos-e-realidade-virtual-1507569900854_300x300.jpg%É fazer um usuário sentir que está em um lugar diferente do que ele está. Para isso, usamos um celular, tablet ou computador e um óculos especial. É chato explicar mas é divertido experimentar.',
             aumentada:'',
-            mista:'',
+            mixed:'',
             kinect:'',
             beacons:'',
             chatbot:'',
