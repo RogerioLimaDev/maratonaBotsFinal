@@ -189,7 +189,7 @@ const animCard = (session,titleX,messageX) =>{
     var tx = titleX;
     var teX = messageX;
     return new builder.AnimationCard(session)
-    .title(tx)
+    .title(tx +'???')
     .text(teX)
     .media([{url: 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'}]);
     // .autostart(true);
