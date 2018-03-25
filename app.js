@@ -197,7 +197,7 @@ const cardHMD = (session, mensagemHmd)=>{
 const portCard1 = (session)=>{
     return new builder.VideoCard(session)
         .title('experiencias')
-        .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
+ //       .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio.html','ver ampliado')
         ])
@@ -208,7 +208,7 @@ const portCard1 = (session)=>{
 const portCard2 = (session)=>{
     return new builder.VideoCard(session)
         .title('Video 360º')
-        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
+//        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html','ver ampliado')
         ])
@@ -219,7 +219,7 @@ const portCard2 = (session)=>{
 const portCard3 = (session)=>{
     return new builder.VideoCard(session)
         .title('dança + tech')
-        .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
+ //       .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html','ver ampliado')
         ])
@@ -234,6 +234,7 @@ intents.matches('portfolio', (session,args)=>{
         portCard2(session),
         portCard3(session)
     ];
+
     const pCard = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .addAttachment(portCard);
