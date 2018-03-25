@@ -188,8 +188,7 @@ const cardHMD = (session, mensagemHmd)=>{
 const animCard = (session,messageX) =>{ 
     var tx = messageX;
     return new builder.AnimationCard(session)
-    .title('#$%&*!')
-    .text(tx)
+    .title(tx)
     .media([{url: 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'}]);
     // .autostart(true);
 };
