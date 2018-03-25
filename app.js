@@ -149,12 +149,12 @@ intents.matches('qna', [
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
             var respQnA = String(answerEntity.entity);
             var txtQna = FindCardSize(session,respQnA);
-            // if(isNullOrEmpty(txtQna)){
+            if(!isNullOrEmpty(txtQna.text)){
                 const msgemQ = new builder.Message(session).addAttachment(txtQna);
                 session.send(msgemQ);
-            // }
-            // else session.send(answerEntity);
-            session.send(answerEntity.entity);
+            }
+            else session.send(respQnA);
+            // session.send(answerEntity.entity);
             return;
 
         }
@@ -244,7 +244,7 @@ function FindCardSize(session,msgFromIntent)
             .buttons([ builder.CardAction.openUrl(session, resp[1].trim(), 'mande um email')]);
         };
         return card2QnA;
-        
+
         case 1:
         return;
     }
