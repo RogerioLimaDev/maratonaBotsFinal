@@ -63,13 +63,9 @@ intents.matches('Cumprimento', (session, args) => {
     });
 intents.matches('Xingamento', (session, args) => {
         mensagem = respostas.Respostas('xingamento', session.message.text);
-        const animCard = session =>{ 
-            return new builder.AnimationCard(session)
-            .media([ 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'])
-            .text(mensagem)
-            .title('#$%&*!')
-            .autostart(true)};
-        const respX = new builder.Message(session).addAttachment(animCard);
+        const messageX = mensagem;
+        const xcard =  animCard(session,messageX);
+        const respX = new builder.Message(session).addAttachment(xcard);
         session.send(respX);
         return;
     });
@@ -187,6 +183,13 @@ const cardHMD = (session, mensagemHmd)=>{
         .text(txtH[2]);
 };
 
+const animCard = (session,messageX) =>{ 
+    return new builder.AnimationCard(session)
+    .media([ 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'])
+    .text(messageX)
+    .title('#$%&*!')
+    .autostart(true);
+};
 
 const card3 = (session)=>{
     var txt = FormatCard(mensagem);
