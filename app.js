@@ -151,7 +151,7 @@ const cardTech = (session)=>{
     return new builder.HeroCard(session)
         .title(txtT[0])
         .images([builder.CardImage.create(session,txtT[1].trim())])
-        .text(txtT[2]);
+        .text(txtT[2])
         .buttons([ builder.CardAction.openUrl(session, txtT[3].trim(), 'mande um email')]);
 
     };
