@@ -220,7 +220,7 @@ function FindCardSize(session,msgFromIntent)
         case 4:
         var card4QnA = ()=>{
             return new builder.HeroCard(session)
-                .title(resp[0])
+                .title('Temos card')
                 .images([builder.CardImage.create(session,resp[1].trim())])
                 .text(resp[2])
                 .buttons([ builder.CardAction.openUrl(session, resp[3].trim(), 'mande um email')]);
