@@ -148,14 +148,7 @@ intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
             var respQnA = String(answerEntity.entity);
-            // var txtQna = FindCardSize(session,respQnA);
-            // if(!isNullOrEmpty(txtQna.text)){
-            //     const msgemQ = new builder.Message(session).addAttachment(txtQna);
-            //     session.send('msgemQ');
-            // }
-            // else 
             session.send(respQnA);
-            // session.send(answerEntity.entity);
             return;
 
         }
@@ -211,46 +204,6 @@ function FormatCard(mensagem){
 
 }
 
-function FindCardSize(session,msgFromIntent)
-{
-    switch(resp.length){
-
-        case 4:
-        const card4QnA = (session)=>{
-            const resp = FormatCard(msgFromIntent);
-            return new builder.HeroCard(session)
-                .title('Temos card')
-                .images([builder.CardImage.create(session,resp[1].trim())])
-                .text(resp[2])
-                .buttons([ builder.CardAction.openUrl(session, resp[3].trim(), 'mande um email')]);
-        };
-        return card4QnA;
-
-        case 3:
-        const card3QnA = (session)=>{
-            const resp = FormatCard(msgFromIntent);
-            return new builder.HeroCard(session)
-                .title('Temos titulo, ok?')
-                .images([builder.CardImage.create(session,resp[1].trim())])
-                .text(resp[3]);
-    
-        };
-        return card3QnA;
-
-        case 2:
-        const card2QnA = (session)=>{
-            const resp = FormatCard(msgFromIntent);
-            return new builder.HeroCard(session)
-            .text(resp[0])
-            .buttons([ builder.CardAction.openUrl(session, resp[1].trim(), 'mande um email')]);
-        };
-        return card2QnA;
-
-        case 1:
-        return;
-    }
-
-}
 
 
 ////FIM LUIS CODE/////
@@ -286,73 +239,7 @@ function FindCardSize(session,msgFromIntent)
 
 ////QNA///////
 
-
-
 var qnaMakerTools = new cognitiveServices.QnAMakerTools();
-
-// var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
 bot.library(qnaMakerTools.createLibrary());
-
-
-// const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
-//     {
-//         recognizers: [qnarecognizer],
-//         defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
-//         qnaThreshold: 0.3,
-//         feedbackLib: qnaMakerTools
-//     }
-// );
-
-
-// qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
-//     const resp = result.answers[0].answer;
-//     const ptsDaResposta = resp.split('%');
-//     const [titulo, imagem, descricao, url] = ptsDaResposta;
-
-//     var card4QnA = ()=>{
-//         const cardqna  = new builder.HeroCard(session)
-//             .title(titulo)
-//             .images([builder.CardImage.create(session,imagem.trim())])
-//             .text(descricao)
-//             .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-//         const retorno = new builder.Message(session).addAttachment(cardqna);
-//         session.send(retorno);
-//     };
-
-//     var card3QnA = ()=>{
-//         const cardqna = new builder.HeroCard(session)
-//             .title(titulo)
-//             .images([builder.CardImage.create(session,imagem.trim())])
-//             .text(descricao);
-//         const retorno = new builder.Message(session).addAttachment(cardqna);
-//         session.send(retorno);
-//     };
-
-//     var card2QnA = ()=>{
-//         const cardqna = new builder.HeroCard(session)
-//         .text(descricao)
-//         .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-//         const retorno = new builder.Message(session).addAttachment(cardqna);
-//         session.send(retorno);
-//     };
-
-//     switch(ptsDaResposta.length){
-//         case 4:
-//         card4QnA();
-//         break;
-
-//         case 3:
-//         card3QnA();
-//         break;
-
-//         case 2:
-//         card2QnA();
-//         break;
-
-//         case 1:
-//         session.send(resp);
-//         break;
-//     }
-// };
 
 ////QNA/////
