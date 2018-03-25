@@ -195,36 +195,33 @@ const cardHMD = (session, mensagemHmd)=>{
 
 
 const portCard1 = (session)=>{
-    return new builder.VideoCard(session)
+    return new builder.HeroCard(session)
         .title('experiencias')
  //       .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio.html','ver ampliado')
         ])
-        .autostart(true)
-        .autoloop(false);
+
 };
 
 const portCard2 = (session)=>{
-    return new builder.VideoCard(session)
+    return new builder.HeroCard(session)
         .title('Video 360º')
 //        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html','ver ampliado')
         ])
-        .autostart(false)
-        .autoloop(false);
+
 };
 
 const portCard3 = (session)=>{
-    return new builder.VideoCard(session)
+    return new builder.HeroCard(session)
         .title('dança + tech')
  //       .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html','ver ampliado')
         ])
-        .autostart(false)
-        .autoloop(false);
+
 };
 
 intents.matches('portfolio', (session,args)=>{
