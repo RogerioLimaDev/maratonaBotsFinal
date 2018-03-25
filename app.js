@@ -193,51 +193,20 @@ const cardHMD = (session, mensagemHmd)=>{
 };
 
 
-const portCard1 = (session)=>{
-    return new builder.HeroCard(session)
-        .title('experiencias')
-    //       .media([{url:'https://youtu.be/5dFw_dETZMQ'}])
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio.html','ver ampliado')
-        ]);
-
-};
-
-const portCard2 = (session)=>{
-    return new builder.HeroCard(session)
-        .title('Video 360º')
-    //        .media([{url:'https://youtu.be/BAPDJBDHTM8'}])
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html','ver ampliado')
-        ]);
-
-};
-
-const portCard3 = (session)=>{
-    return new builder.HeroCard(session)
-        .title('dança + tech')
- //       .media([{url:'https://youtu.be/yNkAMA-yb1M'}])
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html','ver ampliado')
-        ]);
-
-};
-
-
 intents.matches('portfolio', (session,args)=>{
 
- 
-    const portCard = 
-    [
-        portCard1(session),
-        portCard2(session),
-        portCard3(session)
-    ];
-
-    const pCard = new builder.Message(session).addAttachment(portCard1);
-
-        // .attachmentLayout(builder.AttachmentLayout.carousel)
-        // .addAttachment(portCard);
+    var pCard = new builder.Message(session);
+        pCard.attachmentLayout(builder.AttachmentLayout.carousel);
+        pCard.attachments([
+            new builder.HeroCard(session)
+                .title('portfolio', args)
+                .subtitle('experiências')
+                .buttons([builder.CardAction.openUrl(session, 'http://tropicalcyborg.com', 'clique para ver')]),
+            new builder.HeroCard(session)
+                .title('portfolio')
+                .subtitle('videos 360')
+                .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com', 'clique para ver')])
+        ]);
 
         session.send(pCard);
         return;
