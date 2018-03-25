@@ -47,7 +47,7 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-var intents = new builder.IntentDialog({ recognizers: [recognizer,qnarecognizer] });
+var intents = new builder.IntentDialog({ recognizers: [ recognizer, qnarecognizer ] });
 bot.dialog('/', intents);
 
 
@@ -237,69 +237,70 @@ var qnarecognizer = new cognitiveServices.QnAMakerRecognizer({
     top:3});
 
 var qnaMakerTools = new cognitiveServices.QnAMakerTools();
+
 // var qnaMakerTools = new minha.BrazilianQnaMakerTools();//
-// bot.library(qnaMakerTools.createLibrary());
+bot.library(qnaMakerTools.createLibrary());
 
 
-const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
-    {
-        recognizers: [qnarecognizer],
-        defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
-        qnaThreshold: 0.3,
-        feedbackLib: qnaMakerTools
-    }
-);
+// const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
+//     {
+//         recognizers: [qnarecognizer],
+//         defaultMessage:'Ops!...Não entendi. Pode reformular a pergunta?',
+//         qnaThreshold: 0.3,
+//         feedbackLib: qnaMakerTools
+//     }
+// );
 
 
-qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
-    const resp = result.answers[0].answer;
-    const ptsDaResposta = resp.split('%');
-    const [titulo, imagem, descricao, url] = ptsDaResposta;
+// qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
+//     const resp = result.answers[0].answer;
+//     const ptsDaResposta = resp.split('%');
+//     const [titulo, imagem, descricao, url] = ptsDaResposta;
 
-    var card4QnA = ()=>{
-        const card  = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    };
+//     var card4QnA = ()=>{
+//         const cardqna  = new builder.HeroCard(session)
+//             .title(titulo)
+//             .images([builder.CardImage.create(session,imagem.trim())])
+//             .text(descricao)
+//             .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+//         const retorno = new builder.Message(session).addAttachment(cardqna);
+//         session.send(retorno);
+//     };
 
-    var card3QnA = ()=>{
-        const card = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    };
+//     var card3QnA = ()=>{
+//         const cardqna = new builder.HeroCard(session)
+//             .title(titulo)
+//             .images([builder.CardImage.create(session,imagem.trim())])
+//             .text(descricao);
+//         const retorno = new builder.Message(session).addAttachment(cardqna);
+//         session.send(retorno);
+//     };
 
-    var card2QnA = ()=>{
-        const card = new builder.HeroCard(session)
-        .text(descricao)
-        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    };
+//     var card2QnA = ()=>{
+//         const cardqna = new builder.HeroCard(session)
+//         .text(descricao)
+//         .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+//         const retorno = new builder.Message(session).addAttachment(cardqna);
+//         session.send(retorno);
+//     };
 
-    switch(ptsDaResposta.length){
-        case 4:
-        card4QnA();
-        break;
+//     switch(ptsDaResposta.length){
+//         case 4:
+//         card4QnA();
+//         break;
 
-        case 3:
-        card3QnA();
-        break;
+//         case 3:
+//         card3QnA();
+//         break;
 
-        case 2:
-        card2QnA();
-        break;
+//         case 2:
+//         card2QnA();
+//         break;
 
-        case 1:
-        session.send(resp);
-        break;
-    }
-};
+//         case 1:
+//         session.send(resp);
+//         break;
+//     }
+// };
 
 ////QNA/////
