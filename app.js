@@ -63,11 +63,12 @@ intents.matches('Cumprimento', (session, args) => {
     });
 intents.matches('Xingamento', (session, args) => {
         mensagem = respostas.Respostas('xingamento', session.message.text);
-        const animCard = new builder.AnimationCard(session)
+        const animCard = session =>{ 
+            return new builder.AnimationCard(session)
             .media([ 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'])
             .text(mensagem)
             .title('#$%&*!')
-            .autostart(true);
+            .autostart(true)};
         const respX = new builder.Message(session).addAttachment(animCard);
         session.send(respX);
         return;
