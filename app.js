@@ -51,11 +51,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         mensagem = FormatCard(mensagem,session);
-        session.beginDialogue('card1');
-        session.endDialogue('hey, you');
         session.send(mensagem);        
-    });
-
+});
 intents.matches('Xingamento', (session, args) => {
         var mensagem = respostas.Respostas('xingamento', session.message.text);
         mensagem = FormatCard(mensagem);
@@ -112,7 +109,6 @@ intents.matches('pessoais', (session,args)=>{
     mensagem = FormatCard(mensagem);
     session.send(mensagem);
 });
-
 intents.matches('onde', (session,args)=>{
     var mensagem = respostas.Respostas('onde', session.message.text);
     mensagem = FormatCard(mensagem);
@@ -138,18 +134,23 @@ intents.matches('portfolio', (session,args)=>{
     mensagem = FormatCard(mensagem);
     session.send(mensagem);
 });
-
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
-    FormatCard(mensagem, session);
-    session.endDialogue('vou orçar');
- //   session.send(mensagem);
+    const card = FormatCard(mensagem);
+    const msgem = new builder.Message(session).addAttachment(card);
+    session.send(msgem);
 });
 
+const card4 = (session)=>{
+    return new builder.HeroCard(session)
+        .title(titulo)
+        .images([builder.CardImage.create(session,imagem.trim())])
+        .text(descricao)
+        .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+};
 
 
-
-function FormatCard(mensagem, session){
+function FormatCard(mensagem){
 
     const resposta = String(mensagem);
     const partesDaResposta = resposta.split('%');
@@ -157,10 +158,7 @@ function FormatCard(mensagem, session){
 
     switch(partesDaResposta.length){
         case 4:
-        console.log('A mensagem tem esse nº de elmentos: ' + partesDaResposta.length);
-        session.beginDialogue('card4', session);
-        session.endDialogue();
-        break;
+        return card4(session);
 
         case 3:
         break;
@@ -169,42 +167,31 @@ function FormatCard(mensagem, session){
         break;
 
         case 1:
-        session.beginDialogue('card1');
-        console.log('chegou aqui');
-        session.endDialogue();
+        break;
+
     }
 
 
-    bot.dialogue('card1', [(session)=>{
-        session.send(mensagem);
-        }]);
+// bot.dialogue('card1', [(session)=>{
+//         session.send(mensagem);
+//         }]);
 
-    bot.dialog('card2', [(session)=>{
-        const card  = new builder.HeroCard(session)
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    }]);
+// bot.dialog('card2', [(session)=>{
+//         const card  = new builder.HeroCard(session)
+//             .text(descricao)
+//             .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
+//         const retorno = new builder.Message(session).addAttachment(card);
+//         session.send(retorno);
+//     }]);
     
-    bot.dialog('card3', [(session,partesDaResposta)=>{
-        const card  = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    }],true);
-    
-    bot.dialog('card4', [(session)=>{
-        const card  = new builder.HeroCard(session)
-            .title(titulo)
-            .images([builder.CardImage.create(session,imagem.trim())])
-            .text(descricao)
-            .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
-        const retorno = new builder.Message(session).addAttachment(card);
-        session.send(retorno);
-    }],true);
+//     bot.dialog('card3', [(session,partesDaResposta)=>{
+//         const card  = new builder.HeroCard(session)
+//             .title(titulo)
+//             .images([builder.CardImage.create(session,imagem.trim())])
+//             .text(descricao)
+//         const retorno = new builder.Message(session).addAttachment(card);
+//         session.send(retorno);
+//     }],true);
 
 }
 
