@@ -76,6 +76,7 @@ intents.matches('Definicao', (session, args) => {
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, techEntities[j]);
                 if(foundEntities.length >0){
                     const mensagemTech = respostas.Respostas('definicao', session.message.text,techEntities[j],'tech');
+                    FormatCard(mensagemTech);
                     const cardT = cardTech(session);
                     const msgemT = new builder.Message(session).addAttachment(cardT);
                     session.send(msgemT);
