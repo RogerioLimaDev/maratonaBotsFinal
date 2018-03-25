@@ -201,11 +201,11 @@ intents.matches('portfolio', (session,args)=>{
             new builder.HeroCard(session)
                 .title('portfolio', args)
                 .subtitle('experiências')
-                .buttons([builder.CardAction.openUrl(session, 'http://tropicalcyborg.com', 'clique para ver')]),
+                .buttons([builder.CardAction.openUrl(session, 'http://tropicalcyborg.com/portfolio.html', 'clique para ver')]),
             new builder.HeroCard(session)
                 .title('portfolio')
                 .subtitle('videos 360')
-                .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com', 'clique para ver')])
+                .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html', 'clique para ver')])
         ]);
 
         session.send(pCard);
