@@ -230,7 +230,7 @@ function FindCardSize(session,msgFromIntent)
         case 3:
         const card3QnA = (session)=>{
             return new builder.HeroCard(session)
-                .title(resp[0])
+                .title('Temos titulo, ok?')
                 .images([builder.CardImage.create(session,resp[1].trim())])
                 .text(resp[3]);
     
