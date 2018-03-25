@@ -8,6 +8,7 @@ var minha = require('./minhabiblioteca');
 var respostas = require('./respostas');
 
 var mensagem = '';
+var txt;
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -137,8 +138,8 @@ intents.matches('portfolio', (session,args)=>{
     session.send(mensagem);
 });
 intents.matches('orcamento', (session,args)=>{
-    var mensagem = respostas.Respostas('orcamento', session.message.text);
-    var txt = FormatCard(mensagem);
+    mensagem = respostas.Respostas('orcamento', session.message.text);
+    txt = FormatCard(mensagem);
     const card = card4(session,txt);
     const msgem = new builder.Message(session).addAttachment(card);
     session.send(msgem);
