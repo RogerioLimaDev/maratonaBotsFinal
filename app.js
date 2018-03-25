@@ -218,7 +218,7 @@ function FindCardSize(session,msgFromIntent)
     switch(resp.length){
 
         case 4:
-        var card4QnA = ()=>{
+        const card4QnA = (session)=>{
             return new builder.HeroCard(session)
                 .title('Temos card')
                 .images([builder.CardImage.create(session,resp[1].trim())])
@@ -228,7 +228,7 @@ function FindCardSize(session,msgFromIntent)
         break;
 
         case 3:
-        var card3QnA = ()=>{
+        const card3QnA = (session)=>{
             return new builder.HeroCard(session)
                 .title(resp[0])
                 .images([builder.CardImage.create(session,resp[1].trim())])
@@ -238,7 +238,7 @@ function FindCardSize(session,msgFromIntent)
         break;
 
         case 2:
-        var card2QnA = ()=>{
+        const card2QnA = (session)=>{
             return new builder.HeroCard(session)
             .text(resp[0])
             .buttons([ builder.CardAction.openUrl(session, resp[1].trim(), 'mande um email')]);
