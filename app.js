@@ -252,11 +252,11 @@ const qnaMakerDialog = new cognitiveServices.QnAMakerDialog(
 
 
 qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
-    const resposta = result.answers[0].answer;
-    const partesDaResposta = resposta.split('%');
-    const [titulo, imagem, descricao, url] = partesDaResposta;
+    const resp = result.answers[0].answer;
+    const ptsDaResposta = resp.split('%');
+    const [titulo, imagem, descricao, url] = ptsDaResposta;
 
-    var card4 = ()=>{
+    var card4QnA = ()=>{
         const card  = new builder.HeroCard(session)
             .title(titulo)
             .images([builder.CardImage.create(session,imagem.trim())])
@@ -266,7 +266,7 @@ qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
         session.send(retorno);
     };
 
-    var card3 = ()=>{
+    var card3QnA = ()=>{
         const card = new builder.HeroCard(session)
             .title(titulo)
             .images([builder.CardImage.create(session,imagem.trim())])
@@ -275,7 +275,7 @@ qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
         session.send(retorno);
     };
 
-    var card2 = ()=>{
+    var card2QnA = ()=>{
         const card = new builder.HeroCard(session)
         .text(descricao)
         .buttons([ builder.CardAction.openUrl(session, url.trim(), 'mande um email')]);
@@ -283,21 +283,21 @@ qnaMakerDialog.respondFromQnAMakerResult = (session,result) => {
         session.send(retorno);
     };
 
-    switch(partesDaResposta.length){
+    switch(ptsDaResposta.length){
         case 4:
-        card4();
+        card4QnA();
         break;
 
         case 3:
-        card3();
+        card3QnA();
         break;
 
         case 2:
-        card2();
+        card2QnA();
         break;
 
         case 1:
-        session.send(resposta);
+        session.send(resp);
         break;
     }
 };
