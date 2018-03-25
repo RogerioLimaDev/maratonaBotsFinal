@@ -136,7 +136,7 @@ intents.matches('portfolio', (session,args)=>{
 });
 intents.matches('orcamento', (session,args)=>{
     var mensagem = respostas.Respostas('orcamento', session.message.text);
-    const card = FormatCard(mensagem);
+    const card = FormatCard(mensagem,session);
     const msgem = new builder.Message(session).addAttachment(card);
     session.send(msgem);
 });
@@ -150,7 +150,7 @@ const card4 = (session)=>{
 };
 
 
-function FormatCard(mensagem){
+function FormatCard(mensagem, session){
 
     const resposta = String(mensagem);
     const partesDaResposta = resposta.split('%');
