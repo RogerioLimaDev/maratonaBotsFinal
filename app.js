@@ -63,6 +63,16 @@ intents.matches('Cumprimento', (session, args) => {
     });
 
 
+const animCard = (session,titleX,messageX) =>{ 
+        var tx = titleX;
+        var teX = messageX;
+        return new builder.AnimationCard(session)
+        .title(tx +'???')
+        .text(teX)
+        .media([{url: 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'}]);
+        // .autostart(true);
+    };
+
 intents.matches('Xingamento', (session, args) => {
         mensagem = respostas.Respostas('xingamento', session.message.text);
         const messageX = mensagem;
@@ -139,20 +149,7 @@ intents.matches('comparacao', (session,args)=>{
         mensagem = respostas.Respostas('None', session.message.text);
         session.send(mensagem);
     });
-intents.matches('portfolio', (session,args)=>{
-    const portCard = 
-    [
-        portCard1(session),
-        portCard2(session),
-        portCard3(session)
-    ];
-    const pCard = new builder.Message(session)
-        .attachmentLayout(builder.AttachmentLayout.carousel)
-        .addAttachment(portCard);
 
-    mensagem = respostas.Respostas('portfolio', session.message.text);
-        session.send(pCard);
-    });
 intents.matches('orcamento', (session,args)=>{
         mensagem = respostas.Respostas('orcamento', session.message.text);
         const card = card4(session);
@@ -195,16 +192,6 @@ const cardHMD = (session, mensagemHmd)=>{
         .text(txtH[2]);
 };
 
-const animCard = (session,titleX,messageX) =>{ 
-    var tx = titleX;
-    var teX = messageX;
-    return new builder.AnimationCard(session)
-    .title(tx +'???')
-    .text(teX)
-    .media([{url: 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'}]);
-    // .autostart(true);
-};
-
 
 
 const portCard1 = (session)=>{
@@ -240,7 +227,20 @@ const portCard3 = (session)=>{
         .autoloop(false);
 };
 
+intents.matches('portfolio', (session,args)=>{
+    const portCard = 
+    [
+        portCard1(session),
+        portCard2(session),
+        portCard3(session)
+    ];
+    const pCard = new builder.Message(session)
+        .attachmentLayout(builder.AttachmentLayout.carousel)
+        .addAttachment(portCard);
 
+    mensagem = respostas.Respostas('portfolio', session.message.text);
+        session.send(pCard);
+    });
 
 
 const card3 = (session)=>{
