@@ -75,6 +75,14 @@ function Textos (textoMsg)
         portfolio:
         {
             0: 'Será um prazer! **(carrousel com trabalhos)**'
+        },
+        gifs:
+        {
+            raiva1:['https://media.giphy.com/media/11e5gZ6NJ8AB1K/giphy.gif',
+                    'https://media.giphy.com/media/5bNJCsdDn5WyQ/giphy.gif',
+                    'https://media.giphy.com/media/PBy4UByJZlzgc/giphy.gif',
+                    'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'
+                   ]
         }
     };
 

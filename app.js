@@ -66,9 +66,11 @@ intents.matches('Xingamento', (session, args) => {
         const animCard = new builder.AnimationCard(session)
             .media([ 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'])
             .text(mensagem)
-            .title('#$%&*!');
+            .title('#$%&*!')
+            .autostart(true);
         const respX = new builder.Message(session).addAttachment(animCard);
         session.send(respX);
+        return;
     });
 
 intents.matches('Definicao', (session, args) => {
