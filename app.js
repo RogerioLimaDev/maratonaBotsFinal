@@ -89,9 +89,9 @@ intents.matches('Definicao', (session, args) => {
                     }   
                 }
 
-            const nameEntities = ['rogerio', 'tropical','bionikos','andrea'];
+            const nameEntities = ['rogerio','tropical','bionikos','andrea'];
         
-            for( var k = 0; i<nameEntities.length; k++ ){
+            for( var k = 0; k<nameEntities.length; k++ ){
                 const foundEntities = builder.EntityRecognizer.findAllEntities(args.entities, nameEntities[k]);
                 if(foundEntities.length >0){
                     const mensagemName = respostas.Respostas('definicao', session.message.text,nameEntities[k],'name');
