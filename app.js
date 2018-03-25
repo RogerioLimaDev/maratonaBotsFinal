@@ -63,7 +63,12 @@ intents.matches('Cumprimento', (session, args) => {
     });
 intents.matches('Xingamento', (session, args) => {
         mensagem = respostas.Respostas('xingamento', session.message.text);
-        session.send(mensagem);
+        const animCard = new builder.AnimationCard(session)
+            .media([ 'https://media.giphy.com/media/5cD5KjEtkstdC/giphy.gif'])
+            .text(mensagem)
+            .title('#$%&*!');
+        const respX = new builder.Message(session).addAttachment(animCard);
+        session.send(respX);
     });
 
 intents.matches('Definicao', (session, args) => {
