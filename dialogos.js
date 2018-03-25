@@ -12,9 +12,9 @@ function Textos (textoMsg)
         },
         xingamento:
         {
-            0:"**" + textoMsg + "\**??? Epa! Olha a boca!...",
-            1:"**" + textoMsg + "\**??? Você não tem educação, não?",
-            2:"**" + textoMsg + "\**??? Seu IP foi registrado. Meu primo Robocop vai aí te dar uma lição."
+            0:"Epa! Olha a boca!...",
+            1:"Você não tem educação, não?",
+            2:"Seu IP foi registrado. Meu primo Robocop vai aí te dar uma lição."
         },
         default:
         {
