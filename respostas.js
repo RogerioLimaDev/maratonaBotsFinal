@@ -74,6 +74,10 @@ function Respostas(string,sessionMessage, entity, tipo){
                             case 'cardboard':
                             msg = dialogos(textoMsg).hmd.cardboard;
                             return (msg);
+
+                            case 'htc':
+                            msg = dialogos(textoMsg).hmd.htc;
+                            return (msg);
                         }
                     break;
             
