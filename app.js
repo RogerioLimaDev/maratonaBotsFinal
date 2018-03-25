@@ -147,7 +147,7 @@ intents.matches('orcamento', (session,args)=>{
 intents.matches('qna', [
         function (session, args, next) {
             var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
-            var txtQna = FindCardSize(session,answerEntity);
+            var txtQna = FindCardSize(session,answerEntity.entity);
             // if(isNullOrEmpty(txtQna)){
                 const msgemQ = new builder.Message(session).addAttachment(txtQna);
                 session.send(msgemQ);
