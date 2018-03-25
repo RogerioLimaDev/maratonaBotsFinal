@@ -48,6 +48,7 @@ const LuisModelUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
 var intents = new builder.IntentDialog({ recognizers: [recognizer,qnarecognizer] });
+bot.dialog('/', intents);
 
 
 intents.matches('Cumprimento', (session, args) => {
@@ -194,7 +195,6 @@ function FormatCard(mensagem){
 
 }
 
-bot.dialog('/', intents);
 
 
 
