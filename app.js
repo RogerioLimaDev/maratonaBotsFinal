@@ -150,8 +150,8 @@ intents.matches('qna', [
             var txtQna = FindCardSize(session,answerEntity);
             if(isNullOrEmpty(txtQna)){
                 session.send('card is not null');
-            //     const msgemQ = new builder.Message(session).addAttachment(cardQnA);
-            //     session.send(msgemQ);
+                const msgemQ = new builder.Message(session).addAttachment(txtQna);
+                session.send(msgemQ);
             }
             else session.send(answerEntity);
             session.send(answerEntity.entity);
