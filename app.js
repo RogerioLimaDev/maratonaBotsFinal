@@ -51,6 +51,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 intents.matches('Cumprimento', (session, args) => {
         var mensagem = respostas.Respostas('cumprimento', session.message.text);
         mensagem = FormatCard(mensagem,session);
+        session.beginDialogue('card1');
         session.endDialogue('hey, you');
 
    //     session.send(mensagem);        
