@@ -200,10 +200,12 @@ intents.matches('portfolio', (session,args)=>{
         pCard.attachments([
             new builder.HeroCard(session)
                 .title('portfolio', args)
+                .images([builder.CardImage.create(session,'http://www.tropicalcyborg.com/images/kinect.svg?crc=4005609802')])
                 .subtitle('experiências')
                 .buttons([builder.CardAction.openUrl(session, 'http://tropicalcyborg.com/portfolio.html', 'clique para ver')]),
             new builder.HeroCard(session)
                 .title('portfolio')
+                .images([builder.CardImage.create(session,'http://www.tropicalcyborg.com/images/artwork-1.svg?crc=177296991')])
                 .subtitle('videos 360')
                 .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html', 'clique para ver')])
         ]);
