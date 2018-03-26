@@ -207,7 +207,12 @@ intents.matches('portfolio', (session,args)=>{
                 .title('portfolio')
                 .images([builder.CardImage.create(session,'http://www.tropicalcyborg.com/images/artwork-1.svg?crc=177296991')])
                 .subtitle('videos 360')
-                .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html', 'clique para ver')])
+                .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfolio360.html', 'clique para ver')]),
+            new builder.HeroCard(session)
+                .title('portfolio')
+                .images([builder.CardImage.create(session,'http://www.tropicalcyborg.com/images/i_artboard-1.png?crc=3948345849')])
+                .subtitle('dança + tech')
+                .buttons([ builder.CardAction.openUrl(session, 'http://www.tropicalcyborg.com/portfoliodanca.html', 'clique para ver')])
         ]);
 
         session.send(pCard);
