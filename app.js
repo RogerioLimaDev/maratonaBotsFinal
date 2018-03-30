@@ -125,7 +125,7 @@ intents.matches('faturamento',(session,args)=>{
                     'Que ótimo. **Vc já passou os dados?**',
                     '**A empresa já está **cadastrada?**'];
 
-    mensagem = new builder.Prompts.choices(session,pStrings,['Já sim','Ainda não'],{listStyle: builder.ListStyle.button});
+    mensagem = new builder.Prompts.choice(session,pStrings,['Já sim','Ainda não'],{listStyle: builder.ListStyle.button});
     session.send(mensagem);
     return;   
     });
