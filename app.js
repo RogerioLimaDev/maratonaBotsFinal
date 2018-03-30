@@ -129,27 +129,27 @@ intents.matches('faturamento',[(session,args)=>{
         'Que ótimo. **Vc já passou os dados?**',
         '**A empresa já está cadastrada?**'];
 
-        mensagem = new builder.Prompts.choice(
-        session,
-        pStrings,
-        [   {value: 'Já sim',
-        synonyms: ['sim','s']
-        },
-        {value: 'Ainda não',
-        synonyms:['não','n']
-        }   ],
-        {listStyle: builder.ListStyle.button});
+        const mensagem = new builder.Prompts.confirm(
+            session,
+            pStrings,
+            [   {value: 'Já sim',
+            synonyms: ['sim','s']
+            },
+            {value: 'Ainda não',
+            synonyms:['não','n']
+            }   ],
+            {listStyle: builder.ListStyle.button});
 
         (session,results)=>{
-            const resp = (results.response.entity);
-            if(resp === 'Já sim')
+            const resp = (results.response);
+            if(resp)
                 { 
                 builder.Prompts.text(session, 'Maravilha, apenas escreva o nome da empresa. Assim, poderemos localizar seu cadastro.',
                 {inputHint: builder.InputHint.expectingInput});
                 }
             else
-                {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
-                    session.beginDialog('cadastrar');
+                {session.send('Sem problemas. Faremos o cadastro rapidinho agora mesmo.');
+                    session.replaceDialog('cadastrar');
                 }
             };
         },
