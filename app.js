@@ -28,7 +28,7 @@ var txt;
     };
 
     var qDocument = app.mongo.querytDocument;
-        qDocument(data);
+        // qDocument(data);
 
 
     var logResponse = function (){
@@ -54,7 +54,7 @@ var txt;
         console.log('RESPOSTA DO SERVIDOR: '+ info[0]);
         };
 
-    setTimeout(logResponse,6000);
+ //   setTimeout(logResponse,6000);
 
     var collection = 'empresa';
     var document = {
@@ -151,6 +151,7 @@ intents.matches('faturamento',[(session,args)=>{
 
         (session,results)=>{
                 const empresa = results.response;
+                session.userData.company = empresa;
                 builder.Prompts.confirm(session, 'Entendi, vc é da empresa **' + empresa + '**',
                 {listStyle: builder.ListStyle.button});
                 // session.userData.empresa = results.response.entity;
@@ -158,6 +159,16 @@ intents.matches('faturamento',[(session,args)=>{
         (session, results)=>{
                 if(results.response){
                     session.send('Espera um pouquinho. Vou ali localizar seu cadastro rapidinho');
+                    nameToQuery = session.userData.company;
+                    const companyData = qDocument(data);
+                    setTimeout(()=>{
+                        session.send('Espera só mais um pouco. Meu HD está meio fragmentado hoje');
+                    }, 3000);
+
+                    setTimeout(()=>{
+                        if(companyData){session.send(companyData);}
+                        else{session.send('Desculpe, não localizei seu cadastro');}
+                    }, 6000);
                 }
                 else
                 {
