@@ -161,7 +161,7 @@ intents.matches('faturamento',[(session,args)=>{
                 }
                 else
                 {
-                    retryPrompt('Devo ter entendido errado, então. Vamos recomeçar');
+                    session.replaceDialog('faturamento','Foi mal.Meu chip está meio cansado hoje. Vamos recomeçar');
                 }
             }
         
