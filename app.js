@@ -123,9 +123,9 @@ intents.matches('faturamento',(session,args)=>{
 
     var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
                     'Que ótimo. **Vc já passou os dados?**',
-                    'Ok. Vamos à parte chata: a empresa já está **cadastrada?**'];
+                    '**A empresa já está **cadastrada?**'];
 
-    mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','Ainda não'],{ listStyle: builder.ListStyle.button});
+    mensagem = new builder.Prompts.confirm(session,pStrings,['Já estou cadastrado','Não tenho cadastro'],{listStyle: builder.ListStyle.button});
     session.send(mensagem);
     return;   
     });
