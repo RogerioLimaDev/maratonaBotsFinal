@@ -120,27 +120,16 @@ intents.matches('Cumprimento', (session, args) => {
     });
 
 intents.matches('faturamento',(session,args)=>{
+
     var pStrings = ['Que maravilha! Já temos seu cadastro?',
                     'Que ótimo. Vc já passou os dados?',
                     'Ok. Vamos à parte chata: a empresa já está cadastrada?'];
-    mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','Ainda não'],{ listStyle: builder.ListStyle.button, InputHint:acceptingInput });
+
+    mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','Ainda não'],{ listStyle: builder.ListStyle.button});
     session.send(mensagem);
-    // return;
-
-    // if (results.response === 1) {
-    //         session.send('ok. Só digite o nome da empresa. Minha memória está fraca.');
-    //         session.send('Eu estou precisando de um HD novo');
-    //         return;
-
-    //     } 
-    //     else 
-    //     {
-    //        session.send('Sem problemas. Eu faço agora mesmo. Me fale o nome da empresa');
-    //        return;
-    //     }
+    return;
     
-    
-});
+    });
 
 const animCard = (session,titleX,messageX) =>{ 
         var tx = titleX;
