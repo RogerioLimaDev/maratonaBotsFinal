@@ -122,7 +122,7 @@ intents.matches('Cumprimento', (session, args) => {
         session.send(mensagem);        
     });
 
-intents.matches('faturamento',[(session)=>{
+intents.matches('faturamento',[(session, args)=>{
 
         (session)=>{
 
