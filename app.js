@@ -125,10 +125,9 @@ intents.matches('faturamento',(session,args)=>{
                     'Que ótimo. Vc já passou os dados?',
                     'Ok. Vamos à parte chata: a empresa já está cadastrada?'];
 
-    mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','Ainda não'],{ listStyle: builder.ListStyle.button});
+    mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','**Ainda não**'],{ listStyle: builder.ListStyle.button});
     session.send(mensagem);
-    return;
-    
+    return;   
     });
 
 const animCard = (session,titleX,messageX) =>{ 
