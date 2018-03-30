@@ -131,19 +131,23 @@ intents.matches('faturamento',[(session,args)=>{
         [   {value: 'Já sim',
             synonyms: ['sim','s']
         },
-            {value: 'Ainda não}',
-            synonyms:['não','n']
+            {value: 'Ainda não',
+             synonyms:['não','n']
         }   ],
         {listStyle: builder.ListStyle.button});},
 
         (session,results)=>{
             const resp = (results.response.entity);
-            if(resp === 'y'){ builder.Prompts.text(session, 'Maravilha, apenas escreva o nome da empresa');
-                              session.send('Assim, poderemos localizar seu cadastro.');
-                            (session,results)=>{
-                                session.send('Entendi, vc é da empresa ${results.response.entity}');
-                            }
-                              }
+            if(resp === 'Já sim')
+            { 
+                builder.Prompts.text(session, 'Maravilha, apenas escreva o nome da empresa. Assim, poderemos localizar seu cadastro.',
+                {inputHint: builder.InputHint.expectingInput});
+                (session,results)=>{
+                    const empresa = results.response;
+                    session.send('Entendi, vc é da empresa '+ empresa);
+                    // session.userData.empresa = results.response.entity;
+                    };
+            }
             else
             {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
                 session.beginDialog('cadastrar');}
@@ -154,7 +158,7 @@ intents.matches('faturamento',[(session,args)=>{
    bot.dialog('cadastrar', [(session)=>{
 
     session.send('aqui começa o cadastro');
-    session.endDialogWithResults(results);
+    session.endDialog('Beleza. Já está cadastrado!');
 }]);
 
 const animCard = (session,titleX,messageX) =>{ 
