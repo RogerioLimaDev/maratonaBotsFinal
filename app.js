@@ -132,12 +132,6 @@ intents.matches('faturamento',[(session,args)=>{
         const mensagem = new builder.Prompts.confirm(
             session,
             pStrings,
-            [   {value: 'Já sim',
-            synonyms: ['sim','s']
-            },
-            {value: 'Ainda não',
-            synonyms:['não','n']
-            }   ],
             {listStyle: builder.ListStyle.button});
 
         (session,results)=>{
