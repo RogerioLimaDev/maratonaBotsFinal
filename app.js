@@ -3,6 +3,8 @@
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
+const formFlowBuilder = require('formflowbotbuilder');
+const path = require('path');
 var app = require('./server');
 var env = require('dotenv').load();    //Use the .env file to load the variables
 var minha = require('./minhabiblioteca');
@@ -15,6 +17,7 @@ var txt;
     app.listen(process.env.port || process.env.PORT || 3978, function () {
         console.log('%s listening to %s', app.name, app.url);
     });
+
 ////SERVIDOR/////
 
 ////DBCODE////
@@ -190,9 +193,57 @@ if(!builder.userData.reload)
    bot.dialog('cadastrar', [(session)=>{
 
     session.send('aqui começa o cadastro');
-    session.endDialog('Beleza. Já está cadastrado!');
-    session.replaceDialog('intents');
+    formFlowDialog();
+    session.endDialog();
+    // session.replaceDialog('intents');
 }]);
+
+////FORMFLOW//////
+
+var formFlowDialog = ()=>{
+
+    const dialogName = 'form';
+    const questoes = path.join(__dirname,'cadastro.json');
+    
+    formFlowBuilder.executeFormFlow(
+        questoes,
+        bot,
+        dialogName,
+        (err, response)=>{
+            if(err)
+                return console.log(err);
+        
+            bot.dialog('fazerCadastro',[
+                (session)=>{ session.beginDialog(dialogName);},
+                (session,results)=>{
+                    const question = 'Veja se está tudo certinho: \n'
+                    + 'Nome Fantasia: **${results.NomeF}** \n'
+                    + 'cnpj: **${results.cnpj}** \n'
+                    + 'Valor:  **${results.valor}** \n'
+                    + 'Vencimento: **${results.venc}**';
+    
+                    builder.Prompts.confirm(session,question,
+                        {listStyle: builder.listStyle.buttons});
+                },
+            (session,results)=>{
+                if(results.response){
+                    session.send('Maravilha. Agora só falta emitir a nota');
+                    session.replaceDialog('intents');
+                }
+                    
+                }
+            ]);
+        }
+    );
+};
+
+
+
+////FORMFLOW//////
+
+
+
+
 
 const animCard = (session,titleX,messageX) =>{ 
         var tx = titleX;

@@ -1,0 +1,32 @@
+[{
+        "id": "NomeF",
+        "prompt": "Digite o nome fantasia da sua empresa",
+        "errorPrompt": "Eita! Essa resposta eu não esperava",
+        "type": "text"
+    },
+
+    {
+        "id": "cnpj",
+        "prompt": "Digite agora o cnpj",
+        "errorPrompt": "Eita! Essa resposta eu não esperava",
+        "type": "text"
+    },
+    {
+        "id": "valor",
+        "prompt": "Agora a melhor parte. Digite o valor da nota",
+        "errorPrompt": "Eita! Essa resposta eu não esperava",
+        "type": "text"
+    },
+    {
+        "id": "venc",
+        "prompt": "Qual a data de vencimento?",
+        "errorPrompt": "Eita! Essa resposta eu não esperava",
+        "type": "text"
+    },
+    {
+        "id": "contact",
+        "prompt": "Só falta agora digitar o email para onde enviar a nota",
+        "errorPrompt": "Eita! Essa resposta eu não esperava",
+        "type": "text"
+    }
+]

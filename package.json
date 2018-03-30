@@ -21,9 +21,11 @@
     "dot-env": "0.0.1",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "formflowbotbuilder": "^0.1.4",
     "mongodb": "^3.0.5",
     "mongoose": "^5.0.12",
     "parse-mongo-url": "^1.1.1",
+    "path": "^0.12.7",
     "restify": "^5.2.1"
   },
   "devDependencies": {
