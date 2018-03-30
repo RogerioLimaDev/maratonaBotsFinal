@@ -124,8 +124,7 @@ intents.matches('Cumprimento', (session, args) => {
 
 intents.matches('faturamento',[(session,args)=>{
 
-if(!builder.userData.reload)
-    {
+
         var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
         'Que ótimo. **Vc já passou os dados?**',
         '**A empresa já está cadastrada?**'];
@@ -153,14 +152,7 @@ if(!builder.userData.reload)
                     session.beginDialog('cadastrar');
                 }
             };
-        }
-
-        else
-            {
-                builder.Prompts.text(session, 'Por favor, digite o nome de sua empresa novamente');
-            }
-    },
-
+        },
 
         (session,results)=>{
                 const empresa = results.response;
