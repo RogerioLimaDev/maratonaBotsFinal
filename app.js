@@ -122,19 +122,19 @@ intents.matches('Cumprimento', (session, args) => {
         session.send(mensagem);        
     });
 
-intents.matches('faturamento',[(session,args)=>{
-
-
-        var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
-        'Que ótimo. **Vc já passou os dados?**',
-        '**A empresa já está cadastrada?**'];
-
-        const mensag = new builder.Prompts.confirm(
-            session,
-            pStrings,
-            {listStyle: builder.ListStyle.button});
+intents.matches('faturamento',[(session)=>{
 
         (session)=>{
+
+            var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
+            'Que ótimo. **Vc já passou os dados?**',
+            '**A empresa já está cadastrada?**'];
+    
+            const mensag = new builder.Prompts.confirm(
+                session,
+                pStrings,
+                {listStyle: builder.ListStyle.button});
+
             session.send(mensag);
         },
 
