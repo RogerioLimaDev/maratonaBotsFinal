@@ -138,8 +138,12 @@ intents.matches('faturamento',[(session,args)=>{
 
         (session,results)=>{
             const resp = (results.response.entity);
-            if(resp === 'y'){ session.send('Maravilha, apenas escreva o nome da empresa');
-                              session.send('Assim, poderemos localizar seu cadastro.');  }
+            if(resp === 'y'){ builder.Prompts.text(session, 'Maravilha, apenas escreva o nome da empresa');
+                              session.send('Assim, poderemos localizar seu cadastro.');
+                            (session,results)=>{
+                                session.send('Entendi, vc é da empresa ${results.response.entity}');
+                            }
+                              }
             else
             {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
                 session.beginDialog('cadastrar');}
@@ -150,7 +154,8 @@ intents.matches('faturamento',[(session,args)=>{
    bot.dialog('cadastrar', [(session)=>{
 
     session.send('aqui começa o cadastro');
-}])
+    session.endDialogWithResults(results);
+}]);
 
 const animCard = (session,titleX,messageX) =>{ 
         var tx = titleX;
