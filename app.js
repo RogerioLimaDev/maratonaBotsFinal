@@ -123,7 +123,7 @@ intents.matches('faturamento',(session,args)=>{
 
     var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
                     'Que ótimo. **Vc já passou os dados?**',
-                    '**A empresa já está **cadastrada?**'];
+                    '**A empresa já está cadastrada?**'];
 
     mensagem = new builder.Prompts.choice(session,pStrings,['Já sim','Ainda não'],{listStyle: builder.ListStyle.button});
     session.send(mensagem);
