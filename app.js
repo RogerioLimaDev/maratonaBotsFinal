@@ -119,16 +119,38 @@ intents.matches('Cumprimento', (session, args) => {
         session.send(mensagem);        
     });
 
-intents.matches('faturamento',(session,args)=>{
+intents.matches('faturamento',[(session,args)=>{
 
     var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
                     'Que ótimo. **Vc já passou os dados?**',
                     '**A empresa já está cadastrada?**'];
 
-    mensagem = new builder.Prompts.choice(session,pStrings,['Já sim','Ainda não'],{listStyle: builder.ListStyle.button});
-    session.send(mensagem);
-    return;   
-    });
+    mensagem = new builder.Prompts.choice(
+        session,
+        pStrings,
+        [   {value: 'Já sim',
+            synonyms: ['sim','s']
+        },
+            {value: 'Ainda não}',
+            synonyms:['não','n']
+        }   ],
+        {listStyle: builder.ListStyle.button});},
+
+        (session,results)=>{
+            const resp = (results.response.entity);
+            if(resp === 'y'){ session.send('Maravilha, apenas escreva o nome da empresa');
+                              session.send('Assim, poderemos localizar seu cadastro.');  }
+            else
+            {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
+                session.beginDialog('cadastrar');}
+
+        }
+   ]);
+
+   bot.dialog('cadastrar', [(session)=>{
+
+    session.send('aqui começa o cadastro');
+}])
 
 const animCard = (session,titleX,messageX) =>{ 
         var tx = titleX;
