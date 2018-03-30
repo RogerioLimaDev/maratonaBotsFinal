@@ -161,7 +161,8 @@ intents.matches('faturamento',[(session,args)=>{
                 }
                 else
                 {
-                    session.replaceDialog('faturamento','Foi mal.Meu chip está meio cansado hoje. Vamos recomeçar');
+                    session.send('Foi mal.Meu chip está meio cansado hoje. Vamos recomeçar');
+                    session.replaceDialog('faturamento');
                 }
             }
         
