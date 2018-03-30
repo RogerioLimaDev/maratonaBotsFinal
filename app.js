@@ -127,7 +127,7 @@ intents.matches('faturamento',(session,args)=>{
 
     mensagem = new builder.Prompts.choices(session,pStrings,['Já sim','Ainda não'],{listStyle: builder.ListStyle.button});
     session.send(mensagem).endDialog();
-    return;   
+    // return;   
     });
 
 const animCard = (session,titleX,messageX) =>{ 
