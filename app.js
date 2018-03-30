@@ -173,6 +173,7 @@ intents.matches('faturamento',[(session,args)=>{
 
     session.send('aqui começa o cadastro');
     session.endDialog('Beleza. Já está cadastrado!');
+    session.replaceDialog('intents');
 }]);
 
 const animCard = (session,titleX,messageX) =>{ 
