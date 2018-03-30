@@ -1,24 +1,79 @@
 /*jshint esversion: 6 */
 
-var restify = require('restify');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
 var cognitiveServices = require('botbuilder-cognitiveservices');
+var app = require('./server');
+var env = require('dotenv').load();    //Use the .env file to load the variables
 var minha = require('./minhabiblioteca');
 var respostas = require('./respostas');
-var isNullOrEmpty = require('check-null-or-empty');
-
+var dialogos = require('./dialogos')();
 var mensagem = '';
 var txt;
 
-// Setup Restify Server
-var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-   console.log('%s listening to %s', server.name, server.url); 
-});
+////SERVIDOR/////
+    app.listen(process.env.port || process.env.PORT || 3978, function () {
+        console.log('%s listening to %s', app.name, app.url);
+    });
+////SERVIDOR/////
 
-respostas.Teste();
-// FormatCard(respostas.Teste());
+////DBCODE////
+
+    var nameToQuery = 'Coca-Cola';
+
+    var data = {
+        db : 'clientes',
+        collection: 'empresa',
+        name: nameToQuery
+    };
+
+    var qDocument = app.mongo.querytDocument;
+        qDocument(data);
+
+
+    var logResponse = function (){
+
+        var res = [];
+        var info = [];
+
+        res = app.mongo.sendResults();
+        info.push(res);
+
+        var nomeFant = [];
+        var cnpj = [];
+        var valor = [];
+        var dataVenc = [];
+        var eResp = [];
+
+        nomeFant.push(info[0][0]);
+        cnpj.push(info[0][1]);
+        valor.push(info[0][2]);
+        dataVenc.push(info[0][3]);
+        eResp.push(info[0][4]);
+
+        console.log('RESPOSTA DO SERVIDOR: '+ info[0]);
+        };
+
+    setTimeout(logResponse,6000);
+
+    var collection = 'empresa';
+    var document = {
+        nomeFantasia:'Coca-Cola', 
+        cnpj:'000.000.000-00',
+        valor:'R$ 10.000,00',
+        dataVencimento: '00/00/2018',
+        emailResp:'financeiro@cocacola.com.br'
+    };
+
+
+    var cCollect = app.mongo.createCollection;
+    var iDocument = app.mongo.insertDocument;
+
+
+
+////DBCODE////
+
+////BOT CODE/////
 
 var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
@@ -32,7 +87,9 @@ var connector = new builder.ChatConnector({
 });
 
 // Listen for messages from users 
-server.post('/api/messages', connector.listen());
+app.post('/api/messages', connector.listen());
+
+
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
@@ -61,6 +118,15 @@ intents.matches('Cumprimento', (session, args) => {
         mensagem = respostas.Respostas('cumprimento', session.message.text);
         session.send(mensagem);        
     });
+
+intents.matches('faturamento',(session,args)=>{
+    var pStrings = ['Que maravilha! Já temos seu cadastro?',
+                    'Que ótimo. Vc já passou os dados?',
+                    'Ok. Vamos à parte chata: a empresa já está cadastrada?'];
+    mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','Ainda não']);
+    session.send(mensagem);
+    
+})
 
 
 const animCard = (session,titleX,messageX) =>{ 
@@ -221,21 +287,6 @@ intents.matches('portfolio', (session,args)=>{
     // mensagem = respostas.Respostas('portfolio', session.message.text);
     });
 
-
-const card3 = (session)=>{
-    var txt = FormatCard(mensagem);
-    return new builder.HeroCard(session)
-        .title(txt[0])
-        .images([builder.CardImage.create(session,txt[1].trim())])
-        .text(txt[2]);
-    };
-
-const card2 = (session)=>{
-    var txt = FormatCard(mensagem);
-    return new builder.HeroCard(session)
-        .text(txt[2])
-        .buttons([ builder.CardAction.openUrl(session, txt[3].trim(), 'mande um email')]);
-    };
   
 function FormatCard(mensagem){
 

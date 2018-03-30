@@ -10,11 +10,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.6.0",
     "azure-cognitiveservices-websearch": "^1.0.0-preview",
     "botbuilder": "^3.14.0",
     "botbuilder-azure": "^3.0.4",
     "botbuilder-cognitiveservices": "^1.1.0",
     "check-null-or-empty": "^1.0.0",
+    "consign": "^0.1.6",
+    "documentdb": "^1.14.2",
+    "dot-env": "0.0.1",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.5",
+    "mongoose": "^5.0.12",
+    "parse-mongo-url": "^1.1.1",
     "restify": "^5.2.1"
   },
   "devDependencies": {
