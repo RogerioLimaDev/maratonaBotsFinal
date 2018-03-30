@@ -126,8 +126,8 @@ intents.matches('faturamento',(session,args)=>{
                     '**A empresa já está **cadastrada?**'];
 
     mensagem = new builder.Prompts.choices(session,pStrings,['Já sim','Ainda não'],{listStyle: builder.ListStyle.button});
-    session.send(mensagem).endDialog();
-    // return;   
+    session.send(mensagem);
+    return;   
     });
 
 const animCard = (session,titleX,messageX) =>{ 
