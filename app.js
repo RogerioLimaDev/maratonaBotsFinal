@@ -230,6 +230,8 @@ var formFlowDialog = ()=>{
                     session.send('Maravilha. Agora só falta emitir a nota');
                     session.replaceDialog('intents');
                 }
+                else
+                {session.send('Ai...Não consegui cadastrar. Por favor, tenha paciência, eu preciso desse emprego.')}
                     
                 }
             ]);
