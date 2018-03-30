@@ -151,9 +151,20 @@ intents.matches('faturamento',[(session,args)=>{
 
         (session,results)=>{
                 const empresa = results.response;
-                session.send('Entendi, vc é da empresa ' + empresa);
+                builder.Prompts.confirm(session, 'Entendi, vc é da empresa **' + empresa + '**',
+                {listStyle: builder.ListStyle.button});
                 // session.userData.empresa = results.response.entity;
+                },
+        (session, results)=>{
+                if(results.response){
+                    session.send('Espera um pouquinho. Vou ali localizar seu cadastro rapidinho');
                 }
+                else
+                {
+                    retryPrompt('Devo ter entendido errado, então. Vamos recomeçar');
+                }
+            }
+        
 
    ]);
 
