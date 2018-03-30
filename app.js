@@ -121,20 +121,22 @@ intents.matches('Cumprimento', (session, args) => {
 
 intents.matches('faturamento',[(session,args)=>{
 
-    var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
-                    'Que ótimo. **Vc já passou os dados?**',
-                    '**A empresa já está cadastrada?**'];
+if(!builder.userData.reload)
+    {
+        var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
+        'Que ótimo. **Vc já passou os dados?**',
+        '**A empresa já está cadastrada?**'];
 
-    mensagem = new builder.Prompts.choice(
+        mensagem = new builder.Prompts.choice(
         session,
         pStrings,
         [   {value: 'Já sim',
-            synonyms: ['sim','s']
+        synonyms: ['sim','s']
         },
-            {value: 'Ainda não',
-             synonyms:['não','n']
+        {value: 'Ainda não',
+        synonyms:['não','n']
         }   ],
-        {listStyle: builder.ListStyle.button});},
+        {listStyle: builder.ListStyle.button});
 
         (session,results)=>{
             const resp = (results.response.entity);
@@ -147,14 +149,21 @@ intents.matches('faturamento',[(session,args)=>{
                 {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
                     session.beginDialog('cadastrar');
                 }
-        },
+            };
+        }
+
+        else
+            {
+                builder.Prompts.text(session, 'Por favor, digite o nome de sua empresa novamente');
+            }
+    },
+
 
         (session,results)=>{
                 const empresa = results.response;
                 session.userData.company = empresa;
                 builder.Prompts.confirm(session, 'Entendi, vc é da empresa **' + empresa + '**',
                 {listStyle: builder.ListStyle.button});
-                // session.userData.empresa = results.response.entity;
                 },
         (session, results)=>{
                 if(results.response){
@@ -176,8 +185,6 @@ intents.matches('faturamento',[(session,args)=>{
                     session.replaceDialog('faturamento');
                 }
             }
-        
-
    ]);
 
    bot.dialog('cadastrar', [(session)=>{
