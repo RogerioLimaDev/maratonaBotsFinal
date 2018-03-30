@@ -125,7 +125,7 @@ intents.matches('faturamento',(session,args)=>{
                     'Ok. Vamos à parte chata: a empresa já está cadastrada?'];
     mensagem = new builder.Prompts.choice(session,pStrings,['Já estou cadastrado','Ainda não'],{ listStyle: builder.ListStyle.button, InputHint:acceptingInput });
     session.send(mensagem);
-    return;
+    // return;
 
     // if (results.response === 1) {
     //         session.send('ok. Só digite o nome da empresa. Minha memória está fraca.');
