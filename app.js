@@ -139,20 +139,22 @@ intents.matches('faturamento',[(session,args)=>{
         (session,results)=>{
             const resp = (results.response.entity);
             if(resp === 'Já sim')
-            { 
+                { 
                 builder.Prompts.text(session, 'Maravilha, apenas escreva o nome da empresa. Assim, poderemos localizar seu cadastro.',
                 {inputHint: builder.InputHint.expectingInput});
-                (session,results)=>{
-                    const empresa = results.response;
-                    session.send('Entendi, vc é da empresa '+ empresa);
-                    // session.userData.empresa = results.response.entity;
-                    };
-            }
+                }
             else
-            {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
-                session.beginDialog('cadastrar');}
+                {session.send('Sem problemas. Faremos o cadastro agora mesmo, rapdinho.');
+                    session.beginDialog('cadastrar');
+                }
+        },
 
-        }
+        (session,results)=>{
+                const empresa = results.response;
+                session.send('Entendi, vc é da empresa ' + empresa);
+                // session.userData.empresa = results.response.entity;
+                }
+
    ]);
 
    bot.dialog('cadastrar', [(session)=>{
