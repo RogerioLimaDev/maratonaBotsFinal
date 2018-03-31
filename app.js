@@ -55,7 +55,7 @@ var txt;
         eResp.push(info[0][4]);
 
         console.log('RESPOSTA DO SERVIDOR: '+ info[0]);
-        return info[0];
+        return info;
         };
 
 //    setTimeout(logResponse,6000);
@@ -161,11 +161,14 @@ intents.matches('faturamento',[(session, args)=>{
                     session.send('Espera um pouquinho. Vou ali localizar seu cadastro rapidinho');
                     nameToQuery = session.userData.company;
                     qDocument(data);
-                    const companyData = logResponse();
 
                     setTimeout(()=>{
+                        const companyData = logResponse();
+                    }, 5500);
+                    
+                    setTimeout(()=>{
                         session.send('Espera só mais um pouco. Meu HD está meio fragmentado hoje');
-                    }, 5000);
+                    }, 6000);
 
                     setTimeout(()=>{
                         if(companyData){
