@@ -207,19 +207,18 @@ intents.matches('faturamento',[(session, args)=>{
    bot.dialog('cadastrar', [(session)=>{
 
     session.send('aqui começa o cadastro');
-    formFlowDialog();
+    formF();
     session.endDialog();
     // session.replaceDialog('intents');
 }]);
 
 ////FORMFLOW//////
 
-var formFlowDialog = ()=>{
 
     const dialogName = 'form';
     const questoes = path.join(__dirname,'cadastro.json');
     
-    formFlowBuilder.executeFormFlow(
+     var formF = formFlowBuilder.executeFormFlow(
         questoes,
         bot,
         dialogName,
@@ -244,14 +243,16 @@ var formFlowDialog = ()=>{
                     session.send('Maravilha. Agora só falta emitir a nota');
                     session.replaceDialog('intents');
                 }
-                else
-                {session.send('Ai...Não consegui cadastrar. Por favor, tenha paciência, eu preciso desse emprego.')}
+                else {
+                    session.send('Ai...Não consegui cadastrar. Por favor, tenha paciência, eu preciso desse emprego.');
+                    session.replaceDialog('cadastrar');
+                }
                     
                 }
             ]);
         }
     );
-};
+
 
 
 
