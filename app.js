@@ -236,10 +236,9 @@ var document = {
                         {listStyle: builder.ListStyle.button});
                 },
             (session,results)=>{
-                session.send('Guenta aí. Estou fazendo o cadastro');
 
                 if(results.response){
-
+                    session.send('Guenta aí. Estou fazendo o cadastro');
                     var document = {
                         nomeFantasia:session.userData.nomeF, 
                         cnpj:session.userData.cnpj,
@@ -247,6 +246,8 @@ var document = {
                         dataVencimento:session.userData.venc,
                         emailResp:session.userData.email
                     };
+
+                    iDocument(document);
 
                     // session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
 
