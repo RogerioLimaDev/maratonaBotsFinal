@@ -159,7 +159,7 @@ intents.matches('faturamento',[(session, args)=>{
         (session, results)=>{
 
                 if(results.response){
-                    session.send('Espera um pouquinho. Vou ali localizar seu cadastro rapidinho');
+                    session.send('Espera um pouquinho. Vou ali localizar seu cadastro **rapidinho**');
                     nameToQuery = session.userData.company;
                     qDocument(data);
 
@@ -189,6 +189,18 @@ intents.matches('faturamento',[(session, args)=>{
                     session.send('Foi mal.Meu chip está meio cansado hoje. Vamos recomeçar');
                     session.replaceDialog('faturamento');
                 }
+            },
+            (session, results)=>{
+                const rslt = results.response;
+                if(rslt){
+                    session.send('Perfeito. Vamos emitir a nota');
+                }
+                else
+                {
+                    session.send('Eita. Não localizei seu cadastro...');
+                }
+
+
             }
    ]);
 
