@@ -244,13 +244,11 @@ intents.matches('faturamento',[(session, args)=>{
                     session.send('Guenta aí. Estou fazendo o cadastro');
                     var resultado= iDocument(document);
                     setTimeOut(()=>{
-                        if(resultado === 'cadastro salvo'){
-                            session.send (resultado);
+                        if(resultado){
                             session.send('Maravilha. Agora só falta emitir a nota');
-                            session.replaceDialog('intents');
                            }
-                           else{ session.send(resultado);
-                                 session.send('Foi mal. A culpa não é minha. Deu erro no servidor.');
+                           else{ 
+                                 session.send('Ai, caceta. Deu erro no servidor.');
                                  session.replaceDialog('cadastrar');
                            }
                      },3000);

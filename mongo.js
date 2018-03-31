@@ -44,13 +44,13 @@ var insertDocument = function(data){
             console.log("1 document inserted");
             db.close();
             console.log('Is conneted = '+db.isConnected());
-            var retorno = 'cadastro salvo';
+            var retorno = true;
             return retorno;
           });        
 
       } catch (error) {
           console.log('Este foi o erro: '+ err);
-          var retorno = ('Ops! Não consegui salvar...');
+          var retorno = false;
           return retorno;
       } 
   });
