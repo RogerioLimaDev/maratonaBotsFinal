@@ -205,6 +205,7 @@ var document = {
     emailResp:'foo'
 };
 
+
     const dialogName = 'form';
     const questoes = path.join(__dirname,'cadastro.json');
     
@@ -249,9 +250,9 @@ var document = {
 
                     app.mongo.insertDocument(documento);
 
-                    // session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
+                    session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
 
-                    setTimeOut(()=>{
+                    setTimeout(()=>{
                         var resultado = app.mongo.DBResults();
                         if(resultado){
                             session.send('Maravilha. Agora só falta emitir a nota');
