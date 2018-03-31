@@ -10,7 +10,7 @@ var pt2 = encodeURIComponent(pass);
 var pt3 = '@cosmosmaratona.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';
 var url = pt1 + pt2 + pt3;
 
-
+var dbResult = false;
 
  var createCollection = function(collection){
     console.log(collection);
@@ -44,16 +44,15 @@ var insertDocument = function(data){
             console.log("1 document inserted");
             db.close();
             console.log('Is conneted = '+db.isConnected());
-            var retorno = true;
-            return retorno;
+            dbresult = true;
           });        
 
       } catch (error) {
           console.log('Este foi o erro: '+ err);
-          var retorno = false;
-          return retorno;
+          dbresult = false;
       } 
   });
+  return dbresult;
 };
 
 
