@@ -254,6 +254,7 @@ var document = {
                         var resultado = app.mongo.DBResults();
                         if(resultado){
                             session.send('Maravilha. Agora só falta emitir a nota');
+                            session.endDialog();
                            }
                            else
                            { 
