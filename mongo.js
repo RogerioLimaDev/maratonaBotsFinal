@@ -57,7 +57,7 @@ var insertDocument = function(data){
 var DBResults = function()
 {
   return dbresult;
-}
+};
 
 
 var toSend = [];
