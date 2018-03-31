@@ -172,7 +172,7 @@ intents.matches('faturamento',[(session, args)=>{
 
                     setTimeout(()=>{
                         if(companyData){
-                            const msge = companyData.map(m=>M).join(', ');
+                            const msge = companyData;
                             session.send(companyData);}
                         else{session.send('Desculpe, não localizei seu cadastro');}
                     }, 10000);
