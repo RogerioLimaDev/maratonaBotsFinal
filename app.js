@@ -157,7 +157,7 @@ intents.matches('faturamento',[(session, args)=>{
                         collection: 'empresa',
                         name: nameToQuery
                     };
-                    qDocument(data);
+                    qDocument(dados);
 
                     var msgReceived = '';
 
