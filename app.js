@@ -204,14 +204,6 @@ intents.matches('faturamento',[(session, args)=>{
             }
    ]);
 
-   bot.dialog('cadastrar', [(session)=>{
-
-    session.send('aqui começa o cadastro');
-    session.replaceDialog('fazerCadastro');
-    // session.endDialog();
-    // session.replaceDialog('intents');
-}]);
-
 ////FORMFLOW//////
 
 
@@ -226,24 +218,41 @@ intents.matches('faturamento',[(session, args)=>{
             if(err)
                 return console.log(err);
         
-            bot.dialog('fazerCadastro',[
+            bot.dialog('cadastrar',[
                 (session)=>{ session.beginDialog(dialogName);},
                 (session,results)=>{
 
-                    var nomF = results.nomef;
+                    var nomeF = results.nomeF;
                     var cnpj = results.cnpj;
                     var valor = results.valor;
                     var venc = results.venc;
                     var email = results.contact;
 
-                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **'+ nomF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '** Email: ' + email + '**';
+                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **'+ nomeF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '** Email: ' + email + '**';
                     builder.Prompts.confirm(session,question,
                         {listStyle: builder.ListStyle.button});
                 },
             (session,results)=>{
                 if(results.response){
-                    session.send('Maravilha. Agora só falta emitir a nota');
-                    session.replaceDialog('intents');
+                    var document = {
+                        nomeFantasia:results.nomeF, 
+                        cnpj:results.cnpj,
+                        valor:results.valor,
+                        dataVencimento: results.venc,
+                        emailResp:results.contact
+                    };
+                    session.send('Guenta aí. Estou fazendo o cadastro');
+                     var resultado = iDocument(document);
+                     resultado();
+                     if(resultado === 'cadastro salvo'){
+                         session.send (resultado);
+                         session.send('Maravilha. Agora só falta emitir a nota');
+                        session.replaceDialog('intents');
+                        }
+                        else{ session.send(resultado);
+                              session.send('Desculpe. Sou novo na casa.');
+                              session.replaceDialog('cadastrar');
+                        }
                 }
                 else {
                     session.send('Ai...Não consegui cadastrar. Por favor, tenha paciência, eu preciso desse emprego.');

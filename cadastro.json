@@ -1,5 +1,5 @@
 [{
-        "id": "NomeF",
+        "id": "nomeF",
         "prompt": "Digite o **nome fantasia** da sua empresa",
         "errorPrompt": "Eita! Essa resposta eu não esperava",
         "type": "text"
