@@ -162,12 +162,12 @@ intents.matches('faturamento',[(session, args)=>{
                     const companyData = qDocument(data);
                     setTimeout(()=>{
                         session.send('Espera só mais um pouco. Meu HD está meio fragmentado hoje');
-                    }, 3000);
+                    }, 5000);
 
                     setTimeout(()=>{
                         if(companyData){session.send(companyData);}
                         else{session.send('Desculpe, não localizei seu cadastro');}
-                    }, 6000);
+                    }, 10000);
                 }
                 else
                 {
