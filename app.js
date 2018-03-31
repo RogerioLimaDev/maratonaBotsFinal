@@ -27,7 +27,7 @@ var txt;
     var data = {
         db : 'clientes',
         collection: 'empresa',
-        name: nameToQuery
+        name: 'nome da empresa'
     };
 
     var qDocument = app.mongo.querytDocument;
