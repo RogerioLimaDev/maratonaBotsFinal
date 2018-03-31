@@ -248,19 +248,19 @@ var document = {
                         emailResp:session.userData.email
                     };
 
-                    session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
+                    // session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
 
-                    // setTimeOut(()=>{
-                    //     var resultado = app.mongo.DBResults();
-                    //     if(resultado){
-                    //         session.send('Maravilha. Agora só falta emitir a nota');
-                    //        }
-                    //        else
-                    //        { 
-                    //         session.send('Ai, cacilda. Deu erro no servidor.');
-                    //         session.replaceDialog('cadastrar');
-                    //        }
-                    //  },3000);
+                    setTimeOut(()=>{
+                        var resultado = app.mongo.DBResults();
+                        if(resultado){
+                            session.send('Maravilha. Agora só falta emitir a nota');
+                           }
+                           else
+                           { 
+                            session.send('Ai, cacilda. Deu erro no servidor.');
+                            session.replaceDialog('cadastrar');
+                           }
+                     },3000);
 
                 }
                 else {
