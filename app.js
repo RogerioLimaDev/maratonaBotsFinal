@@ -234,11 +234,11 @@ intents.matches('faturamento',[(session, args)=>{
                 },
             (session,results)=>{
                 if(results.response){
-                    var nomeF = results.nomeF;
-                    var cnpj = results.cnpj;
-                    var valor = results.valor;
-                    var venc = results.venc;
-                    var email = results.contact;
+                    var nomeF = String(results.nomeF);
+                    var cnpj = String(results.cnpj);
+                    var valor = String(results.valor);
+                    var venc = String(results.venc);
+                    var email = String(results.contact);
 
                     var document = {
                         nomeFantasia:nomeF, 
@@ -247,6 +247,7 @@ intents.matches('faturamento',[(session, args)=>{
                         dataVencimento:venc,
                         emailResp:email
                     };
+                    
                     session.send('Guenta aí. Estou fazendo o cadastro');
                     var resultado = iDocument(document);
                     setTimeOut(()=>{
