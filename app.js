@@ -177,7 +177,7 @@ intents.matches('faturamento',[(session, args)=>{
                         if(msgReceived){
                             const msge = msgReceived;
                             builder.Prompts.confirm(session, 'Os seus dados são estes: **'+ msge + '**',
-                            {listStyle: builder.listStyle.buttons});
+                            {listStyle: builder.ListStyle.button});
                         }
                         else{
                             session.send('Desculpe, não localizei seu cadastro');
