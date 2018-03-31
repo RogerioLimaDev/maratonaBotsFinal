@@ -242,17 +242,19 @@ intents.matches('faturamento',[(session, args)=>{
                         emailResp:results.contact
                     };
                     session.send('Guenta aí. Estou fazendo o cadastro');
-                     var resultado = iDocument(document);
-                     resultado();
-                     if(resultado === 'cadastro salvo'){
-                         session.send (resultado);
-                         session.send('Maravilha. Agora só falta emitir a nota');
-                        session.replaceDialog('intents');
-                        }
-                        else{ session.send(resultado);
-                              session.send('Desculpe. Sou novo na casa.');
-                              session.replaceDialog('cadastrar');
-                        }
+                    var resultado= iDocument(document);
+                    setTimeOut(()=>{
+                        if(resultado === 'cadastro salvo'){
+                            session.send (resultado);
+                            session.send('Maravilha. Agora só falta emitir a nota');
+                            session.replaceDialog('intents');
+                           }
+                           else{ session.send(resultado);
+                                 session.send('Foi mal. A culpa não é minha. Deu erro no servidor.');
+                                 session.replaceDialog('cadastrar');
+                           }
+                     },3000);
+
                 }
                 else {
                     session.send('Ai...Não consegui cadastrar. Por favor, tenha paciência, eu preciso desse emprego.');
