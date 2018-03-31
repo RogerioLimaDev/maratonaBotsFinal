@@ -55,9 +55,10 @@ var txt;
         eResp.push(info[0][4]);
 
         console.log('RESPOSTA DO SERVIDOR: '+ info[0]);
+        return info[0];
         };
 
- //   setTimeout(logResponse,6000);
+//    setTimeout(logResponse,6000);
 
     var collection = 'empresa';
     var document = {
@@ -138,7 +139,7 @@ intents.matches('faturamento',[(session, args)=>{
             const resp = (results.response);
             if(resp)
                 { 
-                builder.Prompts.text(session, 'Maravilha, apenas escreva o nome da empresa. Assim, poderemos localizar seu cadastro.',
+                builder.Prompts.text(session, 'Maravilha, digite o **nome da empresa**. Assim, poderemos localizar seu cadastro.',
                 {inputHint: builder.InputHint.expectingInput});
                 }
             else
@@ -159,7 +160,9 @@ intents.matches('faturamento',[(session, args)=>{
                 if(results.response){
                     session.send('Espera um pouquinho. Vou ali localizar seu cadastro rapidinho');
                     nameToQuery = session.userData.company;
-                    const companyData = qDocument(data);
+                    qDocument(data);
+                    const companyData = logResponse();
+
                     setTimeout(()=>{
                         session.send('Espera só mais um pouco. Meu HD está meio fragmentado hoje');
                     }, 5000);
