@@ -25,7 +25,7 @@
     },
     {
         "id": "contact",
-        "prompt": "Só falta agora digitar o email para onde enviar a nota",
+        "prompt": "Só falta agora digitar o **email** para onde enviar a nota",
         "errorPrompt": "Eita! Essa resposta eu não esperava",
         "type": "text"
     }

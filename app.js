@@ -228,11 +228,13 @@ intents.matches('faturamento',[(session, args)=>{
                     var venc = results.venc;
                     var email = results.contact;
 
-                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **'+ nomeF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '** Email: ' + email + '**';
+                    const question = '**Veja se está tudo certinho:**\n\n Nome Fantasia: **'+ nomeF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '** Email: ' + email + '**';
                     builder.Prompts.confirm(session,question,
                         {listStyle: builder.ListStyle.button});
                 },
             (session,results)=>{
+                session.send('Guenta aí. Estou fazendo o cadastro');
+
                 if(results.response){
                     var nomeF = String(results.nomeF);
                     var cnpj = String(results.cnpj);
@@ -249,16 +251,16 @@ intents.matches('faturamento',[(session, args)=>{
                     };
 
                     
-                    session.send('Guenta aí. Estou fazendo o cadastro');
-                     iDocument(document);
+                    iDocument(document);
                     setTimeOut(()=>{
                         var resultado = app.mongo.DBResults();
                         if(resultado){
                             session.send('Maravilha. Agora só falta emitir a nota');
                            }
-                           else{ 
-                                 session.send('Ai, cacilda. Deu erro no servidor.');
-                                 session.replaceDialog('cadastrar');
+                           else
+                           { 
+                            session.send('Ai, cacilda. Deu erro no servidor.');
+                            session.replaceDialog('cadastrar');
                            }
                      },3000);
 
