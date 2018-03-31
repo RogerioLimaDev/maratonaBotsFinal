@@ -176,7 +176,7 @@ intents.matches('faturamento',[(session, args)=>{
                     setTimeout(()=>{
                         if(msgReceived){
                             const msge = msgReceived;
-                            session.send(msge);
+                            session.send('Recebi a mensagem' + msge);
                         }
                         else{
                             session.send('Desculpe, não localizei seu cadastro');
