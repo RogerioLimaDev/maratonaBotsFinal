@@ -128,7 +128,7 @@ intents.matches('faturamento',[(session, args)=>{
             'Que ótimo. **Vc já passou os dados?**',
             '**A empresa já está cadastrada?**'];
     
-            const mensag = new builder.Prompts.confirm(
+            builder.Prompts.confirm(
                 session,
                 pStrings,
                 {listStyle: builder.ListStyle.button});
