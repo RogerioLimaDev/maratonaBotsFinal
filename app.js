@@ -247,10 +247,12 @@ intents.matches('faturamento',[(session, args)=>{
                         dataVencimento:venc,
                         emailResp:email
                     };
+
                     
                     session.send('Guenta aí. Estou fazendo o cadastro');
-                    var resultado = iDocument(document);
+                     iDocument(document);
                     setTimeOut(()=>{
+                        var resultado = app.mongo.DBResults();
                         if(resultado){
                             session.send('Maravilha. Agora só falta emitir a nota');
                            }

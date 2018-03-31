@@ -52,8 +52,12 @@ var insertDocument = function(data){
           dbresult = false;
       } 
   });
-  return dbresult;
 };
+
+var DBResults = function()
+{
+  return dbresult;
+}
 
 
 var toSend = [];
@@ -107,3 +111,4 @@ exports.createCollection = createCollection;
 exports.insertDocument = insertDocument;
 exports.querytDocument = querytDocument;
 exports.sendResults = sendResults;
+exports.DBResults = DBResults;
