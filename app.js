@@ -181,6 +181,7 @@ intents.matches('faturamento',[(session, args)=>{
                         }
                         else{
                             session.send('Desculpe, não localizei seu cadastro');
+                            session.replaceDialog('faturamento');
                         }
                     }, 6500);
                 }
@@ -208,7 +209,7 @@ intents.matches('faturamento',[(session, args)=>{
 
     session.send('aqui começa o cadastro');
     formF();
-    session.endDialog();
+    // session.endDialog();
     // session.replaceDialog('intents');
 }]);
 
@@ -226,7 +227,7 @@ intents.matches('faturamento',[(session, args)=>{
             if(err)
                 return console.log(err);
         
-            bot.dialog('fazerCadastro',[
+            bot.dialog('/',[
                 (session)=>{ session.beginDialog(dialogName);},
                 (session,results)=>{
                     const question = 'Veja se está tudo certinho: \n'
