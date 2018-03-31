@@ -229,14 +229,16 @@ intents.matches('faturamento',[(session, args)=>{
             bot.dialog('fazerCadastro',[
                 (session)=>{ session.beginDialog(dialogName);},
                 (session,results)=>{
-                    var nomF = results.NomeF;
+
+                    var nomF = results.nomef;
                     var cnpj = results.cnpj;
                     var valor = results.valor;
                     var venc = results.venc;
+                    var email = results.contact;
 
-                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **'+ nomF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '**';
+                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **'+ nomF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '** Email: ' + email + '**';
                     builder.Prompts.confirm(session,question,
-                        {listStyle: builder.listStyle.buttons});
+                        {listStyle: builder.ListStyle.button});
                 },
             (session,results)=>{
                 if(results.response){
