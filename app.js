@@ -22,7 +22,7 @@ var txt;
 
 ////DBCODE////
 
-    var nameToQuery = 'Coca-Cola';
+    // var nameToQuery = 'Coca-Cola';
 
     var data = {
         db : 'clientes',
@@ -151,7 +151,12 @@ intents.matches('faturamento',[(session, args)=>{
 
                 if(results.response){
                     session.send('Espera um pouquinho. Vou ali localizar seu cadastro **rapidinho**');
-                    nameToQuery = session.userData.company;
+                    var nameToQuery = session.userData.company;
+                    var dados = {
+                        db : 'clientes',
+                        collection: 'empresa',
+                        name: nameToQuery
+                    };
                     qDocument(data);
 
                     var msgReceived = '';
