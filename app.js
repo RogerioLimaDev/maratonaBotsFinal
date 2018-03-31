@@ -230,12 +230,7 @@ intents.matches('faturamento',[(session, args)=>{
             bot.dialog('fazerCadastro',[
                 (session)=>{ session.beginDialog(dialogName);},
                 (session,results)=>{
-                    const question = 'Veja se está tudo certinho: \n'
-                    + 'Nome Fantasia: **${results.NomeF}** \n'
-                    + 'cnpj: **${results.cnpj}** \n'
-                    + 'Valor:  **${results.valor}** \n'
-                    + 'Vencimento: **${results.venc}**';
-    
+                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **${results.NomeF}** \n cnpj: **${results.cnpj}** \n Valor:  **${results.valor}** \n Vencimento: **${results.venc}**';
                     builder.Prompts.confirm(session,question,
                         {listStyle: builder.listStyle.buttons});
                 },
