@@ -208,7 +208,7 @@ intents.matches('faturamento',[(session, args)=>{
    bot.dialog('cadastrar', [(session)=>{
 
     session.send('aqui começa o cadastro');
-    formF();
+    session.replaceDialog('fazerCadastro');
     // session.endDialog();
     // session.replaceDialog('intents');
 }]);
@@ -219,7 +219,7 @@ intents.matches('faturamento',[(session, args)=>{
     const dialogName = 'form';
     const questoes = path.join(__dirname,'cadastro.json');
     
-     var formF = formFlowBuilder.executeFormFlow(
+    formFlowBuilder.executeFormFlow(
         questoes,
         bot,
         dialogName,
@@ -227,7 +227,7 @@ intents.matches('faturamento',[(session, args)=>{
             if(err)
                 return console.log(err);
         
-            bot.dialog('/',[
+            bot.dialog('fazerCadastro',[
                 (session)=>{ session.beginDialog(dialogName);},
                 (session,results)=>{
                     const question = 'Veja se está tudo certinho: \n'
