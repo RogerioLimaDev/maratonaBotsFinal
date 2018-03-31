@@ -250,8 +250,6 @@ var document = {
 
                     app.mongo.insertDocument(documento);
 
-                    session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
-
                     setTimeout(()=>{
                         var resultado = app.mongo.DBResults();
                         if(resultado){
