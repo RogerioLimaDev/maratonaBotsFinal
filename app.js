@@ -69,7 +69,6 @@ var txt;
         emailResp:'financeiro@cocacola.com.br'
     };
 
-
     var cCollect = app.mongo.createCollection;
     var iDocument = app.mongo.insertDocument;
 
@@ -230,7 +229,12 @@ intents.matches('faturamento',[(session, args)=>{
             bot.dialog('fazerCadastro',[
                 (session)=>{ session.beginDialog(dialogName);},
                 (session,results)=>{
-                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **${results.NomeF}** \n cnpj: **${results.cnpj}** \n Valor:  **${results.valor}** \n Vencimento: **${results.venc}**';
+                    var nomF = results.NomeF;
+                    var cnpj = results.cnpj;
+                    var valor = results.valor;
+                    var venc = results.venc;
+
+                    const question = 'Veja se está tudo certinho: \n Nome Fantasia: **'+ nomF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '**';
                     builder.Prompts.confirm(session,question,
                         {listStyle: builder.listStyle.buttons});
                 },
