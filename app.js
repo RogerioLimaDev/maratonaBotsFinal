@@ -124,8 +124,6 @@ intents.matches('Cumprimento', (session, args) => {
 
 intents.matches('faturamento',[(session, args)=>{
 
-        (session)=>{
-
             var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
             'Que ótimo. **Vc já passou os dados?**',
             '**A empresa já está cadastrada?**'];
@@ -134,8 +132,6 @@ intents.matches('faturamento',[(session, args)=>{
                 session,
                 pStrings,
                 {listStyle: builder.ListStyle.button});
-
-            session.send(mensag);
         },
 
         (session,results)=>{
@@ -149,7 +145,6 @@ intents.matches('faturamento',[(session, args)=>{
                 {session.send('Sem problemas. Faremos o cadastro rapidinho agora mesmo.');
                     session.replaceDialog('cadastrar');
                 }
-            };
         },
 
         (session,results)=>{
@@ -157,7 +152,9 @@ intents.matches('faturamento',[(session, args)=>{
                 session.userData.company = empresa;
                 builder.Prompts.confirm(session, 'Entendi, vc é da empresa **' + empresa + '**',
                 {listStyle: builder.ListStyle.button});
-                },
+        },
+
+
         (session, results)=>{
                 if(results.response){
                     session.send('Espera um pouquinho. Vou ali localizar seu cadastro rapidinho');
