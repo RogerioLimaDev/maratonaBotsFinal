@@ -168,7 +168,9 @@ intents.matches('faturamento',[(session, args)=>{
                     }, 5000);
 
                     setTimeout(()=>{
-                        if(companyData){session.send(companyData);}
+                        if(companyData){
+                            const msge = companyData.map(m=>M).join(', ');
+                            session.send(companyData);}
                         else{session.send('Desculpe, não localizei seu cadastro');}
                     }, 10000);
                 }
