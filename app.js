@@ -61,14 +61,6 @@ var txt;
 //    setTimeout(logResponse,6000);
 
     var collection = 'empresa';
-    var document = {
-        nomeFantasia:'Coca-Cola', 
-        cnpj:'000.000.000-00',
-        valor:'R$ 10.000,00',
-        dataVencimento: '00/00/2018',
-        emailResp:'financeiro@cocacola.com.br'
-    };
-
     var cCollect = app.mongo.createCollection;
     var iDocument = app.mongo.insertDocument;
 
@@ -205,7 +197,13 @@ intents.matches('faturamento',[(session, args)=>{
    ]);
 
 ////FORMFLOW//////
-
+var document = {
+    nomeFantasia:'foo', 
+    cnpj:'foo',
+    valor:'foo',
+    dataVencimento: 'foo',
+    emailResp:'foo'
+};
 
     const dialogName = 'form';
     const questoes = path.join(__dirname,'cadastro.json');
@@ -223,10 +221,15 @@ intents.matches('faturamento',[(session, args)=>{
                 (session,results)=>{
 
                     var nomeF = results.nomeF;
+                    session.userData.nomeF = results.nomeF;
                     var cnpj = results.cnpj;
+                    session.userData.cnpj  = results.cnpj;
                     var valor = results.valor;
+                    session.userData.valor = results.valor;
                     var venc = results.venc;
+                    session.userData.venc = results.venc;
                     var email = results.contact;
+                    session.userData.email = results.contact;
 
                     const question = '**Veja se está tudo certinho:**\n\n Nome Fantasia: **'+ nomeF + '** \n cnpj: **'+ cnpj + '** \n Valor: **'+ valor + '** \n Vencimento: **'+ venc + '** Email: ' + email + '**';
                     builder.Prompts.confirm(session,question,
@@ -236,33 +239,28 @@ intents.matches('faturamento',[(session, args)=>{
                 session.send('Guenta aí. Estou fazendo o cadastro');
 
                 if(results.response){
-                    var nomeF = String(results.nomeF);
-                    var cnpj = String(results.cnpj);
-                    var valor = String(results.valor);
-                    var venc = String(results.venc);
-                    var email = String(results.contact);
 
                     var document = {
-                        nomeFantasia:nomeF, 
-                        cnpj:cnpj,
-                        valor:valor,
-                        dataVencimento:venc,
-                        emailResp:email
+                        nomeFantasia:session.userData.nomeF, 
+                        cnpj:session.userData.cnpj,
+                        valor:session.userData.valor,
+                        dataVencimento:session.userData.venc,
+                        emailResp:session.userData.email
                     };
 
-                    
-                    iDocument(document);
-                    setTimeOut(()=>{
-                        var resultado = app.mongo.DBResults();
-                        if(resultado){
-                            session.send('Maravilha. Agora só falta emitir a nota');
-                           }
-                           else
-                           { 
-                            session.send('Ai, cacilda. Deu erro no servidor.');
-                            session.replaceDialog('cadastrar');
-                           }
-                     },3000);
+                    session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
+
+                    // setTimeOut(()=>{
+                    //     var resultado = app.mongo.DBResults();
+                    //     if(resultado){
+                    //         session.send('Maravilha. Agora só falta emitir a nota');
+                    //        }
+                    //        else
+                    //        { 
+                    //         session.send('Ai, cacilda. Deu erro no servidor.');
+                    //         session.replaceDialog('cadastrar');
+                    //        }
+                    //  },3000);
 
                 }
                 else {
