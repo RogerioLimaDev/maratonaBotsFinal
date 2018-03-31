@@ -239,7 +239,7 @@ var document = {
 
                 if(results.response){
                     session.send('Guenta aí. Estou fazendo o cadastro');
-                    var document = {
+                    var documento = {
                         nomeFantasia:session.userData.nomeF, 
                         cnpj:session.userData.cnpj,
                         valor:session.userData.valor,
@@ -247,7 +247,7 @@ var document = {
                         emailResp:session.userData.email
                     };
 
-                    iDocument(document);
+                    app.mongo.insertDocument(documento);
 
                     // session.send('O nome fantasia que chegou é : ' + document.nomeFantasia);
 
