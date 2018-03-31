@@ -234,21 +234,27 @@ intents.matches('faturamento',[(session, args)=>{
                 },
             (session,results)=>{
                 if(results.response){
+                    var nomeF = results.nomeF;
+                    var cnpj = results.cnpj;
+                    var valor = results.valor;
+                    var venc = results.venc;
+                    var email = results.contact;
+
                     var document = {
-                        nomeFantasia:results.nomeF, 
-                        cnpj:results.cnpj,
-                        valor:results.valor,
-                        dataVencimento: results.venc,
-                        emailResp:results.contact
+                        nomeFantasia:nomeF, 
+                        cnpj:cnpj,
+                        valor:valor,
+                        dataVencimento:venc,
+                        emailResp:email
                     };
                     session.send('Guenta aí. Estou fazendo o cadastro');
-                    var resultado= iDocument(document);
+                    var resultado = iDocument(document);
                     setTimeOut(()=>{
                         if(resultado){
                             session.send('Maravilha. Agora só falta emitir a nota');
                            }
                            else{ 
-                                 session.send('Ai, caceta. Deu erro no servidor.');
+                                 session.send('Ai, cacilda. Deu erro no servidor.');
                                  session.replaceDialog('cadastrar');
                            }
                      },3000);
