@@ -118,7 +118,7 @@ intents.matches('faturamento',[(session, args)=>{
 
             var pStrings = ['Que maravilha! **Já temos seu cadastro?**',
             'Que ótimo. **Vc já passou os dados?**',
-            '**A empresa já está cadastrada?**'];
+            '**Que boa notícia! A empresa já está cadastrada?**'];
     
             builder.Prompts.confirm(
                 session,
